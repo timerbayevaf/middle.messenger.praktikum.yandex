@@ -1,0 +1,6 @@
+.chat {
+  width: 100%;
+  flex-grow: 3;
+  flex-shrink: 1;
+  flex-basis: 0%;
+}

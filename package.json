@@ -2,14 +2,26 @@
   "name": "web-chat",
   "version": "0.0.1",
   "description": "create web chat",
-  "main": "index.js",
   "author": "Timerbayev Aynur <timerbayevaf@yandex.ru>",
   "license": "MIT",
   "scripts": {
-    "dev": "parcel static/index.html",
-    "build": "parcel build index.html"
+    "dev": "parcel static/index.html --no-source-maps --dist-dir ./build",
+    "build": "parcel build static/index.html --no-source-maps --dist-dir ./build"
   },
   "devDependencies": {
-    "parcel": "^2.8.2"
+    "@parcel/transformer-inline-string": "2.8.2",
+    "@parcel/transformer-typescript-tsc": "^2.8.2",
+    "autoprefixer": "10.4.13",
+    "parcel": "2.8.2",
+    "postcss-modules": "6.0.0",
+    "typescript": ">=3.0.0"
+  },
+  "alias": {
+    "components": "./src/components",
+    "core": "./src/core",
+    "layout": "./src/layout",
+    "modules": "./src/modules",
+    "pages": "./src/pages",
+    "utils": "./src/utils"
   }
 }

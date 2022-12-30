@@ -1,0 +1,23 @@
+.chatlist {
+  flex: 1 1 auto;
+  flex-direction: column;
+  max-width: 420px;
+  min-width: 18rem;
+  border-right: 1px solid var(--base-bg-300);
+}
+
+.chatlist__header {
+  height: 70px;
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  display: flex;
+  gap: 16px;
+  background-color: var(--base-bg-50);
+}
+
+.list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}

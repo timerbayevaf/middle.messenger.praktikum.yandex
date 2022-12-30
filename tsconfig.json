@@ -1,0 +1,22 @@
+{
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "components/*": ["./src/components/*"],
+      "core": ["./src/core/index.ts"],
+      "layout/*": ["./src/layout/*"],
+      "modules/*": ["./src/modules/*"],
+      "pages/*": ["./src/pages/*"],
+      "utils/*": ["./src/utils/*"]
+    },
+    "target": "ES2017",
+    "lib": ["es2017", "dom", "dom.iterable"],
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "jsxFactory": "AIcreateElement",
+    "jsxFragmentFactory": "AIcreateFragment",
+    "strict": true,
+    "module": "CommonJS"
+  }
+}

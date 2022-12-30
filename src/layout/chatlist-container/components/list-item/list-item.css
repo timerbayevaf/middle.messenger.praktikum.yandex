@@ -1,0 +1,103 @@
+.list__item {
+  display: flex;
+  height: 70px;
+  box-sizing: border-box;
+}
+
+.item {
+  margin: 2px 4px 0px 10px;
+  padding: 2px 10px 4px 4px;
+  border-radius: 5px;
+  background-color: var(--base-bg-white);
+}
+
+.item:focus,
+.item:hover {
+  transition: all 0.1s ease-in;
+  background-color: var(--primary-bg-100);
+}
+
+.item_active {
+  background-color: var(--secondary-bg-hover);
+}
+
+.item__image-container {
+  height: 100%;
+  max-height: 66px;
+  max-width: 66px;
+  min-height: 66px;
+  min-width: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item__image {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.item__content {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0 8px 16px;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.item__title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 16px;
+  flex-grow: 1;
+}
+
+.item__text {
+  margin: 0;
+  font-weight: 500;
+  font-size: 12px;
+  flex-grow: 1;
+  color: var(--base-bg-900);
+  white-space: nowrap; /* Запрещаем перенос строк */
+  overflow: hidden; /* Обрезаем все, что не помещается в область */
+  text-overflow: ellipsis;
+}
+
+.item__row {
+  display: flex;
+  height: 22px;
+  line-height: 22px;
+}
+
+.item__time {
+  margin-top: -0.3375rem;
+  color: var(--base-bg-600);
+  height: 16px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.item__count {
+  box-sizing: border-box;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--primary-bg-400);
+  border-radius: 10px;
+  padding: 0px 8px;
+  line-height: 20px;
+  color: var(--base-bg-600);
+}
+
+.item_active .item__count {
+  color: var(--base-bg-50);
+  border-color: var(--base-bg-50);
+}
+
+.item:focus .item__count,
+.item:hover .item__count {
+  color: var(--base-bg-600);
+  border-color: var(--primary-bg-400);
+}
