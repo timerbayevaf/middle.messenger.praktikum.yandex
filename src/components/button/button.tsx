@@ -1,14 +1,17 @@
 import { AIcreateElement } from 'core';
 
 import './button.css';
+
 interface Props {
-  handleClick?: any;
+  handleClick?: (e: HTMLButtonElement) => void;
   label?: string;
   children?: string;
 }
 
-export const Button = ({ handleClick, label, children }: Props) => (
+const Button = ({ handleClick, label, children }: Props) => (
   <button className='button' onclick={handleClick}>
     {label || children}
   </button>
 );
+
+export default Button;

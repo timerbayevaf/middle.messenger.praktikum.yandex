@@ -1,5 +1,6 @@
+import Avatar from 'components/avatar/avatar';
 import { AIcreateElement } from 'core';
-import { formatDate } from 'utils/time';
+import { formatDate } from 'utils/date';
 
 import './list-item.css';
 
@@ -32,9 +33,7 @@ export const ListItem = ({
   isActive,
 }: ListItemProps) => (
   <li key={id} className={`list__item item ${isActive ? 'item_active' : ''}`}>
-    <div className='item__image-container'>
-      <img className='item__image' src={avatar} />
-    </div>
+    <Avatar className='item__image-container' src={avatar} />
     <div className='item__content'>
       <div className='item__row'>
         <h2 className='item__title'>{title}</h2>

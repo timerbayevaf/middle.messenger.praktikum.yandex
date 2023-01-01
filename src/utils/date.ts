@@ -1,7 +1,11 @@
 const MONTH = [
   'янв.',
   'февр.',
+  'март',
   'апр.',
+  'май',
+  'июнь',
+  'июль',
   'авг.',
   'сент.',
   'окт.',
@@ -21,7 +25,7 @@ const isThisYear = (before: Date, today: Date) => {
   return before.getFullYear() === today.getFullYear();
 };
 
-export function formatDate(strDate: string) {
+function formatDate(strDate: string) {
   const date = new Date(strDate);
 
   const now = new Date();
@@ -43,6 +47,7 @@ export function formatDate(strDate: string) {
       dd = '0' + dd;
     }
 
+    console.warn(mm, MONTH[mm]);
     return `${dd} ${MONTH[mm]}`;
   }
 
@@ -63,3 +68,17 @@ export function formatDate(strDate: string) {
 
   return dd + '.' + mm + '.' + yy;
 }
+
+const formatTime = (strDate: string) => {
+  const date = new Date(strDate);
+
+  let hh: string | number = date.getHours();
+  hh < 10 ? (hh = '0' + hh) : hh;
+
+  let mn: number | string = date.getMinutes();
+  mn < 10 ? (mn = '0' + mn) : mn;
+
+  return `${hh}:${mn}`;
+};
+
+export { formatDate, formatTime };

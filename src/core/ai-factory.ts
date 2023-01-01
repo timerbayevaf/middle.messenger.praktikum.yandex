@@ -86,9 +86,27 @@ export function AIcreateElement(
   return elm;
 }
 
+// export const AIcreateFragment = (
+//   attrs?: { [key: string]: any },
+//   ...children: (HTMLElement | string)[]
+// ): (HTMLElement | string)[] => {
+//   return children;
+// };
+
 export const AIcreateFragment = (
   attrs?: { [key: string]: any },
-  ...children: (HTMLElement | string)[]
-): (HTMLElement | string)[] => {
-  return children;
+  ...children: HTMLElement[]
+): DocumentFragment => {
+  const fragment = document.createDocumentFragment();
+  attrs?.children?.forEach((child: any) => {
+    if (Array.isArray(child)) {
+      child.forEach((el) => {
+        fragment.appendChild(el);
+      });
+    } else {
+      fragment.appendChild(child);
+    }
+  });
+
+  return fragment;
 };
