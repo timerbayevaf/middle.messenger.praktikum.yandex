@@ -3,6 +3,8 @@ import { AIcreateElement } from './core/ai-factory';
 import MainPage from 'pages/main';
 import Login from 'pages/login';
 import Signup from 'pages/signup';
+import NotFoundPage from 'pages/not-found';
+import BrokendPage from 'pages/broken/broken';
 
 const Main = () => {
   return <MainPage />;
@@ -15,4 +17,4 @@ function render(element: any, parentDom: HTMLElement) {
 
 const container = document.getElementById('root');
 
-render(<Signup />, container as HTMLElement);
+render(<MainPage />, container as HTMLElement);
