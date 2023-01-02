@@ -8,7 +8,8 @@
       "layout/*": ["./src/layout/*"],
       "modules/*": ["./src/modules/*"],
       "pages/*": ["./src/pages/*"],
-      "utils/*": ["./src/utils/*"]
+      "utils/*": ["./src/utils/*"],
+      "types": ["./src/types/index.ts"]
     },
     "target": "ES2017",
     "lib": ["es2017", "dom", "dom.iterable"],

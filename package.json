@@ -22,6 +22,7 @@
     "layout": "./src/layout",
     "modules": "./src/modules",
     "pages": "./src/pages",
-    "utils": "./src/utils"
+    "utils": "./src/utils",
+    "types": "./src/types"
   }
 }

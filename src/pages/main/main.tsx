@@ -79,6 +79,27 @@ const list = [
   },
 ];
 
+const chatList = [
+  {
+    id: 123,
+    first_name: 'Petya',
+    second_name: 'Pupkin',
+    avatar: 'https://www.w3schools.com/howto/img_avatar.png',
+    email: 'my@email.com',
+    login: 'userLogin',
+    phone: '8(911)-222-33-22',
+  },
+  {
+    id: 12,
+    first_name: 'Artem',
+    second_name: 'Pupkin',
+    avatar: 'https://www.w3schools.com/w3images/avatar5.png',
+    email: 'my@email.com',
+    login: 'userLogin',
+    phone: '8(911)-222-33-22',
+  },
+];
+
 const chatMessages: IChatMessage[] = [
   {
     id: 1,
@@ -128,11 +149,13 @@ const chatMessages: IChatMessage[] = [
       'Однозначно, активно развивающиеся страны третьего мира могут быть смешаны с не уникальными данными до степени совершенной неузнаваемости, из-за чего возрастает их статус бесполезности. Также как курс на социально-ориентированный национальный проект не оставляет шанса для инновационных методов управления процессами.',
   },
 ];
+
 const isSelectedChat = true;
+const isSearch = true;
 
 const MainPage = () => (
   <div className='main'>
-    <ChatlistContainer list={list} />
+    <ChatlistContainer isSearch={isSearch} list={isSearch ? chatList : list} />
     {isSelectedChat ? (
       <ChatContainer chatMessages={chatMessages} />
     ) : (

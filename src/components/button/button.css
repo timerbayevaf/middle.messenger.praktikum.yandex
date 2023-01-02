@@ -40,9 +40,9 @@
   color: var(--primary-bg-800);
 }
 
-.button_small {
+.button__small {
   min-height: 32px;
-  padding: 8px 24px;
+  padding: 8px;
   font-size: 12px;
   line-height: 16px;
 }
