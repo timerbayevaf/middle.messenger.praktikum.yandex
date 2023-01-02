@@ -6,4 +6,4 @@ const NoSelectedChat = () => (
   <div className='no-selected-chat'>Выберите чат чтобы отправить сообщение</div>
 );
 
-export { NoSelectedChat };
+export default NoSelectedChat;

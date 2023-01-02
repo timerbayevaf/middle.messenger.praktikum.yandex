@@ -1,12 +1,11 @@
 import { AIcreateElement } from './core/ai-factory';
 
 import MainPage from 'pages/main';
-
-const list: any[] = [];
-let i = -1;
+import Login from 'pages/login';
+import Signup from 'pages/signup';
 
 const Main = () => {
-  return <MainPage label='test' />;
+  return <MainPage />;
 };
 
 function render(element: any, parentDom: HTMLElement) {
@@ -16,4 +15,4 @@ function render(element: any, parentDom: HTMLElement) {
 
 const container = document.getElementById('root');
 
-render(<Main />, container as HTMLElement);
+render(<Signup />, container as HTMLElement);

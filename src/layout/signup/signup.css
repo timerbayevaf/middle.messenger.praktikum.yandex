@@ -1,0 +1,29 @@
+.signup__widget {
+  flex-direction: column;
+  min-height: 450px;
+  min-width: 350px;
+  background-color: var(--base-bg-white);
+  border-radius: 5px;
+  justify-content: space-between;
+}
+
+.signup__title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--base-bg-900);
+  margin: 0;
+  padding: 0;
+}
+
+.signup__group {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.signup__group_bottom {
+  padding-top: 32px;
+  gap: 16;
+  align-items: center;
+}

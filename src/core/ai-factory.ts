@@ -73,11 +73,13 @@ export function AIcreateElement(
 
     // Is child a leaf?
     if (!Array.isArray(child)) {
-      elm.appendChild(
-        (child as HTMLElement).nodeType == null
-          ? document.createTextNode(child.toString())
-          : child
-      );
+      if (child !== null && child !== undefined) {
+        elm.appendChild(
+          (child as HTMLElement).nodeType == null
+            ? document.createTextNode(child.toString())
+            : child
+        );
+      }
     } else {
       stack.push(...child);
     }

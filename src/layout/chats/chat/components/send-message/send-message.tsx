@@ -10,7 +10,7 @@ const SendMessage = () => (
     <div className='send-message__icon'>
       <Icon size={28} type={Icons.Plus} />
     </div>
-    <Input placeholder='Сообщение' value='' />
+    <Input label='Сообщение' value='' />
     <div className='send-message__icon send-message__icon_enter'>
       <Icon size={18} type={Icons.Send} color='white' />
     </div>

@@ -1,9 +1,9 @@
 import { AIcreateElement } from 'core';
-import ChatContainer from 'layout/chat-container';
-import ChatlistContainer from 'layout/chatlist-container';
+import { ChatContainer, ChatlistContainer, NoSelectedChat } from 'layout/chats';
 import { IChatMessage } from 'src/types/chats/messages';
 
 import './main.css';
+
 const list = [
   {
     id: 123,
@@ -128,11 +128,16 @@ const chatMessages: IChatMessage[] = [
       'Однозначно, активно развивающиеся страны третьего мира могут быть смешаны с не уникальными данными до степени совершенной неузнаваемости, из-за чего возрастает их статус бесполезности. Также как курс на социально-ориентированный национальный проект не оставляет шанса для инновационных методов управления процессами.',
   },
 ];
+const isSelectedChat = true;
 
 const MainPage = () => (
   <div className='main'>
     <ChatlistContainer list={list} />
-    <ChatContainer isSelectedChat={true} chatMessages={chatMessages} />
+    {isSelectedChat ? (
+      <ChatContainer chatMessages={chatMessages} />
+    ) : (
+      <NoSelectedChat />
+    )}
   </div>
 );
 

@@ -3,7 +3,7 @@ import { Search } from './components/search';
 import { Icon, Icons } from 'components/icon';
 
 import './chat-container.css';
-import { Button } from 'components/button/button';
+import { Button } from 'components/button';
 import { ListItem } from './components/list-item';
 
 interface ChatlistContainerProps {

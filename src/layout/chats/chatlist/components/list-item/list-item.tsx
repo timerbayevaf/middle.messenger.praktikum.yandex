@@ -1,5 +1,6 @@
 import Avatar from 'components/avatar/avatar';
 import { AIcreateElement } from 'core';
+import { cn } from 'utils/cn';
 import { formatDate } from 'utils/date';
 
 import './list-item.css';
@@ -32,7 +33,7 @@ export const ListItem = ({
   last_message,
   isActive,
 }: ListItemProps) => (
-  <li key={id} className={`list__item item ${isActive ? 'item_active' : ''}`}>
+  <li key={id} className={cn('list__item item', { item_active: !!isActive })}>
     <Avatar className='item__image-container' src={avatar} />
     <div className='item__content'>
       <div className='item__row'>

@@ -1,4 +1,5 @@
 import { AIcreateElement } from 'core';
+import { cn } from 'utils/cn';
 
 import './avatar.css';
 
@@ -17,15 +18,8 @@ const Avatar = ({
   title,
   src,
 }: Props) => (
-  <div
-    title={title}
-    onClick={handleClick}
-    className={`avatar ${className ? className : ''}`}
-  >
-    <img
-      className={`avatar__image ${imageClassName ? imageClassName : ''}`}
-      src={src}
-    />
+  <div title={title} onClick={handleClick} className={cn('avatar', className)}>
+    <img className={cn('avatar__image', imageClassName)} src={src} />
   </div>
 );
 
