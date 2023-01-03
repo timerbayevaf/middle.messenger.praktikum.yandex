@@ -41,7 +41,9 @@ export function AIcreateElement(
 
   if (tag === 'icon') {
     elm = document.createElement('span');
-    elm.innerHTML = attrs.icon;
+    const children = getSourceAsDOM(attrs['icon']);
+
+    elm.appendChild(children.documentElement);
   }
 
   // Add attributes
@@ -88,13 +90,6 @@ export function AIcreateElement(
   return elm;
 }
 
-// export const AIcreateFragment = (
-//   attrs?: { [key: string]: any },
-//   ...children: (HTMLElement | string)[]
-// ): (HTMLElement | string)[] => {
-//   return children;
-// };
-
 export const AIcreateFragment = (
   attrs?: { [key: string]: any },
   ...children: HTMLElement[]
@@ -112,3 +107,8 @@ export const AIcreateFragment = (
 
   return fragment;
 };
+
+function getSourceAsDOM(content: string): Document {
+  const parser = new DOMParser();
+  return parser.parseFromString(content, 'image/svg+xml');
+}
