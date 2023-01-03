@@ -1,0 +1,33 @@
+.header {
+  height: 70px;
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  display: flex;
+  gap: 16px;
+  background-color: var(--base-bg-50);
+  flex-direction: row-reverse;
+}
+
+.header_bg-white {
+  background-color: var(--base-bg-white);
+}
+
+.header__icon:hover {
+  background-color: var(--base-bg-100);
+  border-radius: 20px;
+}
+
+.header__icon:active {
+  background-color: var(--base-bg-300);
+  border-radius: 20px;
+}
+
+.header__title {
+  flex-grow: 1;
+  font-weight: 600;
+  font-size: 14px;
+  align-items: center;
+  display: flex;
+  letter-spacing: 0.04106938em;
+}

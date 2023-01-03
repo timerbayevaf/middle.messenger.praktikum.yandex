@@ -1,11 +1,4 @@
-interface IUser {
-  first_name: string;
-  second_name: string;
-  avatar: string;
-  email: string;
-  login: string;
-  phone: string;
-}
+import { IUser } from '../user/user';
 
 interface ILastMessage {
   user: IUser;

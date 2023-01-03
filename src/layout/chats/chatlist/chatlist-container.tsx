@@ -1,31 +1,40 @@
 import { AIcreateElement } from 'core';
-import { Search } from 'layout/chats/chatlist/components/search';
-import { Icon, Icons } from 'components/icon';
 
-import './chat-container.css';
+import { Icon, Icons } from 'components/icon';
 import { Button } from 'components/button';
+import { ISearchUser } from 'types';
+
+import { Search } from './components/search';
 import ChatList from './components/chat-list';
 import SearchResult from './components/search-result';
 
+import './chat-container.css';
+import Profile from 'layout/profile';
+import Header from './components/header/header';
+
 interface ChatlistContainerProps {
-  list: any[];
-  isSearch: boolean;
+  searchValue: string;
 }
 
-const ChatlistContainer = ({ list, isSearch }: ChatlistContainerProps) => (
-  <div className='chatlist'>
-    <div className='chatlist__header'>
-      <Search />
-      <Button size='small'>
-        <Icon size={20} type={Icons.Menu} />
-      </Button>
+const ChatlistContainer = ({ searchValue = '' }: ChatlistContainerProps) => {
+  const isShowSearch = searchValue.length > 0;
+  const isShowProfile = true;
+  const isShowChatList = false;
+  const title = 'Профиль';
+
+  return (
+    <div className='chatlist'>
+      <Header
+        isShowSearch={!isShowProfile}
+        title={title}
+        searchValue={searchValue}
+      />
+
+      <SearchResult isShow={isShowSearch} />
+      <ChatList isShow={isShowChatList} activeId={123} />
+      <Profile isShow={isShowProfile} />
     </div>
-    {isSearch ? (
-      <SearchResult userList={list} />
-    ) : (
-      <ChatList activeId={123} list={list} />
-    )}
-  </div>
-);
+  );
+};
 
 export default ChatlistContainer;

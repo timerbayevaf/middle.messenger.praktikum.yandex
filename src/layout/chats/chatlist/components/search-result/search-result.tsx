@@ -1,19 +1,45 @@
 import { AIcreateElement } from 'core';
-import { ISearchUser } from 'types';
 import { SearchItem } from '../search-item';
 
 import './search-result.css';
 
+const chatList = [
+  {
+    id: 123,
+    first_name: 'Petya',
+    second_name: 'Pupkin',
+    avatar: 'https://www.w3schools.com/howto/img_avatar.png',
+    email: 'my@email.com',
+    login: 'userLogin',
+    phone: '8(911)-222-33-22',
+  },
+  {
+    id: 12,
+    first_name: 'Artem',
+    second_name: 'Pupkin',
+    avatar: 'https://www.w3schools.com/w3images/avatar5.png',
+    email: 'my@email.com',
+    login: 'userLogin',
+    phone: '8(911)-222-33-22',
+  },
+];
+
 interface SearchResultProps {
-  userList: ISearchUser[];
+  isShow: boolean;
 }
 
-const SearchResult = ({ userList }: SearchResultProps) => (
-  <ul className='search-result'>
-    {userList?.map((user) => (
-      <SearchItem user={user} />
-    ))}
-  </ul>
-);
+const SearchResult = ({ isShow }: SearchResultProps) => {
+  if (!isShow) {
+    return null;
+  }
+
+  return (
+    <ul className='search-result'>
+      {chatList?.map((user) => (
+        <SearchItem user={user} />
+      ))}
+    </ul>
+  );
+};
 
 export default SearchResult;

@@ -8,9 +8,16 @@ interface Props {
   label?: string;
   type?: string;
   error?: string;
+  handleChange?(e: Event): void;
 }
 
-const InputField = ({ value, type, label = '', error = '' }: Props) => {
+const InputField = ({
+  value,
+  type,
+  label = '',
+  error = '',
+  handleChange,
+}: Props) => {
   return (
     <div className='input-field'>
       <label
@@ -23,6 +30,7 @@ const InputField = ({ value, type, label = '', error = '' }: Props) => {
 
       <div className='input-field__wrapper'>
         <input
+          onChange={handleChange}
           type={type}
           aria-invalid='false'
           className='input-field__input'
