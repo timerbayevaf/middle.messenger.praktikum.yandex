@@ -1,4 +1,4 @@
-import { AIcreateElement } from './core/ai-factory';
+import { AIcreateElement, AIcreateFragment } from './core/ai-factory';
 
 import MainPage from 'pages/main';
 import Login from 'pages/login';
@@ -7,7 +7,7 @@ import NotFoundPage from 'pages/not-found';
 import BrokendPage from 'pages/broken/broken';
 
 const Main = () => {
-  return <MainPage />;
+  return <>hello</>;
 };
 
 function render(element: any, parentDom: HTMLElement) {

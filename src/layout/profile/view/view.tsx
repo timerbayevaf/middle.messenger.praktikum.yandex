@@ -7,9 +7,12 @@ import { ProfileAvatar } from './components/profile-avatar';
 
 import './view.css';
 
-interface ViewProps extends IUser {}
+interface ViewProps extends IUser {
+  isShow: boolean;
+}
 
 const View = ({
+  isShow,
   login,
   email,
   first_name,
@@ -17,6 +20,10 @@ const View = ({
   avatar,
   phone,
 }: ViewProps) => {
+  if (!isShow) {
+    return null;
+  }
+
   return (
     <div className='view'>
       <ProfileAvatar

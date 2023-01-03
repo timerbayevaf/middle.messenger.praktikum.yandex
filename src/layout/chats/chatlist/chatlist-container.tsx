@@ -1,16 +1,12 @@
 import { AIcreateElement } from 'core';
 
-import { Icon, Icons } from 'components/icon';
-import { Button } from 'components/button';
-import { ISearchUser } from 'types';
-
-import { Search } from './components/search';
 import ChatList from './components/chat-list';
 import SearchResult from './components/search-result';
 
 import './chat-container.css';
 import Profile from 'layout/profile';
 import Header from './components/header/header';
+import { PROFILE_VIEW } from 'constants';
 
 interface ChatlistContainerProps {
   searchValue: string;
@@ -21,6 +17,7 @@ const ChatlistContainer = ({ searchValue = '' }: ChatlistContainerProps) => {
   const isShowProfile = true;
   const isShowChatList = false;
   const title = 'Профиль';
+  const viewType = PROFILE_VIEW.EDIT;
 
   return (
     <div className='chatlist'>
@@ -32,7 +29,7 @@ const ChatlistContainer = ({ searchValue = '' }: ChatlistContainerProps) => {
 
       <SearchResult isShow={isShowSearch} />
       <ChatList isShow={isShowChatList} activeId={123} />
-      <Profile isShow={isShowProfile} />
+      <Profile viewType={viewType} isShow={isShowProfile} />
     </div>
   );
 };
