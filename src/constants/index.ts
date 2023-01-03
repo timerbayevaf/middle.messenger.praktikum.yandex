@@ -1,6 +1,7 @@
 enum PROFILE_VIEW {
   VIEW = 'view',
-  EDIT = 'edit',
+  EDIT_PERSONAL_INFO = 'edit-personal-info',
+  EDIT_PASSWORD = 'edit-password',
 }
 
 enum PROFILE_TITLE {

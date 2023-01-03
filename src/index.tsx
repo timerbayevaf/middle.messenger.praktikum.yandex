@@ -7,7 +7,7 @@ import NotFoundPage from 'pages/not-found';
 import BrokendPage from 'pages/broken/broken';
 
 const Main = () => {
-  return <>hello</>;
+  return <MainPage />;
 };
 
 function render(element: any, parentDom: HTMLElement) {
@@ -17,4 +17,4 @@ function render(element: any, parentDom: HTMLElement) {
 
 const container = document.getElementById('root');
 
-render(<MainPage />, container as HTMLElement);
+render(<Main />, container as HTMLElement);

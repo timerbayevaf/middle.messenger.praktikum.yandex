@@ -13,6 +13,7 @@ interface Props {
   type?: ButtonType;
   size?: ButtonSize;
   disabled?: boolean;
+  name?: string;
 }
 
 const Button = ({
@@ -23,6 +24,7 @@ const Button = ({
   type,
   size = 'medium',
   disabled,
+  name,
 }: Props) => (
   <button
     className={cn(
@@ -38,6 +40,7 @@ const Button = ({
       className
     )}
     onclick={handleClick}
+    name={name}
   >
     {label || children}
   </button>

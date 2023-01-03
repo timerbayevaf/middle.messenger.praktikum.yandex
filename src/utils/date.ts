@@ -13,17 +13,17 @@ const MONTH = [
   'дек.',
 ];
 
-const isToday = (before: Date, today: Date) => {
+function isToday(before: Date, today: Date) {
   return (
     before.getDate() === today.getDate() &&
     before.getMonth() === today.getMonth() &&
     before.getFullYear() === today.getFullYear()
   );
-};
+}
 
-const isThisYear = (before: Date, today: Date) => {
+function isThisYear(before: Date, today: Date) {
   return before.getFullYear() === today.getFullYear();
-};
+}
 
 function formatDate(strDate: string) {
   const date = new Date(strDate);

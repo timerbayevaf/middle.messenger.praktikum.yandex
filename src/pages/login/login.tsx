@@ -1,5 +1,5 @@
 import { AIcreateElement } from 'core';
-import Login from 'layout/login/login';
+import Login from 'modules/login/login';
 
 import './login.css';
 

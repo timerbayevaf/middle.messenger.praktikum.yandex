@@ -1,5 +1,9 @@
 import { AIcreateElement } from 'core';
-import { ChatContainer, ChatlistContainer, NoSelectedChat } from 'layout/chats';
+import {
+  ChatContainer,
+  ChatlistContainer,
+  NoSelectedChat,
+} from 'modules/chats';
 import { IChatMessage } from 'src/types/chats/messages';
 
 import './main.css';
@@ -55,11 +59,11 @@ const chatMessages: IChatMessage[] = [
 ];
 
 const isSelectedChat = true;
-const isSearch = true;
+const searchValue = '';
 
 const MainPage = () => (
   <div className='main'>
-    <ChatlistContainer isSearch={isSearch} />
+    <ChatlistContainer searchValue={searchValue} />
 
     {isSelectedChat ? (
       <ChatContainer chatMessages={chatMessages} />

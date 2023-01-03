@@ -6,7 +6,6 @@
     "paths": {
       "components/*": ["./src/components/*"],
       "core": ["./src/core/index.ts"],
-      "layout/*": ["./src/layout/*"],
       "modules/*": ["./src/modules/*"],
       "pages/*": ["./src/pages/*"],
       "utils/*": ["./src/utils/*"],

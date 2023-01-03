@@ -1,5 +1,5 @@
 import { AIcreateElement } from 'core';
-import Signup from 'layout/signup/signup';
+import Signup from 'modules/signup/signup';
 
 import './signup.css';
 

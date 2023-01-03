@@ -18,7 +18,7 @@ const escapeHtml = (str: object[] | string) =>
 
 // To keep some consistency with React DOM, lets use a mapper
 // https://reactjs.org/docs/dom-elements.html
-const AttributeMapper = (val: string) =>
+const PropsMapper = (val: string) =>
   ({
     tabIndex: 'tabindex',
     className: 'class',
@@ -27,30 +27,31 @@ const AttributeMapper = (val: string) =>
 
 function AIcreateElement(
   tag: Function | string,
-  attrs?: IProps,
+  props?: IProps,
   ...children: (HTMLElement | string)[]
 ): HTMLElement {
-  attrs = attrs || {};
+  props = props || {};
   const stack: any[] = [...children];
 
   // Support for components(ish)
   if (typeof tag === 'function') {
-    attrs.children = stack;
-    return tag(attrs);
+    props.children = stack;
+    return tag(props);
   }
 
   let elm = document.createElement(tag);
 
   if (tag === 'icon') {
+    // Кастомный тег для добавление svg иконки
     elm = document.createElement('span');
-    const children = getSourceAsDOM(attrs['icon']);
+    const children = getSourceAsDOM(props['icon']);
 
     elm.appendChild(children.documentElement);
   }
 
   // Add attributes
-  for (let [name, val] of Object.entries(attrs)) {
-    name = escapeHtml(AttributeMapper(name));
+  for (let [name, val] of Object.entries(props)) {
+    name = escapeHtml(PropsMapper(name));
     if (name.startsWith('on') && name.toLowerCase() in window) {
       elm.addEventListener(name.toLowerCase().substr(2), val);
     } else if (name === 'ref') {
