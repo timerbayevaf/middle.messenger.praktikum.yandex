@@ -15,3 +15,8 @@
   font-size: 16px;
   font-weight: 600;
 }
+
+.user-info__icon-block {
+  max-width: 40px;
+  max-height: 40px;
+}

@@ -1,7 +1,6 @@
+import { List } from 'components/list';
 import { AIcreateElement } from 'core';
 import { SearchItem } from '../search-item';
-
-import './search-result.css';
 
 const chatList = [
   {
@@ -34,11 +33,18 @@ const SearchResult = ({ isShow }: SearchResultProps) => {
   }
 
   return (
-    <ul className='search-result'>
-      {chatList?.map((user) => (
-        <SearchItem user={user} />
-      ))}
-    </ul>
+    <List
+      items={chatList}
+      renderItem={(el) => (
+        <SearchItem
+          avatar={el.avatar}
+          first_name={el.first_name}
+          second_name={el.second_name}
+          login={el.second_name}
+          phone={el.second_name}
+        />
+      )}
+    />
   );
 };
 

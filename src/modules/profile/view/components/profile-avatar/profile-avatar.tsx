@@ -25,7 +25,12 @@ const ProfileAvatar = ({
       <div className='profile-avatar__second-name'>{second_name}</div>
     </div>
     <div className='profile-avatar__image-update'>
-      <Button className='profile-avatar__button' size='small' name='avatar'>
+      <Button
+        type='icon'
+        className='profile-avatar__button'
+        size='small'
+        name='avatar'
+      >
         <Icon size={30} type={Icons.ImageEdit} color='white' />
       </Button>
     </div>

@@ -1,8 +1,7 @@
+import { List } from 'components/list';
 import { AIcreateElement } from 'core';
 import { IChatlistItem } from 'src/types/chats/chats';
 import { ChatListItem } from '../chatlist-item';
-
-import './chat-list.css';
 
 interface UserListProps {
   activeId: number;
@@ -90,8 +89,9 @@ const ChatList = ({ activeId, isShow }: UserListProps) => {
   }
 
   return (
-    <ul className='chat-list'>
-      {list.map((el) => (
+    <List
+      items={list}
+      renderItem={(el: IChatlistItem) => (
         <ChatListItem
           isActive={el.id === activeId}
           last_message={el.last_message}
@@ -100,8 +100,8 @@ const ChatList = ({ activeId, isShow }: UserListProps) => {
           avatar={el.avatar}
           title={el.title}
         />
-      ))}
-    </ul>
+      )}
+    />
   );
 };
 

@@ -1,6 +1,10 @@
-### Ссылка на фигму
+## Ссылка на фигму
 
 [Ссылка на фигму](https://www.figma.com/file/8KoRwpKjd2BYAAKclhEO57/project-1?node-id=0%3A1&t=zOsGCuxpS3BUmaW9-0)
+
+## Ссылка на netlify
+
+[Ссылка на netlify](https://gilded-palmier-bd3854.netlify.app/)
 
 ### Информация о проекте
 

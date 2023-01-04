@@ -14,13 +14,13 @@ interface ChatlistContainerProps {
 
 const ChatlistContainer = ({ searchValue = '' }: ChatlistContainerProps) => {
   const isShowSearch = searchValue.length > 0;
-  const isShowProfile = false;
-  const isShowChatList = true;
+  const isShowProfile = true;
+  const isShowChatList = false;
   const title = 'Профиль';
-  const viewType = PROFILE_VIEW.EDIT_PASSWORD;
+  const viewType = PROFILE_VIEW.VIEW;
 
   return (
-    <div className='chatlist'>
+    <aside className='chatlist'>
       <Header
         isShowSearch={!isShowProfile}
         title={title}
@@ -30,7 +30,7 @@ const ChatlistContainer = ({ searchValue = '' }: ChatlistContainerProps) => {
       <SearchResult isShow={isShowSearch} />
       <ChatList isShow={isShowChatList} activeId={123} />
       <Profile viewType={viewType} isShow={isShowProfile} />
-    </div>
+    </aside>
   );
 };
 

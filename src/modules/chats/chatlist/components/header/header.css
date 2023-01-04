@@ -14,16 +14,6 @@
   background-color: var(--base-bg-white);
 }
 
-.header__icon:hover {
-  background-color: var(--base-bg-100);
-  border-radius: 20px;
-}
-
-.header__icon:active {
-  background-color: var(--base-bg-300);
-  border-radius: 20px;
-}
-
 .header__title {
   flex-grow: 1;
   font-weight: 600;

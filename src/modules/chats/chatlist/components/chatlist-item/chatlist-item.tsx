@@ -20,12 +20,12 @@ export const ChatListItem = ({
 }: ChatListItemProps) => (
   <li
     key={id}
-    className={cn('chatlist__item chatlist-item', {
+    className={cn('list-item chatlist-item', {
       'chatlist-item_active': !!isActive,
     })}
   >
-    <Avatar className='chatlist-item__image-container' src={avatar} />
-    <div className='chatlist-item__content'>
+    <Avatar className='list-item__avatar-block' src={avatar} />
+    <div className='list-item__info-block'>
       <div className='chatlist-item__row'>
         <h2 className='chatlist-item__title'>{title}</h2>
         <div className='chatlist-item__time'>

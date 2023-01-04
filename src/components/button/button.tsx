@@ -3,7 +3,7 @@ import { cn } from 'utils/cn';
 
 import './button.css';
 
-type ButtonType = 'secondary' | 'primary' | 'none';
+type ButtonType = 'secondary' | 'primary' | 'none' | 'icon';
 type ButtonSize = 'large' | 'small' | 'medium';
 interface Props {
   handleClick?: (e: HTMLButtonElement) => void;
@@ -35,6 +35,7 @@ const Button = ({
         button_medium: size === 'medium',
         button__large: size === 'large',
         button__small: size === 'small',
+        button__icon: type === 'icon',
         button_disabled: !!disabled,
       },
       className

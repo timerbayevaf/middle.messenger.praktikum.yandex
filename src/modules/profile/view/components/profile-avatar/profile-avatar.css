@@ -1,5 +1,4 @@
 .profile-avatar {
-  margin-top: 5px;
   background-color: var(--base-bg-white);
   position: relative;
 }
@@ -49,19 +48,19 @@
   opacity: 0.7;
 }
 
-.profile-avatar__button.profile-avatar__button {
-  background-color: var(--primary-bg-300);
+.profile-avatar__image-update .profile-avatar__button {
+  background-color: var(--primary-bg-400);
   border-radius: 40px;
   width: 50px;
   height: 50px;
 }
 
-.profile-avatar__button:hover {
-  background-color: var(--primary-bg-400);
+.profile-avatar__image-update .profile-avatar__button:hover {
+  background-color: var(--primary-bg-500);
 }
 
-.profile-avatar__button:active {
-  background-color: var(--primary-bg-500);
+.profile-avatar__image-update .profile-avatar__button:active {
+  background-color: var(--primary-bg-800);
 }
 
 .profile-avatar__image-update {

@@ -11,14 +11,17 @@
   width: 40px;
   min-width: 40px;
   box-sizing: border-box;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
 }
 
-.send-message__icon_enter {
-  border-radius: 25px;
+.send-message__icon .send-message__icon_send {
   background-color: var(--primary-bg-400);
-  padding: 3px 3px 0 0;
+  padding: 2px 4px 0 0;
+}
+
+.send-message__icon .send-message__icon_send:hover {
+  background-color: var(--primary-bg-500);
+}
+
+.send-message__icon .send-message__icon_send:active {
+  background-color: var(--primary-bg-800);
 }

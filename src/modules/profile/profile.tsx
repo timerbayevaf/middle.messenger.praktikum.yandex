@@ -21,7 +21,7 @@ const Profile = ({ isShow, viewType = PROFILE_VIEW.VIEW }: ProfileProps) => {
         email='aironrich@ya.ru'
         first_name='Aynur'
         second_name='Timerbayev'
-        avatar='/img/profile1.png'
+        avatar='/img/profile2.jpeg'
         phone='+7 964 955 05 66'
         display_name={'Айнур'}
       />
