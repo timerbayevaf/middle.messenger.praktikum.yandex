@@ -24,7 +24,7 @@ const Signup = () => (
       />
     </div>
     <div className='signup__group signup__group_bottom'>
-      <Button label='Зарегистрироваться' type='primary' />
+      <Button label='Зарегистрироваться' view='primary' />
     </div>
   </Widget>
 );

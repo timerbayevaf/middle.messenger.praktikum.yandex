@@ -25,7 +25,7 @@ const Header = ({
       ) : (
         <div className='header__title'>{title}</div>
       )}
-      <Button type='icon' size='small'>
+      <Button view='icon' size='small'>
         <Icon size={20} type={isShowSearch ? Icons.Menu : Icons.ArrowBack} />
       </Button>
     </div>

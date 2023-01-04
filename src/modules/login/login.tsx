@@ -19,7 +19,7 @@ const Login = () => (
       <Input value='' label='Пароль' type='password' />
     </div>
     <div className='login__group login__group_bottom'>
-      <Button type='primary' label='Войти' />
+      <Button view='primary' label='Войти' />
       <Button label='Нет аккаунта?' />
     </div>
   </Widget>

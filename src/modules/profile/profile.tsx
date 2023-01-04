@@ -1,40 +1,48 @@
 import { AIcreateElement, AIcreateFragment } from 'core';
+import { CHATLIST_VIEW } from 'constants';
+import { IUser } from 'types';
 import View from './view';
-import { PROFILE_VIEW } from 'constants';
 import Edit from './edit';
 
 interface ProfileProps {
   isShow: boolean;
-  viewType: PROFILE_VIEW;
+  viewType: CHATLIST_VIEW;
+  user: IUser;
 }
 
-const Profile = ({ isShow, viewType = PROFILE_VIEW.VIEW }: ProfileProps) => {
+const Profile = ({
+  isShow,
+  user,
+  viewType = CHATLIST_VIEW.VIEW_PROFILE,
+}: ProfileProps) => {
   if (!isShow) {
     return null;
   }
 
-  return (
-    <>
+  if (viewType === CHATLIST_VIEW.VIEW_PROFILE) {
+    return (
       <View
-        isShow={viewType === PROFILE_VIEW.VIEW}
-        login='aironrich'
-        email='aironrich@ya.ru'
-        first_name='Aynur'
-        second_name='Timerbayev'
-        avatar='/img/profile2.jpeg'
-        phone='+7 964 955 05 66'
-        display_name={'Айнур'}
+        login={user.login}
+        email={user.email}
+        first_name={user.first_name}
+        second_name={user.second_name}
+        avatar={user.avatar}
+        phone={user.second_name}
+        display_name={user.display_name}
       />
-      <Edit
-        viewType={viewType}
-        login='aironrich'
-        email='aironrich@ya.ru'
-        first_name='Aynur'
-        second_name='Timerbayev'
-        phone='+7 964 955 05 66'
-        display_name={'Айнур'}
-      />
-    </>
+    );
+  }
+
+  return (
+    <Edit
+      viewType={viewType}
+      login={user.login}
+      email={user.email}
+      first_name={user.first_name}
+      second_name={user.second_name}
+      phone={user.second_name}
+      display_name={user.display_name}
+    />
   );
 };
 

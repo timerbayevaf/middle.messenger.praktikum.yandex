@@ -17,7 +17,11 @@ const ProfileAvatar = ({
 }: ProfileAvatarProps) => (
   <div className='profile-avatar'>
     <div className='profile-avatar__img-wrapper'>
-      <img className='profile-avatar__photo' src={avatar} />
+      <img
+        className='profile-avatar__photo'
+        src={avatar}
+        alt={`Фото пользователя ${first_name}`}
+      />
     </div>
     <div className='profile-avatar__gradient'></div>
     <div className='profile-avatar__name'>
@@ -26,7 +30,7 @@ const ProfileAvatar = ({
     </div>
     <div className='profile-avatar__image-update'>
       <Button
-        type='icon'
+        view='icon'
         className='profile-avatar__button'
         size='small'
         name='avatar'

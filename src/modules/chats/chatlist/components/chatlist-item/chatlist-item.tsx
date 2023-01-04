@@ -24,7 +24,7 @@ export const ChatListItem = ({
       'chatlist-item_active': !!isActive,
     })}
   >
-    <Avatar className='list-item__avatar-block' src={avatar} />
+    <Avatar title={title} className='list-item__avatar-block' src={avatar} />
     <div className='list-item__info-block'>
       <div className='chatlist-item__row'>
         <h2 className='chatlist-item__title'>{title}</h2>

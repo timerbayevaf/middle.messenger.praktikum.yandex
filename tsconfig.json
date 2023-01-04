@@ -10,15 +10,18 @@
       "pages/*": ["./src/pages/*"],
       "utils/*": ["./src/utils/*"],
       "types": ["./src/types/index.ts"],
-      "constants": ["./src/constants/index.ts"]
+      "constants": ["./src/constants/index.ts"],
+      "mocks": ["./src/mocks/index.ts"]
     },
     "target": "ES2017",
-    "lib": ["es2017", "dom", "dom.iterable"],
+    "lib": ["es2019", "dom", "dom.iterable"],
     "moduleResolution": "node",
     "jsx": "preserve",
     "jsxFactory": "AIcreateElement",
     "jsxFragmentFactory": "AIcreateFragment",
     "strict": true,
-    "module": "CommonJS"
+    "module": "CommonJS",
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   }
 }

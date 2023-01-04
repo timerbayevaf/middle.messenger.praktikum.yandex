@@ -3,13 +3,16 @@ import { cn } from 'utils/cn';
 
 import './button.css';
 
-type ButtonType = 'secondary' | 'primary' | 'none' | 'icon';
+type ButtonView = 'secondary' | 'primary' | 'none' | 'icon';
+type ButtonType = 'button' | 'submit' | 'reset';
 type ButtonSize = 'large' | 'small' | 'medium';
+
 interface Props {
   handleClick?: (e: HTMLButtonElement) => void;
   label?: string;
   children?: string;
   className?: string;
+  view?: ButtonView;
   type?: ButtonType;
   size?: ButtonSize;
   disabled?: boolean;
@@ -21,8 +24,9 @@ const Button = ({
   label,
   children,
   className,
-  type,
+  view,
   size = 'medium',
+  type = 'button',
   disabled,
   name,
 }: Props) => (
@@ -30,18 +34,19 @@ const Button = ({
     className={cn(
       'button',
       {
-        button_primary: type === 'primary',
-        button_secondary: type === 'secondary',
+        button_primary: view === 'primary',
+        button_secondary: view === 'secondary',
         button_medium: size === 'medium',
         button__large: size === 'large',
         button__small: size === 'small',
-        button__icon: type === 'icon',
+        button__icon: view === 'icon',
         button_disabled: !!disabled,
       },
       className
     )}
     onclick={handleClick}
     name={name}
+    type={type}
   >
     {label || children}
   </button>

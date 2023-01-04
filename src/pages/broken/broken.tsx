@@ -10,8 +10,8 @@ const BrokendPage = () => (
       некоторое время, Приносим извинения за временные неудобства.
     </p>
     <div className='broken__group'>
-      <Button type='secondary' label='Обновить' />
-      <Button type='secondary' label='Назад к чатам' />
+      <Button view='secondary' label='Обновить' />
+      <Button view='secondary' label='Назад к чатам' />
     </div>
   </div>
 );

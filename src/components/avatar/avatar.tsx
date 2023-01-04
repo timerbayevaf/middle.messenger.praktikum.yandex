@@ -19,7 +19,11 @@ const Avatar = ({
   src,
 }: Props) => (
   <div title={title} onClick={handleClick} className={cn('avatar', className)}>
-    <img className={cn('avatar__image', imageClassName)} src={src} />
+    <img
+      className={cn('avatar__image', imageClassName)}
+      src={src}
+      alt={`аватар пользователя ${title}`}
+    />
   </div>
 );
 

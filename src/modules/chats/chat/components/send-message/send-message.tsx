@@ -9,13 +9,13 @@ import { Button } from 'components/button';
 const SendMessage = () => (
   <div className='send-message'>
     <div className='send-message__icon'>
-      <Button type='icon' size='small'>
+      <Button view='icon' size='small'>
         <Icon size={28} type={Icons.Plus} />
       </Button>
     </div>
     <Input name='message' label='Сообщение' value='' />
     <div className='send-message__icon'>
-      <Button type='icon' size='small' className='send-message__icon_send'>
+      <Button view='icon' size='small' className='send-message__icon_send'>
         <Icon size={20} type={Icons.Send} color='white' />
       </Button>
     </div>

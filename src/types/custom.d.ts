@@ -7,4 +7,8 @@ declare namespace JSX {
 
 declare module '*.css';
 
+declare module '*.png';
+
+declare module '*.jpeg';
+
 declare module 'bundle-text:*.svg';

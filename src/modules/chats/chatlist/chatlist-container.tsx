@@ -6,18 +6,30 @@ import SearchResult from './components/search-result';
 import './chat-container.css';
 import Profile from 'modules/profile';
 import Header from './components/header/header';
-import { PROFILE_VIEW } from 'constants';
+import { CHATLIST_VIEW } from 'constants';
+import { IUser } from 'types';
 
 interface ChatlistContainerProps {
   searchValue: string;
+  user: IUser;
+  viewType: CHATLIST_VIEW;
+  isSelectedChat: boolean;
 }
 
-const ChatlistContainer = ({ searchValue = '' }: ChatlistContainerProps) => {
-  const isShowSearch = searchValue.length > 0;
-  const isShowProfile = false;
-  const isShowChatList = true;
+const ChatlistContainer = ({
+  searchValue = '',
+  user,
+  viewType,
+  isSelectedChat,
+}: ChatlistContainerProps) => {
+  const isShowSearch = viewType === CHATLIST_VIEW.SEARCH;
+  const isShowProfile =
+    viewType === CHATLIST_VIEW.VIEW_PROFILE ||
+    viewType === CHATLIST_VIEW.EDIT_PROFILE ||
+    viewType === CHATLIST_VIEW.EDIT_PASSWORD;
+
+  const isShowChatList = viewType === CHATLIST_VIEW.CHAT_LIST;
   const title = 'Профиль';
-  const viewType = PROFILE_VIEW.VIEW;
 
   return (
     <aside className='chatlist'>
@@ -28,8 +40,12 @@ const ChatlistContainer = ({ searchValue = '' }: ChatlistContainerProps) => {
       />
 
       <SearchResult isShow={isShowSearch} />
-      <ChatList isShow={isShowChatList} activeId={123} />
-      <Profile viewType={viewType} isShow={isShowProfile} />
+      <ChatList
+        isSelectedChat={isSelectedChat}
+        isShow={isShowChatList}
+        activeId={123}
+      />
+      <Profile user={user} viewType={viewType} isShow={isShowProfile} />
     </aside>
   );
 };

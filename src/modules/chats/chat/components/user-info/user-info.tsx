@@ -5,12 +5,17 @@ import './user-info.css';
 import Avatar from 'components/avatar/avatar';
 import { Button } from 'components/button';
 
-const UserInfo = () => (
+interface UserInfoProps {
+  name: string;
+  avatar: string;
+}
+
+const UserInfo = ({ name, avatar }: UserInfoProps) => (
   <div className='user-info'>
-    <Avatar className='user-info__image-container' src='/img/avatar1.png' />
-    <div className={['user-info__name']}>Name</div>
+    <Avatar title={name} className='user-info__image-container' src={avatar} />
+    <div className={['user-info__name']}>{name}</div>
     <div className='user-info__icon-block'>
-      <Button type='icon' size='small'>
+      <Button view='icon' size='small'>
         <Icon size={20} type={Icons.Dots} />
       </Button>
     </div>

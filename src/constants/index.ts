@@ -1,7 +1,9 @@
-enum PROFILE_VIEW {
-  VIEW = 'view',
-  EDIT_PERSONAL_INFO = 'edit-personal-info',
-  EDIT_PASSWORD = 'edit-password',
+enum CHATLIST_VIEW {
+  SEARCH = 'search',
+  CHAT_LIST = 'list',
+  VIEW_PROFILE = 'view_profile',
+  EDIT_PROFILE = 'edit_profile',
+  EDIT_PASSWORD = 'edit_password',
 }
 
 enum PROFILE_TITLE {
@@ -9,4 +11,4 @@ enum PROFILE_TITLE {
   EDIT = 'Редактирование',
 }
 
-export { PROFILE_VIEW, PROFILE_TITLE };
+export { PROFILE_TITLE, CHATLIST_VIEW };

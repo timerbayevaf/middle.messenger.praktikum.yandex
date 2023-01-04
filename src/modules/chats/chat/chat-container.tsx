@@ -6,14 +6,16 @@ import { ChatMessages } from './components/messages';
 import './chat-container.css';
 import { SendMessage } from './components/send-message';
 import { IChatMessage } from 'src/types/chats/messages';
+import { IUser } from 'types';
 
 interface ChatContainerProps {
   chatMessages: IChatMessage[];
+  user: IUser;
 }
 
-const ChatContainer = ({ chatMessages }: ChatContainerProps) => (
+const ChatContainer = ({ user, chatMessages }: ChatContainerProps) => (
   <div className='chat'>
-    <UserInfo />
+    <UserInfo avatar={user.avatar} name={user.first_name} />
     <ChatMessages chatMessages={chatMessages} />
     <SendMessage />
   </div>

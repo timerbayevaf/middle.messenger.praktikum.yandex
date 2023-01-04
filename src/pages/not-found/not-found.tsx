@@ -6,7 +6,7 @@ const NotFoundPage = () => (
   <div className='not-found'>
     <h1>404</h1>
     <h2>Страница не найдена, либо еще не создана</h2>
-    <Button type='secondary' label='Назад к чатам' />
+    <Button view='secondary' label='Назад к чатам' />
   </div>
 );
 

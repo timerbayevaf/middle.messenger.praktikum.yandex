@@ -5,11 +5,8 @@
   "author": "Timerbayev Aynur <timerbayevaf@yandex.ru>",
   "license": "MIT",
   "scripts": {
-    "clean": "rm -rf build && mkdir build",
-    "copy-img": "cp -vR ./static/assets/img ./build/img",
-    "before": "yarn clean && yarn copy-img",
-    "dev": "yarn before && parcel static/index.html --no-source-maps --dist-dir ./build",
-    "build": "yarn before && parcel build static/index.html --no-source-maps --dist-dir ./build",
+    "dev": "parcel static/index.html --no-source-maps --dist-dir ./build",
+    "build": "parcel build static/index.html --no-source-maps --dist-dir ./build",
     "server": "node ./server.js",
     "start": "yarn build && yarn server"
   },
@@ -26,7 +23,8 @@
     "pages": "./src/pages",
     "utils": "./src/utils",
     "types": "./src/types",
-    "constants": "./src/constants"
+    "constants": "./src/constants",
+    "mocks": "./src/mocks"
   },
   "dependencies": {
     "express": "^4.18.2"

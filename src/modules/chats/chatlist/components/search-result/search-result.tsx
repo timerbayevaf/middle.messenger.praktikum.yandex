@@ -1,27 +1,7 @@
 import { List } from 'components/list';
 import { AIcreateElement } from 'core';
+import { searchResult } from 'mocks';
 import { SearchItem } from '../search-item';
-
-const chatList = [
-  {
-    id: 123,
-    first_name: 'Petya',
-    second_name: 'Pupkin',
-    avatar: 'img/avatar2.png',
-    email: 'my@email.com',
-    login: 'userLogin',
-    phone: '8(911)-222-33-22',
-  },
-  {
-    id: 12,
-    first_name: 'Artem',
-    second_name: 'Pupkin',
-    avatar: '/img/avatar5.png',
-    email: 'my@email.com',
-    login: 'userLogin',
-    phone: '8(911)-222-33-22',
-  },
-];
 
 interface SearchResultProps {
   isShow: boolean;
@@ -34,7 +14,7 @@ const SearchResult = ({ isShow }: SearchResultProps) => {
 
   return (
     <List
-      items={chatList}
+      items={searchResult}
       renderItem={(el) => (
         <SearchItem
           avatar={el.avatar}
