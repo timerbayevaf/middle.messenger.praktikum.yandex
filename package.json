@@ -4,7 +4,6 @@
   "description": "create web chat",
   "author": "Timerbayev Aynur <timerbayevaf@yandex.ru>",
   "license": "MIT",
-  "type": "module",
   "scripts": {
     "clean": "rm -rf build && mkdir build",
     "copy-img": "cp -vR ./static/assets/img ./build/img",

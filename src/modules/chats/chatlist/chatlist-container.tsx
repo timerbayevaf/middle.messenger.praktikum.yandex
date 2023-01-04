@@ -14,8 +14,8 @@ interface ChatlistContainerProps {
 
 const ChatlistContainer = ({ searchValue = '' }: ChatlistContainerProps) => {
   const isShowSearch = searchValue.length > 0;
-  const isShowProfile = true;
-  const isShowChatList = false;
+  const isShowProfile = false;
+  const isShowChatList = true;
   const title = 'Профиль';
   const viewType = PROFILE_VIEW.VIEW;
 
