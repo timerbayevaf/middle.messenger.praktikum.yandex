@@ -1,0 +1,27 @@
+.send-message {
+  display: flex;
+  height: 80px;
+  box-sizing: border-box;
+  gap: 8px;
+  padding: 16px 8px;
+}
+
+.send-message__icon {
+  height: 40px;
+  width: 40px;
+  min-width: 40px;
+  box-sizing: border-box;
+}
+
+.send-message__icon .send-message__icon_send {
+  background-color: var(--primary-bg-400);
+  padding: 2px 4px 0 0;
+}
+
+.send-message__icon .send-message__icon_send:hover {
+  background-color: var(--primary-bg-500);
+}
+
+.send-message__icon .send-message__icon_send:active {
+  background-color: var(--primary-bg-800);
+}

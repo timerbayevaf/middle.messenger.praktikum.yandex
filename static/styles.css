@@ -1,0 +1,68 @@
+html,
+body,
+.root {
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  width: 100vw;
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: #ecedf8;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: var(--primary-bg-400);
+  /*border: 0.1rem solid transparent;*/
+  border: none;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-bg-500);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: var(--primary-bg-500);
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+:root {
+  --main-font-family: 'Montserrat', sans-serif;
+  --main-bg-success: #1fad58;
+  --main-bg-alert: #cc0007;
+  --main-bg-attention: #f4bf00;
+  --primary-bg-950: #0b0d42;
+  --primary-bg-900: #0e1158;
+  --primary-bg-800: #151a84;
+  --primary-bg-500: #666ce6;
+  --primary-bg-400: #a2a4dd;
+  --primary-bg-300: #c7c9ea;
+  --primary-bg-200: #dadbf1;
+  --primary-bg-100: #ecedf8;
+  --primary-bg-50: #f4f4fb;
+  --secondary-bg-800: #8f6224;
+  --secondary-bg-600: #d19747;
+  --secondary-bg-500: #dbae70; /** basic */
+  --secondary-bg-hover: #e7ba48;
+  --base-bg-900: #303036; /** text */
+  --base-bg-600: #60606c;
+  --base-bg-500: #93939f;
+  --base-bg-400: #afafb6;
+  --base-bg-300: #c9cacf;
+  --base-bg-200: #e4e4e7;
+  --base-bg-100: #ececee;
+  --base-bg-50: #f7f7f8;
+  --base-bg-white: #ffffff;
+}
+
+.example li {
+  margin-top: 20px;
+}

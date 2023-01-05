@@ -1,0 +1,27 @@
+{
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "typeRoots": ["./src/types/custom.d.ts"],
+    "baseUrl": ".",
+    "paths": {
+      "components/*": ["./src/components/*"],
+      "core": ["./src/core/index.ts"],
+      "modules/*": ["./src/modules/*"],
+      "pages/*": ["./src/pages/*"],
+      "utils/*": ["./src/utils/*"],
+      "types": ["./src/types/index.ts"],
+      "constants": ["./src/constants/index.ts"],
+      "mocks": ["./src/mocks/index.ts"]
+    },
+    "target": "ES2017",
+    "lib": ["es2019", "dom", "dom.iterable"],
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "jsxFactory": "AIcreateElement",
+    "jsxFragmentFactory": "AIcreateFragment",
+    "strict": true,
+    "module": "CommonJS",
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  }
+}

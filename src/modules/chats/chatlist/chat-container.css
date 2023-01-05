@@ -1,0 +1,8 @@
+.chatlist {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  max-width: 420px;
+  min-width: 18rem;
+  border-right: 1px solid var(--base-bg-300);
+}

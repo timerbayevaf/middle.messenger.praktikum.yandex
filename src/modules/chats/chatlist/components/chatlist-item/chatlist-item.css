@@ -1,0 +1,58 @@
+.chatlist-item__title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 16px;
+  flex-grow: 1;
+}
+
+.chatlist-item__text {
+  margin: 0;
+  font-weight: 500;
+  font-size: 12px;
+  flex-grow: 1;
+  color: var(--base-bg-900);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chatlist-item__row {
+  display: flex;
+  height: 22px;
+  line-height: 22px;
+}
+
+.chatlist-item__time {
+  margin-top: -0.3375rem;
+  color: var(--base-bg-600);
+  height: 16px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.chatlist-item__count {
+  box-sizing: border-box;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--primary-bg-400);
+  border-radius: 10px;
+  padding: 0px 8px;
+  line-height: 20px;
+  color: var(--base-bg-600);
+}
+
+.chatlist-item.chatlist-item_active {
+  background-color: var(--secondary-bg-hover);
+}
+
+.chatlist-item_active .chatlist-item__count {
+  color: var(--base-bg-50);
+  border-color: var(--base-bg-50);
+}
+
+.chatlist-item:focus .chatlist-item__count,
+.chatlist-item:hover .chatlist-item__count {
+  color: var(--base-bg-600);
+  border-color: var(--primary-bg-400);
+}
