@@ -48,79 +48,84 @@ const Main = () => {
 
     default:
       return (
-        <ul className='example'>
-          <li>
-            <a
-              href='?view=chats&profileViewType=list&isSelectedChat=true'
-              target='_blank'
-            >
-              Chats
-            </a>
-          </li>
+        <nav>
+          <ul className='example'>
+            <li>
+              <a
+                href='?view=chats&profileViewType=list&isSelectedChat=true'
+                target='_blank'
+              >
+                Chats
+              </a>
+            </li>
 
-          <li>
-            <a
-              href='?view=chats&profileViewType=search&search=pupkin'
-              target='_blank'
-            >
-              Not selected Chat
-            </a>
-          </li>
+            <li>
+              <a
+                href='?view=chats&profileViewType=search&search=pupkin'
+                target='_blank'
+              >
+                Not selected Chat
+              </a>
+            </li>
 
-          <li>
-            <a
-              href='?view=chats&profileViewType=search&search=pupkin'
-              target='_blank'
-            >
-              Search Chats
-            </a>
-          </li>
+            <li>
+              <a
+                href='?view=chats&profileViewType=search&search=pupkin'
+                target='_blank'
+              >
+                Search Chats
+              </a>
+            </li>
 
-          <li>
-            <a
-              href='?view=chats&profileViewType=view_profile&isSelectedChat=true'
-              target='_blank'
-            >
-              Profile Chats
-            </a>
-          </li>
+            <li>
+              <a
+                href='?view=chats&profileViewType=view_profile&isSelectedChat=true'
+                target='_blank'
+              >
+                Profile Chats
+              </a>
+            </li>
 
-          <li>
-            <a
-              href='?view=chats&profileViewType=edit_profile&isSelectedChat=true'
-              target='_blank'
-            >
-              Edit Profile Chats
-            </a>
-          </li>
+            <li>
+              <a
+                href='?view=chats&profileViewType=edit_profile&isSelectedChat=true'
+                target='_blank'
+              >
+                Edit Profile Chats
+              </a>
+            </li>
 
-          <li>
-            <a href='?view=chats&profileViewType=edit_profile' target='_blank'>
-              Edit Password Chats
-            </a>
-          </li>
+            <li>
+              <a
+                href='?view=chats&profileViewType=edit_profile'
+                target='_blank'
+              >
+                Edit Password Chats
+              </a>
+            </li>
 
-          <li>
-            <a href='?view=login' target='_blank'>
-              Login
-            </a>
-          </li>
-          <li>
-            <a href='?view=signup' target='_blank'>
-              Sugnup
-            </a>
-          </li>
-          <li>
-            <a href='?view=brokend' target='_blank'>
-              BrokendPage
-            </a>
-          </li>
-          <li>
-            <a href='?view=not-found' target='_blank'>
-              NotFoundPage
-            </a>
-          </li>
-        </ul>
+            <li>
+              <a href='?view=login' target='_blank'>
+                Login
+              </a>
+            </li>
+            <li>
+              <a href='?view=signup' target='_blank'>
+                Sugnup
+              </a>
+            </li>
+            <li>
+              <a href='?view=brokend' target='_blank'>
+                BrokendPage
+              </a>
+            </li>
+            <li>
+              <a href='?view=not-found' target='_blank'>
+                NotFoundPage
+              </a>
+            </li>
+          </ul>
+        </nav>
       );
   }
 };
