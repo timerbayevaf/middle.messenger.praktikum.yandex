@@ -11,17 +11,19 @@ interface ChatlistContainerProps {
   searchValue: string;
   title: string;
   isShowSearch: boolean;
+  handleChangeSearch(e: Event): void;
 }
 
 const Header = ({
   searchValue = '',
   title,
   isShowSearch,
+  handleChangeSearch,
 }: ChatlistContainerProps) => {
   return (
     <div className={cn('header', { 'header_bg-white': !isShowSearch })}>
       {isShowSearch ? (
-        <Search value={searchValue} />
+        <Search value={searchValue} handleChange={handleChangeSearch} />
       ) : (
         <div className='header__title'>{title}</div>
       )}

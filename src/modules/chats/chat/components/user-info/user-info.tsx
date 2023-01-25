@@ -13,7 +13,7 @@ interface UserInfoProps {
 const UserInfo = ({ name, avatar }: UserInfoProps) => (
   <div className='user-info'>
     <Avatar title={name} className='user-info__image-container' src={avatar} />
-    <div className={['user-info__name']}>{name}</div>
+    <div className={'user-info__name'}>{name}</div>
     <div className='user-info__icon-block'>
       <Button view='icon' size='small'>
         <Icon size={20} type={Icons.Dots} />

@@ -5,7 +5,7 @@ interface IUser {
   email: string;
   login: string;
   phone: string;
-  display_name?: string;
+  display_name: string;
 }
 
 export { type IUser };

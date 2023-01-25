@@ -1,5 +1,7 @@
 export {
   AIcreateElement,
   AIcreateFragment,
-  AttributeMapper,
+  Block,
+  withBlock,
+  handleChange,
 } from './ai-factory';

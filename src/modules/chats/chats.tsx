@@ -4,34 +4,69 @@ import { IChatMessage } from 'src/types/chats/messages';
 import ChatContainer from './chat/chat-container';
 import ChatlistContainer from './chatlist';
 import NoSelectedChat from './no-selected-chat';
+import { CHATLIST_VIEW } from 'constants';
+import { SPEC_NAME } from 'utils/regexp';
+import { IUser } from 'types';
 
 import './chats.css';
-import { userInfo } from 'mocks';
-import { CHATLIST_VIEW } from 'constants';
 
 interface ChatsProps {
+  message: string;
   searchValue: string;
   chatMessages: IChatMessage[];
-  isSelectedChat: boolean;
   viewType: CHATLIST_VIEW;
+  activeId: number | null;
+  profileInfo: IUser & {
+    old_password: string;
+    new_password: string;
+    second_new_password: string;
+  };
+  profileError: { [key in SPEC_NAME]?: string };
+  handleChangeActiveChat(id: number): void;
+  handleChangeSearch(e: Event): void;
+  handleChangeMessage: JSX.EventHandler;
+  handleSubmitMessage: JSX.EventHandler;
+  handleChangeFields: JSX.EventHandler;
+  handleSubmitFields: JSX.EventHandler;
 }
 
 const Chats = ({
-  isSelectedChat,
   searchValue,
   chatMessages,
   viewType,
+  activeId,
+  message,
+  profileInfo,
+  profileError,
+  handleChangeActiveChat,
+  handleChangeSearch,
+  handleChangeMessage,
+  handleSubmitMessage,
+  handleChangeFields,
+  handleSubmitFields,
 }: ChatsProps) => (
   <div className='chats'>
     <ChatlistContainer
+      activeId={activeId}
       viewType={viewType}
       searchValue={searchValue}
-      user={userInfo}
-      isSelectedChat={isSelectedChat}
+      user={profileInfo}
+      handleChangeActiveChat={handleChangeActiveChat}
+      handleChangeSearch={handleChangeSearch}
+      password={profileInfo}
+      profileError={profileError}
+      handleChangeFields={handleChangeFields}
+      handleSubmitFields={handleSubmitFields}
     />
 
-    {isSelectedChat ? (
-      <ChatContainer chatMessages={chatMessages} user={userInfo} />
+    {activeId !== null ? (
+      <ChatContainer
+        message={message}
+        chatMessages={chatMessages}
+        user={profileInfo}
+        handleChange={handleChangeMessage}
+        handleSubmit={handleSubmitMessage}
+      />
     ) : (
       <NoSelectedChat />
     )}

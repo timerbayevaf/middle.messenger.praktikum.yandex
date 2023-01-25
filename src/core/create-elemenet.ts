@@ -1,95 +1,35 @@
-import { appendChild } from './append-child';
-import { IProps } from './types';
+import { AiCreateTextElement } from './create-text';
 
-interface entityMapData {
-  [key: string]: string;
+type FunctionElement = (props: JSX.HTMLAttributes) => JSX.Element;
+
+function checkTypicalNode(c: never) {
+  return typeof c === 'string' || typeof c === 'number';
 }
-const entityMap: entityMapData = {
-  '&': 'amp',
-  '<': 'lt',
-  '>': 'gt',
-  '"': 'quot',
-  "'": '#39',
-  '/': '#x2F',
+
+const AIcreateElement = (
+  type: FunctionElement | string,
+  props: JSX.HTMLAttributes,
+  ...children: []
+): JSX.Element => {
+  const _props: JSX.HTMLAttributes = Object.assign({}, props);
+  const hasChildren = children.length > 0;
+  const rawChildren = hasChildren ? [].concat(...children) : [];
+
+  _props.children = rawChildren
+    .filter((c) => c != null && c !== false)
+    .map((c) => (checkTypicalNode(c) ? AiCreateTextElement(c) : c));
+
+  if (typeof type === 'string') {
+    return { type, props: _props };
+  }
+
+  if (typeof type === 'function') {
+    return type(_props);
+  }
+
+  throw new SyntaxError(
+    `Unexpected type: ${type}, expected type: string | function`
+  );
 };
-
-const escapeHtml = (str: object[] | string) =>
-  String(str).replace(/[&<>"'\/\\]/g, (s) => `&${entityMap[s]};`);
-
-// To keep some consistency with React DOM, lets use a mapper
-// https://reactjs.org/docs/dom-elements.html
-const PropsMapper = (val: string) =>
-  ({
-    tabIndex: 'tabindex',
-    className: 'class',
-    readOnly: 'readonly',
-  }[val] || val);
-
-function AIcreateElement(
-  tag: Function | string,
-  props?: IProps,
-  ...children: (HTMLElement | string)[]
-): HTMLElement {
-  props = props || {};
-  const stack: any[] = [...children];
-
-  // Support for components(ish)
-  if (typeof tag === 'function') {
-    props.children = stack;
-    return tag(props);
-  }
-
-  let elm = document.createElement(tag);
-
-  if (tag === 'icon') {
-    // Кастомный тег для добавление svg иконки
-    elm = document.createElement('span');
-    const children = getSourceAsDOM(props['icon']);
-
-    elm.appendChild(children.documentElement);
-  }
-
-  // Add attributes
-  for (let [name, val] of Object.entries(props)) {
-    name = escapeHtml(PropsMapper(name));
-    if (name.startsWith('on') && name.toLowerCase() in window) {
-      elm.addEventListener(name.toLowerCase().substr(2), val);
-    } else if (name === 'ref') {
-      val(elm);
-    } else if (name === 'style') {
-      Object.assign(elm.style, val);
-    } else if (val === true) {
-      elm.setAttribute(name, name);
-    } else if (val !== false && val != null) {
-      val = name !== 'src' ? escapeHtml(val) : val;
-      elm.setAttribute(name, val);
-    } else if (val === false) {
-      elm.removeAttribute(name);
-    }
-
-    if (name === 'icon' || name === '__source') {
-      elm.removeAttribute(name);
-    }
-  }
-
-  // Append children
-  while (stack.length) {
-    const child = stack.shift();
-
-    // Is child a leaf?
-    if (!Array.isArray(child)) {
-      appendChild(elm, child);
-    } else {
-      stack.push(...child);
-    }
-  }
-
-  return elm;
-}
-
-function getSourceAsDOM(content: string): Document {
-  const parser = new DOMParser();
-  return parser.parseFromString(content, 'image/svg+xml');
-}
 
 export { AIcreateElement };

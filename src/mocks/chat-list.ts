@@ -59,7 +59,7 @@ const chatList = [
     id: 4,
     title: 'Artem',
     avatar: avata4,
-    unread_count: 10000,
+    unread_count: 100000,
     last_message: {
       user: {
         first_name: 'Petya',

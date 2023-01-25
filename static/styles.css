@@ -63,6 +63,12 @@ body,
   --base-bg-white: #ffffff;
 }
 
+.example {
+  position: static;
+  right: 0;
+  top: 0;
+}
+
 .example li {
   margin-top: 20px;
 }

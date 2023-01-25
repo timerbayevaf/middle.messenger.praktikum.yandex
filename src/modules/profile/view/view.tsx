@@ -1,5 +1,4 @@
-import { Button } from 'components/button';
-import { Icon, Icons } from 'components/icon';
+import { Icons } from 'components/icon';
 import { AIcreateElement } from 'core';
 import { IUser } from 'types';
 import { BlockInfo } from './components/block-info';

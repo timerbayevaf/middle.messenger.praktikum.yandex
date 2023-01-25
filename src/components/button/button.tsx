@@ -7,8 +7,8 @@ type ButtonView = 'secondary' | 'primary' | 'none' | 'icon';
 type ButtonType = 'button' | 'submit' | 'reset';
 type ButtonSize = 'large' | 'small' | 'medium';
 
-interface Props {
-  handleClick?: (e: HTMLButtonElement) => void;
+interface ButtonProps {
+  handleClick?: () => void;
   label?: string;
   children?: string;
   className?: string;
@@ -29,7 +29,7 @@ const Button = ({
   type = 'button',
   disabled,
   name,
-}: Props) => (
+}: ButtonProps) => (
   <button
     className={cn(
       'button',
@@ -44,7 +44,7 @@ const Button = ({
       },
       className
     )}
-    onclick={handleClick}
+    onClick={handleClick}
     name={name}
     type={type}
   >

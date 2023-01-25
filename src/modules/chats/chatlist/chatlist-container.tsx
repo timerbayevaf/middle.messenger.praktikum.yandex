@@ -8,19 +8,36 @@ import Profile from 'modules/profile';
 import Header from './components/header/header';
 import { CHATLIST_VIEW } from 'constants';
 import { IUser } from 'types';
+import { SPEC_NAME } from 'utils/regexp';
 
 interface ChatlistContainerProps {
   searchValue: string;
   user: IUser;
   viewType: CHATLIST_VIEW;
-  isSelectedChat: boolean;
+  activeId: number | null;
+  password: {
+    old_password: string;
+    new_password: string;
+    second_new_password: string;
+  };
+  profileError: { [key in SPEC_NAME]?: string };
+  handleChangeActiveChat(id: number): void;
+  handleChangeSearch(e: Event): void;
+  handleChangeFields: JSX.EventHandler;
+  handleSubmitFields: JSX.EventHandler;
 }
 
 const ChatlistContainer = ({
   searchValue = '',
   user,
   viewType,
-  isSelectedChat,
+  activeId,
+  password,
+  profileError,
+  handleChangeActiveChat,
+  handleChangeSearch,
+  handleChangeFields,
+  handleSubmitFields,
 }: ChatlistContainerProps) => {
   const isShowSearch = viewType === CHATLIST_VIEW.SEARCH;
   const isShowProfile =
@@ -37,15 +54,24 @@ const ChatlistContainer = ({
         isShowSearch={!isShowProfile}
         title={title}
         searchValue={searchValue}
+        handleChangeSearch={handleChangeSearch}
       />
 
       <SearchResult isShow={isShowSearch} />
       <ChatList
-        isSelectedChat={isSelectedChat}
         isShow={isShowChatList}
-        activeId={123}
+        handleChangeActiveChat={handleChangeActiveChat}
+        activeId={activeId}
       />
-      <Profile user={user} viewType={viewType} isShow={isShowProfile} />
+      <Profile
+        error={profileError}
+        handleChangeFields={handleChangeFields}
+        handleSubmitFields={handleSubmitFields}
+        user={user}
+        viewType={viewType}
+        isShow={isShowProfile}
+        password={password}
+      />
     </aside>
   );
 };

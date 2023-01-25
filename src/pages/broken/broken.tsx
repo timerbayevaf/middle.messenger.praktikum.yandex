@@ -1,5 +1,5 @@
 import { Button } from 'components/button';
-import { AIcreateElement } from 'core';
+import { AIcreateElement, withBlock } from 'core';
 import './broken.css';
 
 const BrokendPage = () => (
@@ -16,4 +16,4 @@ const BrokendPage = () => (
   </div>
 );
 
-export default BrokendPage;
+export default withBlock(BrokendPage);

@@ -1,11 +1,12 @@
-import { AIcreateElement, AIcreateFragment } from './core/ai-factory';
-
-import MainPage from 'pages/main';
-import Login from 'pages/login';
-import Signup from 'pages/signup';
-import NotFoundPage from 'pages/not-found';
-import BrokendPage from 'pages/broken/broken';
+import { AIcreateElement } from 'core';
+import { chatMessages } from 'mocks';
+import ChatsPage from 'pages/main/main';
+import LoginPage from 'pages/login/login';
 import { CHATLIST_VIEW } from 'constants';
+import SignupPage from 'pages/signup';
+import BrokendPage from 'pages/broken';
+import NotFoundPage from 'pages/not-found';
+import Menu from './pages/menu';
 
 function getView(obj: Record<string, string>) {
   if (
@@ -30,111 +31,27 @@ const Main = () => {
 
   switch (view) {
     case 'chats':
-      return (
-        <MainPage
-          isSelectedChat={params.isSelectedChat === 'true'}
-          searchValue={params.search}
-          viewType={params.profileViewType as CHATLIST_VIEW}
-        />
-      );
+      return new ChatsPage({
+        viewType: params.profileViewType as CHATLIST_VIEW,
+        chatMessages: chatMessages,
+      }).getContent()?.dom;
     case 'signup':
-      return <Signup />;
+      return new SignupPage({}).getContent()?.dom;
     case 'login':
-      return <Login />;
+      return new LoginPage({}).getContent()?.dom;
     case 'brokend':
-      return <BrokendPage />;
+      return new BrokendPage({}).getContent()?.dom;
     case 'not-found':
-      return <NotFoundPage />;
+      return new NotFoundPage({}).getContent()?.dom;
 
     default:
-      return (
-        <nav>
-          <ul className='example'>
-            <li>
-              <a
-                href='?view=chats&profileViewType=list&isSelectedChat=true'
-                target='_blank'
-              >
-                Chats
-              </a>
-            </li>
-
-            <li>
-              <a
-                href='?view=chats&profileViewType=search&search=pupkin'
-                target='_blank'
-              >
-                Not selected Chat
-              </a>
-            </li>
-
-            <li>
-              <a
-                href='?view=chats&profileViewType=search&search=pupkin'
-                target='_blank'
-              >
-                Search Chats
-              </a>
-            </li>
-
-            <li>
-              <a
-                href='?view=chats&profileViewType=view_profile&isSelectedChat=true'
-                target='_blank'
-              >
-                Profile Chats
-              </a>
-            </li>
-
-            <li>
-              <a
-                href='?view=chats&profileViewType=edit_profile&isSelectedChat=true'
-                target='_blank'
-              >
-                Edit Profile Chats
-              </a>
-            </li>
-
-            <li>
-              <a
-                href='?view=chats&profileViewType=edit_profile'
-                target='_blank'
-              >
-                Edit Password Chats
-              </a>
-            </li>
-
-            <li>
-              <a href='?view=login' target='_blank'>
-                Login
-              </a>
-            </li>
-            <li>
-              <a href='?view=signup' target='_blank'>
-                Sugnup
-              </a>
-            </li>
-            <li>
-              <a href='?view=brokend' target='_blank'>
-                BrokendPage
-              </a>
-            </li>
-            <li>
-              <a href='?view=not-found' target='_blank'>
-                NotFoundPage
-              </a>
-            </li>
-          </ul>
-        </nav>
-      );
+      return new Menu({}).getContent()?.dom;
   }
 };
 
-function render(element: any, parentDom: HTMLElement) {
-  // Append to parent
-  parentDom.appendChild(element);
+const container = document.getElementById('root');
+function render(Component: HTMLElement, dom: HTMLElement | null) {
+  dom?.appendChild(Component);
 }
 
-const container = document.getElementById('root');
-
-render(<Main />, container as HTMLElement);
+render(Main() as HTMLElement, container);

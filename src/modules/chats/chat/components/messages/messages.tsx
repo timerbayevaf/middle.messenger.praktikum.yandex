@@ -1,4 +1,4 @@
-import { AIcreateElement, AIcreateFragment } from 'core';
+import { AIcreateElement } from 'core';
 import { IChatMessage } from 'src/types/chats/messages';
 import { cn } from 'utils/cn';
 import { formatTime } from 'utils/date';

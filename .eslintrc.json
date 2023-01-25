@@ -1,0 +1,21 @@
+{
+  "extends": "eslint:recommended",
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "parserOptions": { "ecmaVersion": 2020, "ecmaFeatures": { "jsx": true } },
+  "rules": {
+    "max-params": [2, 3],
+    "max-len": [2, 280],
+    "no-undef": 0,
+    "no-useless-escape": 0,
+    "no-unused-vars": 0,
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^AIcreateElement",
+        "varsIgnorePattern": "^AIcreateElement",
+        "caughtErrorsIgnorePattern": "^AIcreateElement"
+      }
+    ]
+  }
+}

@@ -9,7 +9,9 @@ interface Props {
   type?: string;
   error?: string;
   name?: string;
-  handleChange?(e: Event): void;
+  handleChange?: JSX.EventHandler;
+  handleBlur?: JSX.EventHandler;
+  handleFocus?: JSX.EventHandler;
 }
 
 const InputField = ({
@@ -19,6 +21,8 @@ const InputField = ({
   error = '',
   name,
   handleChange,
+  handleFocus,
+  handleBlur,
 }: Props) => {
   return (
     <div className='input-field'>
@@ -34,6 +38,8 @@ const InputField = ({
         <input
           name={name}
           onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           type={type}
           aria-invalid='false'
           className='input-field__input'
@@ -58,11 +64,7 @@ const InputField = ({
       </div>
 
       <label
-        className={cn(
-          'input-field__label',
-          'input-field__color_red',
-          'input-field__label_error'
-        )}
+        className={cn('input-field__label_error', 'input-field__color_red')}
       >
         {error}
       </label>

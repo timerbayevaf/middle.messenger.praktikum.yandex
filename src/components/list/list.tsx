@@ -8,7 +8,7 @@ type Item = Record<string, any>;
 interface ListProps {
   className?: string;
   items: Item[];
-  renderItem(item: Item): string;
+  renderItem(item: Item): JSX.Element;
 }
 
 const List = ({ className, items, renderItem }: ListProps) => (

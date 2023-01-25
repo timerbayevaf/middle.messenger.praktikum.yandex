@@ -42,17 +42,12 @@
   color: var(--base-bg-600);
 }
 
-.chatlist-item.chatlist-item_active {
+.chatlist-item.chatlist-item_active,
+.chatlist-item.chatlist-item_active:hover {
   background-color: var(--secondary-bg-hover);
 }
 
 .chatlist-item_active .chatlist-item__count {
   color: var(--base-bg-50);
   border-color: var(--base-bg-50);
-}
-
-.chatlist-item:focus .chatlist-item__count,
-.chatlist-item:hover .chatlist-item__count {
-  color: var(--base-bg-600);
-  border-color: var(--primary-bg-400);
 }

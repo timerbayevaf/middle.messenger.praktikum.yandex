@@ -77,7 +77,8 @@
   padding: 14px 24px;
 }
 
-.button_disabled {
+.button.button_disabled,
+.button.button_disabled:hover {
   background-color: var(--base-bg-100);
   color: var(--base-bg-500);
   cursor: default;
