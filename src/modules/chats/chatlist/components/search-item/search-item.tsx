@@ -1,10 +1,8 @@
 import Avatar from 'components/avatar/avatar';
 import { AIcreateElement } from 'core';
-import { ISearchUser } from 'types';
+import { SearchItemProps } from './types';
 
 import './seacrh-item.css';
-
-interface SearchItemProps extends ISearchUser {}
 
 export const SearchItem = ({
   avatar,

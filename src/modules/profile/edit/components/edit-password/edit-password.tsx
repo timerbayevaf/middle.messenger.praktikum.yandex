@@ -1,16 +1,9 @@
 import { AIcreateElement } from 'core';
 import { Input } from 'components/input';
-import { getError, SPEC_NAME } from 'utils/regexp';
+import { getError } from 'utils/regexp';
+import { EditPasswordProps } from './types';
 
 import './edit-password.css';
-
-interface EditPasswordProps {
-  old_password: string;
-  new_password: string;
-  second_new_password: string;
-  error: { [key in SPEC_NAME]?: string };
-  handleChange: JSX.EventHandler;
-}
 
 const EditPassword = ({
   old_password,

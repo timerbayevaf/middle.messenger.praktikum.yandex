@@ -1,18 +1,11 @@
 import { AIcreateElement } from 'core';
 import { Widget } from 'components/containers';
-
-import './login.css';
 import { Input } from 'components/input';
 import { Button } from 'components/button';
 import { getError } from 'utils/regexp';
+import { LoginProps } from './types';
 
-interface LoginProps {
-  login: string;
-  password: string;
-  error: { login: string; password: string };
-  handleChange: JSX.EventHandler;
-  handleSubmit: JSX.EventHandler;
-}
+import './login.css';
 
 const Login = ({
   login = '',

@@ -2,16 +2,11 @@ import { MODAL_TYPE } from 'constants';
 import { AIcreateElement } from 'core';
 import { cn } from 'utils/cn';
 import { MessageDialog } from './message-dialog';
-
-import './modal-dialog.css';
 import { ProfileDialog } from './profile-dialog';
 import { UserDialog } from './user-dialog';
+import { ModalDialogProps } from './types';
 
-interface ModalDialogProps {
-  modalType: MODAL_TYPE;
-  zIndex?: number;
-  style?: JSX.CSSProperties;
-}
+import './modal-dialog.css';
 
 export const ModalDialog = ({ modalType, style }: ModalDialogProps) => {
   const handleClick = () => {

@@ -1,10 +1,6 @@
 import { AiCreateTextElement } from './create-text';
-
-type FunctionElement = (props: JSX.HTMLAttributes) => JSX.Element;
-
-function checkTypicalNode(c: never) {
-  return typeof c === 'string' || typeof c === 'number';
-}
+import { FunctionElement } from './types';
+import { checkTypicalNode } from './utils';
 
 const AIcreateElement = (
   type: FunctionElement | string,

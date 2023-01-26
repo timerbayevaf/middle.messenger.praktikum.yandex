@@ -1,13 +1,9 @@
 import { AIcreateElement } from 'core';
-import { IChatMessage } from 'src/types/chats/messages';
 import { cn } from 'utils/cn';
 import { formatTime } from 'utils/date';
+import { MessagesProps } from './types';
 
 import './messages.css';
-
-interface MessagesProps {
-  chatMessages: IChatMessage[];
-}
 
 const ChatMessages = ({ chatMessages }: MessagesProps) => (
   <div className='messages'>

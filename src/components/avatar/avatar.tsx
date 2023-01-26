@@ -1,23 +1,16 @@
 import { AIcreateElement } from 'core';
 import { cn } from 'utils/cn';
+import { AvatarProps } from './types';
 
 import './avatar.css';
 
-interface Props {
-  handleClick?: () => void;
-  title?: string;
-  src: string;
-  className?: string;
-  imageClassName?: string;
-}
-
 const Avatar = ({
   handleClick,
-  className,
+  className = '',
   imageClassName,
-  title,
+  title = '',
   src,
-}: Props) => (
+}: AvatarProps) => (
   <div title={title} onClick={handleClick} className={cn('avatar', className)}>
     <img
       className={cn('avatar__image', imageClassName)}

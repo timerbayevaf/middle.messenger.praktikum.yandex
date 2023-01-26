@@ -167,6 +167,11 @@ declare namespace JSX {
     video: HTMLProps;
     wbr: HTMLProps;
     webview: HTMLProps;
+    icon: {
+      className: string;
+      style: CSSProperties;
+      icon: string;
+    };
   }
 
   // Описание свойств внутри TSX

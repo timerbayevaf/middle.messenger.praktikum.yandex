@@ -1,33 +1,12 @@
 import { Button } from 'components/button';
 import { CHATLIST_VIEW } from 'constants';
 import { AIcreateElement } from 'core';
-import { IUser } from 'types';
-import { SPEC_NAME } from 'utils/regexp';
 import { EditPassword } from './components/edit-password';
 import { PersonalInfo } from './components/personal-info';
 import { isEmpty } from 'utils/isEmpty';
+import { EditProps } from './types';
 
 import './edit.css';
-
-interface EditProps {
-  viewType: CHATLIST_VIEW;
-  user: Pick<
-    IUser,
-    'login' | 'email' | 'first_name' | 'display_name' | 'second_name' | 'phone'
-  >;
-  password: {
-    old_password: string;
-    new_password: string;
-    second_new_password: string;
-  };
-  error: { [key in SPEC_NAME]?: string };
-  handleChange: JSX.EventHandler;
-  handleSubmit: JSX.EventHandler;
-}
-
-function isDisabled(error: { [key in SPEC_NAME]?: string }) {
-  return !isEmpty(error);
-}
 
 const Edit = ({
   viewType,
@@ -39,7 +18,7 @@ const Edit = ({
 }: EditProps) => (
   <form
     name={viewType}
-    disabled={isDisabled(error)}
+    disabled={!isEmpty(error)}
     onSubmit={handleSubmit}
     className='edit'
   >
@@ -67,7 +46,7 @@ const Edit = ({
 
     <div className='edit__button-block'>
       <Button
-        disabled={isDisabled(error)}
+        disabled={!isEmpty(error)}
         type='submit'
         view='secondary'
         label='Сохранить'

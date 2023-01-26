@@ -1,14 +1,10 @@
 import { AIcreateElement } from 'core';
 import { cn } from 'utils/cn';
+import { WidgetProps } from './types';
 
 import './widget.css';
 
-interface WidgetProps {
-  children?: string;
-  className?: string;
-}
-
-const Widget = ({ children, className }: WidgetProps) => (
+const Widget = ({ children, className = '' }: WidgetProps) => (
   <div className={cn('widget', className)}>{children}</div>
 );
 

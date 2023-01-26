@@ -1,18 +1,9 @@
 import { AIcreateElement } from 'core';
 import { Input } from 'components/input';
-import { IUser } from 'types';
+import { getError } from 'utils/regexp';
+import { PersonalInfoProps } from './types';
 
 import './personal-info.css';
-import { getError, SPEC_NAME } from 'utils/regexp';
-
-interface PersonalInfoProps
-  extends Pick<
-    IUser,
-    'login' | 'email' | 'first_name' | 'display_name' | 'second_name' | 'phone'
-  > {
-  handleChange: JSX.EventHandler;
-  error: { [key in SPEC_NAME]?: string };
-}
 
 const PersonalInfo = ({
   login,

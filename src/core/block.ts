@@ -63,7 +63,7 @@ abstract class Block<T extends BlockProps = {}, S extends BlockState = {}> {
     this._element = this._createDocumentElement();
   }
 
-  _init() {
+  private _init() {
     this._createResources();
     this.init();
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);

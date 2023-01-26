@@ -3,18 +3,13 @@ import { List } from 'components/list';
 import { IChatlistItem } from 'types';
 import { chatList } from 'mocks';
 import { ChatListItem } from '../chatlist-item';
-
-interface UserListProps {
-  isShow: boolean;
-  activeId: number | null;
-  handleChangeActiveChat(id: number): void;
-}
+import { ChatListProps } from './types';
 
 const ChatList = ({
   activeId,
   isShow,
   handleChangeActiveChat,
-}: UserListProps) => {
+}: ChatListProps) => {
   if (!isShow) {
     return null;
   }

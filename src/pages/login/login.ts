@@ -2,21 +2,12 @@ import { AIcreateElement } from 'core';
 import Login from 'modules/login/login';
 import { Block } from 'core';
 import { checkCorrectField, isSpecName } from 'utils/regexp';
-
-type LOGIN_SPEC_TYPE = 'login' | 'password';
-
-interface LoginPageProps {}
-
-interface LoginPageState
-  extends Pick<LoginProps, 'login' | 'password' | 'error'> {}
-
-interface LoginProps {
-  login: string;
-  password: string;
-  error: { login: string; password: string };
-  handleChange(e: Event): void;
-  handleSubmit(e: Event): void;
-}
+import {
+  LoginPageProps,
+  LoginPageState,
+  LoginProps,
+  LOGIN_SPEC_TYPE,
+} from './types';
 
 class LoginPage extends Block<LoginPageProps, LoginPageState> {
   constructor(props: LoginPageProps) {

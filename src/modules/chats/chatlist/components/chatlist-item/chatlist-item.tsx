@@ -1,15 +1,10 @@
 import Avatar from 'components/avatar/avatar';
 import { AIcreateElement } from 'core';
-import { IChatlistItem } from 'types';
 import { cn } from 'utils/cn';
 import { formatDate } from 'utils/date';
+import { ChatListItemProps } from './types';
 
 import './chatlist-item.css';
-
-interface ChatListItemProps extends IChatlistItem {
-  isActive: boolean;
-  handleChangeActiveChat(id: number): void;
-}
 
 export const ChatListItem = ({
   id,

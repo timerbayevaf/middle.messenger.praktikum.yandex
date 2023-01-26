@@ -2,22 +2,12 @@ import { AIcreateElement } from 'core';
 
 import { Icon, Icons } from 'components/icon';
 import { Button } from 'components/button';
-
-import './header.css';
 import { Search } from '../search';
 import { cn } from 'utils/cn';
 import { MODAL_TYPE } from 'constants';
+import { HeaderProps } from './types';
 
-interface ChatlistContainerProps {
-  searchValue: string;
-  title: string;
-  isShowSearch: boolean;
-  handleChangeSearch(e: Event): void;
-  handleChangeVisibleModal(modalInfo: {
-    modalType: MODAL_TYPE;
-    rect: DOMRect;
-  }): void;
-}
+import './header.css';
 
 const Header = ({
   searchValue = '',
@@ -25,7 +15,7 @@ const Header = ({
   isShowSearch,
   handleChangeSearch,
   handleChangeVisibleModal,
-}: ChatlistContainerProps) => {
+}: HeaderProps) => {
   return (
     <div className={cn('header', { 'header_bg-white': !isShowSearch })}>
       {isShowSearch ? (

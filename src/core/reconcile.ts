@@ -1,4 +1,5 @@
 import { instantiate, updateDomProperties } from './instantiate';
+import { isInstance } from './utils';
 
 function reconcile(
   parentDom: Node,
@@ -26,10 +27,6 @@ function reconcile(
     parentDom.replaceChild(newInstance.dom, instance.dom);
     return newInstance;
   }
-}
-
-function isInstance(instance: JSX.Instance | null): instance is JSX.Instance {
-  return instance !== null;
 }
 
 function reconcileChildren(

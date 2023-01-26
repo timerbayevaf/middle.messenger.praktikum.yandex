@@ -1,18 +1,8 @@
 import { AIcreateElement } from 'core';
 import { cn } from 'utils/cn';
+import { InputFieldProps } from './types';
 
 import './input-field.css';
-
-interface Props {
-  value: string;
-  label?: string;
-  type?: string;
-  error?: string;
-  name?: string;
-  handleChange?: JSX.EventHandler;
-  handleBlur?: JSX.EventHandler;
-  handleFocus?: JSX.EventHandler;
-}
 
 const InputField = ({
   value,
@@ -23,7 +13,7 @@ const InputField = ({
   handleChange,
   handleFocus,
   handleBlur,
-}: Props) => {
+}: InputFieldProps) => {
   return (
     <div className='input-field'>
       <label

@@ -1,21 +1,11 @@
 import { AIcreateElement } from 'core';
-
 import { Input } from 'components/input';
 import { Icon, Icons } from 'components/icon';
-
-import './send-message.css';
 import { Button } from 'components/button';
 import { MODAL_TYPE } from 'constants';
+import { SendMessageProps } from './types';
 
-interface SendMessageProps {
-  message: string;
-  handleChange: JSX.EventHandler;
-  handleSubmit: JSX.EventHandler;
-  handleChangeVisibleModal(modalInfo: {
-    modalType: MODAL_TYPE;
-    rect: DOMRect;
-  }): void;
-}
+import './send-message.css';
 
 const SendMessage = ({
   message,

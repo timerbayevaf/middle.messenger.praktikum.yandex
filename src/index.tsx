@@ -1,9 +1,9 @@
 import { AIcreateElement } from 'core';
 import { chatMessages } from 'mocks';
-import ChatsPage from 'pages/main/main';
-import LoginPage from 'pages/login/login';
 import { CHATLIST_VIEW } from 'constants';
 import SignupPage from 'pages/signup';
+import ChatsPage from 'pages/chats/chats';
+import LoginPage from 'pages/login/login';
 import BrokendPage from 'pages/broken';
 import NotFoundPage from 'pages/not-found';
 import Menu from './pages/menu';

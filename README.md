@@ -24,3 +24,8 @@
 `yarn server` - запускает `express.js` сервер
 
 `yarn start` - запускает `yarn build` и `yarn server` последовательно
+
+// Состояние приложения находится в Block
+// componentDidUpdate
+// render
+//

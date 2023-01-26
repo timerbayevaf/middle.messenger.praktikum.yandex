@@ -2,59 +2,19 @@ import { AIcreateElement } from 'core';
 import Signup from 'modules/signup/signup';
 import { Block } from 'core';
 import { checkCorrectField, isSpecName, SPEC_NAMES } from 'utils/regexp';
-
-type SIGNUP_SPEC_TYPE =
-  | 'login'
-  | 'email'
-  | 'first_name'
-  | 'second_name'
-  | 'phone'
-  | 'password'
-  | 'second_password';
-
-interface SignupPageProps {}
-
-interface SignupPageState
-  extends Pick<
-    SignupProps,
-    | 'first_name'
-    | 'second_name'
-    | 'email'
-    | 'phone'
-    | 'login'
-    | 'password'
-    | 'second_password'
-    | 'error'
-  > {}
-
-interface SignupProps {
-  first_name: string;
-  second_name: string;
-  email: string;
-  phone: string;
-  login: string;
-  password: string;
-  second_password: string;
-  error: Pick<
-    SignupProps,
-    | 'first_name'
-    | 'second_name'
-    | 'email'
-    | 'phone'
-    | 'login'
-    | 'password'
-    | 'second_password'
-  >;
-  handleChange(e: Event): void;
-  handleSubmit(e: Event): void;
-}
+import {
+  SignupPageProps,
+  SignupPageState,
+  SignupProps,
+  SIGNUP_SPEC_TYPE,
+} from './types';
 
 class SignupPage extends Block<SignupPageProps, SignupPageState> {
   constructor(props: SignupPageProps) {
     super(props);
   }
 
-  _init(): void {
+  init(): void {
     this.state = this._setState({
       first_name: '',
       second_name: '',
