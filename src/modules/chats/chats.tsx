@@ -4,7 +4,7 @@ import { IChatMessage } from 'src/types/chats/messages';
 import ChatContainer from './chat/chat-container';
 import ChatlistContainer from './chatlist';
 import NoSelectedChat from './no-selected-chat';
-import { CHATLIST_VIEW } from 'constants';
+import { CHATLIST_VIEW, MODAL_TYPE } from 'constants';
 import { SPEC_NAME } from 'utils/regexp';
 import { IUser } from 'types';
 
@@ -22,6 +22,10 @@ interface ChatsProps {
     second_new_password: string;
   };
   profileError: { [key in SPEC_NAME]?: string };
+  handleChangeVisibleModal(modalInfo: {
+    modalType: MODAL_TYPE;
+    rect: DOMRect;
+  }): void;
   handleChangeActiveChat(id: number): void;
   handleChangeSearch(e: Event): void;
   handleChangeMessage: JSX.EventHandler;
@@ -44,6 +48,7 @@ const Chats = ({
   handleSubmitMessage,
   handleChangeFields,
   handleSubmitFields,
+  handleChangeVisibleModal,
 }: ChatsProps) => (
   <div className='chats'>
     <ChatlistContainer
@@ -55,6 +60,7 @@ const Chats = ({
       handleChangeSearch={handleChangeSearch}
       password={profileInfo}
       profileError={profileError}
+      handleChangeVisibleModal={handleChangeVisibleModal}
       handleChangeFields={handleChangeFields}
       handleSubmitFields={handleSubmitFields}
     />
@@ -65,6 +71,7 @@ const Chats = ({
         chatMessages={chatMessages}
         user={profileInfo}
         handleChange={handleChangeMessage}
+        handleChangeVisibleModal={handleChangeVisibleModal}
         handleSubmit={handleSubmitMessage}
       />
     ) : (

@@ -13,6 +13,10 @@ import Name from 'bundle-text:./icons/name.svg';
 import Phone from 'bundle-text:./icons/phone.svg';
 import Signout from 'bundle-text:./icons/signout.svg';
 import Password from 'bundle-text:./icons/password.svg';
+import UserProfile from 'bundle-text:./icons/user-profile.svg';
+import Minus from 'bundle-text:./icons/minus.svg';
+import File from 'bundle-text:./icons/file.svg';
+import Location from 'bundle-text:./icons/location.svg';
 
 enum Icons {
   Menu = 'menu',
@@ -27,6 +31,10 @@ enum Icons {
   Phone = 'phone',
   Signout = 'signout',
   Password = 'password',
+  UserProfile = 'user-profile',
+  Minus = 'minus',
+  File = 'file',
+  Location = 'location',
   None = 'none',
 }
 
@@ -62,20 +70,26 @@ const getIcon = (type: Icons) => {
       return Signout;
     case Icons.Password:
       return Password;
+    case Icons.UserProfile:
+      return UserProfile;
+    case Icons.Minus:
+      return Minus;
+    case Icons.File:
+      return File;
+    case Icons.Location:
+      return Location;
     default:
       return null;
   }
 };
 
-const Icon = ({ size, type, color = '#666CE6' }: Props) => {
-  return (
-    <icon
-      className='icon'
-      style={{ width: `${size}px`, height: `${size}px`, fill: color }}
-      icon={getIcon(type)}
-    />
-  );
-};
+const Icon = ({ size, type, color = '#666CE6' }: Props) => (
+  <icon
+    className='icon'
+    style={{ width: `${size}px`, height: `${size}px`, fill: color }}
+    icon={getIcon(type)}
+  />
+);
 
 export default Icon;
 

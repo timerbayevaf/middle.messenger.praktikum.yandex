@@ -11,4 +11,11 @@ enum PROFILE_TITLE {
   EDIT = 'Редактирование',
 }
 
-export { PROFILE_TITLE, CHATLIST_VIEW };
+enum MODAL_TYPE {
+  PROFILE,
+  USER,
+  MESSAGE,
+  NONE,
+}
+
+export { PROFILE_TITLE, CHATLIST_VIEW, MODAL_TYPE };

@@ -114,6 +114,7 @@ const updateDomProperties = (
     });
 };
 
+// создание экземпляра дома
 const instantiate = (element: JSX.Element): JSX.Instance => {
   const { type, props = {} } = element;
 
@@ -121,7 +122,7 @@ const instantiate = (element: JSX.Element): JSX.Instance => {
   const isTextElement = type === AiElementTypes.TEXT;
   let dom = isTextElement
     ? document.createTextNode('')
-    : document.createElement(type);
+    : document.createElement(type === AiElementTypes.FRAGMENT ? 'span' : type);
 
   if (type === 'icon') {
     // Кастомный тег для добавление svg иконки

@@ -31,7 +31,7 @@ declare namespace JSX {
   type PropsWithChildren<P> = P & { children?: ReactNode | undefined };
 
   interface FunctionComponent<P = {}> {
-    (props: PropsWithChildren<P>, context?: any): Element<any, any> | null;
+    (props: PropsWithChildren<P>): Element<unknown, any> | null;
     displayName?: string | undefined;
   }
 

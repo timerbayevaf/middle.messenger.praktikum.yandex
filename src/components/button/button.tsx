@@ -8,7 +8,8 @@ type ButtonType = 'button' | 'submit' | 'reset';
 type ButtonSize = 'large' | 'small' | 'medium';
 
 interface ButtonProps {
-  handleClick?: () => void;
+  id?: string;
+  handleClick?: JSX.EventHandler;
   label?: string;
   children?: string;
   className?: string;
@@ -20,17 +21,19 @@ interface ButtonProps {
 }
 
 const Button = ({
+  id = '',
   handleClick,
-  label,
+  label = '',
   children,
-  className,
+  className = '',
   view,
   size = 'medium',
   type = 'button',
   disabled,
-  name,
+  name = '',
 }: ButtonProps) => (
   <button
+    id={id}
     className={cn(
       'button',
       {

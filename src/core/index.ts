@@ -3,5 +3,4 @@ export {
   AIcreateFragment,
   Block,
   withBlock,
-  handleChange,
 } from './ai-factory';

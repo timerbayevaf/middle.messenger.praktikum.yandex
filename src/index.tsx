@@ -50,7 +50,11 @@ const Main = () => {
 };
 
 const container = document.getElementById('root');
-function render(Component: HTMLElement, dom: HTMLElement | null) {
+
+function render(
+  Component: HTMLElement,
+  dom: HTMLElement | null | DocumentFragment
+) {
   dom?.appendChild(Component);
 }
 

@@ -1,75 +1,15 @@
-import { Block, AIcreateElement } from 'core';
+import { Block, AIcreateElement, AIcreateFragment } from 'core';
+import { ModalDialog } from 'components/modal-dialog/modal-dialog';
 import Chats from 'modules/chats/chats';
-import { CHATLIST_VIEW } from 'constants';
-import { IChatMessage } from 'types';
+import { CHATLIST_VIEW, MODAL_TYPE } from 'constants';
 import {
   checkCorrectField,
   isSpecName,
   PASSWORD_SECOND_CHECK,
-  SPEC_NAME,
 } from 'utils/regexp';
 import { isEmpty } from 'utils/isEmpty';
-
-const PASSWORD_SPEC: USER_SPEC_TYPE[] = [
-  'old_password',
-  'new_password',
-  'second_new_password',
-];
-const PROFILE_SPEC: USER_SPEC_TYPE[] = [
-  'login',
-  'email',
-  'display_name',
-  'first_name',
-  'second_name',
-  'phone',
-];
-
-type USER_SPEC_TYPE =
-  | 'login'
-  | 'email'
-  | 'display_name'
-  | 'first_name'
-  | 'second_name'
-  | 'phone'
-  | 'old_password'
-  | 'new_password'
-  | 'second_new_password';
-
-interface ChatsPageProps
-  extends Pick<ChatsProps, 'viewType' | 'chatMessages'> {}
-
-interface ChatsState
-  extends Pick<
-    ChatsProps,
-    'message' | 'activeId' | 'searchValue' | 'profileInfo' | 'profileError'
-  > {}
-
-interface ChatsProps {
-  message: string;
-  viewType: CHATLIST_VIEW;
-  chatMessages: IChatMessage[];
-  searchValue: string;
-  activeId: number | null;
-  profileInfo: {
-    first_name: string;
-    second_name: string;
-    avatar: string;
-    email: string;
-    login: string;
-    phone: string;
-    display_name: string;
-    old_password: string;
-    new_password: string;
-    second_new_password: string;
-  };
-  profileError: { [key in SPEC_NAME]?: string };
-  handleChangeSearch(e: Event): void;
-  handleChangeActiveChat(id: number): void;
-  handleChangeMessage: JSX.EventHandler;
-  handleSubmitMessage: JSX.EventHandler;
-  handleChangeFields: JSX.EventHandler;
-  handleSubmitFields: JSX.EventHandler;
-}
+import { USER_SPEC_TYPE, ChatsPageProps, ChatsState } from './types';
+import { PASSWORD_SPEC, PROFILE_SPEC } from './constants';
 
 export class ChatsPageBase extends Block<ChatsPageProps, ChatsState> {
   constructor(props: ChatsPageProps) {
@@ -78,6 +18,10 @@ export class ChatsPageBase extends Block<ChatsPageProps, ChatsState> {
 
   init() {
     this.state = this._setState({
+      modalInfo: {
+        modalType: MODAL_TYPE.NONE,
+        styles: {},
+      },
       searchValue: '',
       message: '',
       activeId: null,
@@ -102,18 +46,36 @@ export class ChatsPageBase extends Block<ChatsPageProps, ChatsState> {
     this.handleSubmitMessage = this.handleSubmitMessage.bind(this);
     this.handleChangeFields = this.handleChangeFields.bind(this);
     this.handleSubmitFields = this.handleSubmitFields.bind(this);
+    this.handleChangeVisibleModal = this.handleChangeVisibleModal.bind(this);
+
+    document.addEventListener('click', (e: Event) => {
+      if ((e.target as HTMLDivElement)?.id !== 'dialogBackdrop') {
+        this.handleChangeVisibleModal({
+          modalType: MODAL_TYPE.NONE,
+        });
+      }
+    });
   }
 
   render() {
-    return Chats({
-      ...this.props,
-      ...this.state,
-      handleChangeSearch: this.handleChangeSearch,
-      handleChangeActiveChat: this.handleChangeActiveChat,
-      handleChangeMessage: this.handleChangeMessage,
-      handleSubmitMessage: this.handleSubmitMessage,
-      handleChangeFields: this.handleChangeFields,
-      handleSubmitFields: this.handleSubmitFields,
+    return AIcreateFragment({
+      children: [
+        Chats({
+          ...this.props,
+          ...this.state,
+          handleChangeSearch: this.handleChangeSearch,
+          handleChangeActiveChat: this.handleChangeActiveChat,
+          handleChangeMessage: this.handleChangeMessage,
+          handleSubmitMessage: this.handleSubmitMessage,
+          handleChangeFields: this.handleChangeFields,
+          handleSubmitFields: this.handleSubmitFields,
+          handleChangeVisibleModal: this.handleChangeVisibleModal,
+        }),
+        ModalDialog({
+          modalType: this.state.modalInfo.modalType,
+          style: this.state.modalInfo.styles,
+        }),
+      ],
     });
   }
 
@@ -225,6 +187,40 @@ export class ChatsPageBase extends Block<ChatsPageProps, ChatsState> {
         login: this.state.profileInfo.login,
         phone: this.state.profileInfo.phone,
       });
+    }
+  }
+
+  handleChangeVisibleModal(modalInfo: {
+    modalType: MODAL_TYPE;
+    rect?: DOMRect;
+  }): void {
+    if (MODAL_TYPE.NONE === modalInfo.modalType) {
+      this.state.modalInfo = {
+        modalType: MODAL_TYPE.NONE,
+        styles: {},
+      };
+    } else if (modalInfo.rect) {
+      const rect = modalInfo.rect;
+      const indent = 8;
+      const maxHeight = 100;
+      const maxWidth = 160;
+      let top = rect.bottom + indent;
+      let left = rect.left + indent;
+
+      if (top + maxHeight > document.documentElement.clientHeight) {
+        // если тултип не влезает по высоте, то поднимаем его над элементом
+        top = rect.top - maxHeight - indent;
+      }
+
+      if (left + maxWidth > document.documentElement.clientWidth) {
+        // если тултип не влезает по высоте, то поднимаем его над элементом
+        left = rect.left - maxWidth - indent;
+      }
+
+      this.state.modalInfo = {
+        modalType: modalInfo.modalType,
+        styles: { top: top + 'px', left: left + 'px' },
+      };
     }
   }
 }

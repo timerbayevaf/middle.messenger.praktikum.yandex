@@ -6,7 +6,7 @@ import SearchResult from './components/search-result';
 import './chat-container.css';
 import Profile from 'modules/profile';
 import Header from './components/header/header';
-import { CHATLIST_VIEW } from 'constants';
+import { CHATLIST_VIEW, MODAL_TYPE } from 'constants';
 import { IUser } from 'types';
 import { SPEC_NAME } from 'utils/regexp';
 
@@ -25,6 +25,10 @@ interface ChatlistContainerProps {
   handleChangeSearch(e: Event): void;
   handleChangeFields: JSX.EventHandler;
   handleSubmitFields: JSX.EventHandler;
+  handleChangeVisibleModal(modalInfo: {
+    modalType: MODAL_TYPE;
+    rect: DOMRect;
+  }): void;
 }
 
 const ChatlistContainer = ({
@@ -38,6 +42,7 @@ const ChatlistContainer = ({
   handleChangeSearch,
   handleChangeFields,
   handleSubmitFields,
+  handleChangeVisibleModal,
 }: ChatlistContainerProps) => {
   const isShowSearch = viewType === CHATLIST_VIEW.SEARCH;
   const isShowProfile =
@@ -55,6 +60,7 @@ const ChatlistContainer = ({
         title={title}
         searchValue={searchValue}
         handleChangeSearch={handleChangeSearch}
+        handleChangeVisibleModal={handleChangeVisibleModal}
       />
 
       <SearchResult isShow={isShowSearch} />
