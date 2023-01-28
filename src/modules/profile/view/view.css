@@ -1,0 +1,27 @@
+.view {
+  display: flex;
+  background-color: var(--base-bg-50);
+  height: 100%;
+  flex-direction: column;
+}
+
+.view__blocks-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 0 16px;
+  background-color: var(--base-bg-white);
+}
+
+.view__text_exit .block-info__text {
+  color: var(--main-bg-alert);
+}
+
+.view__edit-buttons {
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+  background-color: var(--base-bg-white);
+}

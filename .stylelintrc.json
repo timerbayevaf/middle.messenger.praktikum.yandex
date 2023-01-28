@@ -1,0 +1,9 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "rules": {
+    "color-hex-case": "lower",
+    "function-name-case": "lower",
+    "selector-class-pattern": null
+  },
+  "ignoreFiles": ["build/*"]
+}

@@ -1,0 +1,41 @@
+.login {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--base-bg-50);
+}
+
+.login__widget {
+  flex-direction: column;
+  min-height: 450px;
+  min-width: 350px;
+  max-width: 350px;
+  background-color: var(--base-bg-white);
+  border-radius: 5px;
+  justify-content: space-between;
+}
+
+.login__title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--base-bg-900);
+}
+
+.login__group {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.login__group_bottom {
+  padding-top: 32px;
+  gap: 16px;
+  align-items: center;
+}
+
+.login__wrapper {
+  position: relative;
+}

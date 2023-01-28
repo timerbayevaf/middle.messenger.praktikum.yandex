@@ -1,0 +1,17 @@
+.search-item__title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 16px;
+  flex-grow: 1;
+}
+
+.search-item__text {
+  margin: 0;
+  font-weight: 500;
+  font-size: 12px;
+  flex-grow: 1;
+  color: var(--base-bg-900);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
