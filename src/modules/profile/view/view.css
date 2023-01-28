@@ -9,7 +9,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 32px 0 16px 0;
+  padding: 32px 0 16px;
   background-color: var(--base-bg-white);
 }
 

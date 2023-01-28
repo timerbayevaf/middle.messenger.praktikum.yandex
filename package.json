@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint . --ext .tsx,.ts",
+    "stylelint": "npx stylelint '**/*.css'",
     "dev": "parcel static/index.html --no-source-maps --dist-dir ./build",
     "build": "parcel build static/index.html --no-source-maps --dist-dir ./build",
     "server": "node ./server.js",
@@ -13,13 +14,15 @@
   },
   "devDependencies": {
     "@parcel/transformer-inline-string": "2.8.2",
-    "@parcel/transformer-typescript-tsc": "^2.8.2",
-    "@typescript-eslint/eslint-plugin": "^5.48.0",
-    "@typescript-eslint/parser": "^5.48.0",
-    "csstype": "^3.1.1",
-    "eslint": "^8.31.0",
-    "eslint-config-airbnb": "^19.0.4",
+    "@parcel/transformer-typescript-tsc": "2.8.2",
+    "@typescript-eslint/eslint-plugin": "5.48.0",
+    "@typescript-eslint/parser": "5.48.0",
+    "csstype": "3.1.1",
+    "eslint": "8.31.0",
+    "eslint-config-airbnb": "19.0.4",
     "parcel": "2.8.2",
+    "stylelint": "14.16.1",
+    "stylelint-config-standard": "29.0.0",
     "typescript": ">=3.0.0"
   },
   "alias": {
@@ -33,6 +36,6 @@
     "mocks": "./src/mocks"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "4.18.2"
   }
 }

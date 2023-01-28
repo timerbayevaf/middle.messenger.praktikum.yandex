@@ -17,8 +17,7 @@ body,
 ::-webkit-scrollbar-thumb {
   border-radius: 2px;
   background-color: var(--primary-bg-400);
-  /*border: 0.1rem solid transparent;*/
-  border: none;
+  border: none; /* border: 0.1rem solid transparent; */
   background-clip: content-box;
 }
 
@@ -60,7 +59,7 @@ body,
   --base-bg-200: #e4e4e7;
   --base-bg-100: #ececee;
   --base-bg-50: #f7f7f8;
-  --base-bg-white: #ffffff;
+  --base-bg-white: #fff;
 }
 
 .example {
