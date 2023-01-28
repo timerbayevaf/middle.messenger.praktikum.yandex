@@ -1,14 +1,10 @@
 import { Button } from 'components/button';
 import { Icon, Icons } from 'components/icon';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { AIcreateElement, AIcreateFragment } from 'core';
+import { AIcreateElement } from 'core';
+import { UserDialogProps } from './types';
 
-interface ModalDialogProps {
-  handleClick: JSX.EventHandler;
-}
-
-export const UserDialog = ({ handleClick }: ModalDialogProps) => (
-  <>
+export const UserDialog = ({ handleClick }: UserDialogProps) => (
+  <span>
     <Button handleClick={handleClick} size='small' className='dialog__button'>
       <Icon size={20} type={Icons.Plus} />
       Добавить пользователя
@@ -17,5 +13,5 @@ export const UserDialog = ({ handleClick }: ModalDialogProps) => (
       <Icon size={20} type={Icons.Minus} color='red' />
       Удалить пользователя
     </Button>
-  </>
+  </span>
 );

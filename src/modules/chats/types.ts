@@ -19,6 +19,7 @@ interface ChatsProps {
     modalType: MODAL_TYPE;
     rect: DOMRect;
   }): void;
+  handleChangeUrl(profileViewType: CHATLIST_VIEW): void;
   handleChangeActiveChat(id: number): void;
   handleChangeSearch(e: Event): void;
   handleChangeMessage: JSX.EventHandler;

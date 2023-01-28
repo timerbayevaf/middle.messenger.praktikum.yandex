@@ -14,6 +14,7 @@ interface ProfileProps {
   error: { [key in SPEC_NAME]?: string };
   handleChangeFields: JSX.EventHandler;
   handleSubmitFields: JSX.EventHandler;
+  handleChangeUrl(profileViewType: CHATLIST_VIEW): void;
 }
 
 export { ProfileProps };

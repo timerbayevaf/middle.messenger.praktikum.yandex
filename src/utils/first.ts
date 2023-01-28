@@ -1,6 +1,6 @@
 // [1, 2, 3, 4] => 1
 
-function first(list) {
+function first<T>(list: T[]): T | undefined {
   if (!Array.isArray(list)) {
     return undefined;
   }

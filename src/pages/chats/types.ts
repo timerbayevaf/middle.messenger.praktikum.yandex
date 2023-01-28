@@ -57,6 +57,7 @@ interface ChatsProps {
   handleSubmitMessage: JSX.EventHandler;
   handleChangeFields: JSX.EventHandler;
   handleSubmitFields: JSX.EventHandler;
+  handleChangeUrl(profileViewType: CHATLIST_VIEW): void;
 }
 
 export { ModalInfo, USER_SPEC_TYPE, ChatsProps, ChatsState, ChatsPageProps };

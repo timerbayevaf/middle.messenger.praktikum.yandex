@@ -22,6 +22,7 @@ const Chats = ({
   handleChangeFields,
   handleSubmitFields,
   handleChangeVisibleModal,
+  handleChangeUrl,
 }: ChatsProps) => (
   <div className='chats'>
     <ChatlistContainer
@@ -36,6 +37,7 @@ const Chats = ({
       handleChangeVisibleModal={handleChangeVisibleModal}
       handleChangeFields={handleChangeFields}
       handleSubmitFields={handleSubmitFields}
+      handleChangeUrl={handleChangeUrl}
     />
 
     {activeId !== null ? (

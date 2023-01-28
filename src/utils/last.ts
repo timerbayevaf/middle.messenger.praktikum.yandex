@@ -1,6 +1,6 @@
 // [1, 2, 3, 4] => 4
 
-function last(list) {
+function last<T>(list: T[]): T | undefined {
   if (!Array.isArray(list)) {
     return undefined;
   }

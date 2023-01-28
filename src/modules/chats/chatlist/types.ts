@@ -21,6 +21,7 @@ interface ChatlistContainerProps {
     modalType: MODAL_TYPE;
     rect: DOMRect;
   }): void;
+  handleChangeUrl(profileViewType: CHATLIST_VIEW): void;
 }
 
 export { ChatlistContainerProps };

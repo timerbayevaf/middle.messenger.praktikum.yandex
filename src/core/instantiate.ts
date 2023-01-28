@@ -54,9 +54,6 @@ const updateDomProperties = (
       ) {
         val = name !== 'src' ? escapeHtml(val) : val;
         dom.setAttribute(_name, val);
-        if (name === 'disabled') {
-          console.warn(name, val);
-        }
       } else {
         dom[_name] = val;
       }
@@ -78,7 +75,8 @@ const updateDomProperties = (
 const instantiate = (element: JSX.Element): JSX.Instance => {
   const { type, props = {} } = element;
 
-  // Create DOM element
+  // Создание дом элемента
+  // так как пока нет реализации добавления createDocumentFragment, используется `span`
   const isTextElement = type === AiElementTypes.TEXT;
   let dom = isTextElement
     ? document.createTextNode('')

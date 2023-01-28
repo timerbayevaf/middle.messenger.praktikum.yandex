@@ -21,6 +21,7 @@ const ChatlistContainer = ({
   handleChangeFields,
   handleSubmitFields,
   handleChangeVisibleModal,
+  handleChangeUrl,
 }: ChatlistContainerProps) => {
   const isShowSearch = viewType === CHATLIST_VIEW.SEARCH;
   const isShowProfile =
@@ -35,6 +36,7 @@ const ChatlistContainer = ({
     <aside className='chatlist'>
       <Header
         isShowSearch={!isShowProfile}
+        handleChangeUrl={handleChangeUrl}
         title={title}
         searchValue={searchValue}
         handleChangeSearch={handleChangeSearch}
@@ -51,6 +53,7 @@ const ChatlistContainer = ({
         error={profileError}
         handleChangeFields={handleChangeFields}
         handleSubmitFields={handleSubmitFields}
+        handleChangeUrl={handleChangeUrl}
         user={user}
         viewType={viewType}
         isShow={isShowProfile}

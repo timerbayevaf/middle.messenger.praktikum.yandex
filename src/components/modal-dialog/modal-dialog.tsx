@@ -8,7 +8,11 @@ import { ModalDialogProps } from './types';
 
 import './modal-dialog.css';
 
-export const ModalDialog = ({ modalType, style }: ModalDialogProps) => {
+export const ModalDialog = ({
+  modalType,
+  style,
+  handleChangeUrl,
+}: ModalDialogProps) => {
   const handleClick = () => {
     console.warn(modalType);
   };
@@ -24,7 +28,7 @@ export const ModalDialog = ({ modalType, style }: ModalDialogProps) => {
       <div className='dialog-container'>
         <div className='dialog-content' id='dialogContent'>
           {modalType === MODAL_TYPE.PROFILE && (
-            <ProfileDialog handleClick={handleClick} />
+            <ProfileDialog handleClick={handleChangeUrl} />
           )}
           {modalType === MODAL_TYPE.USER && (
             <UserDialog handleClick={handleClick} />

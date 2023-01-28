@@ -1,4 +1,4 @@
-import { MODAL_TYPE } from 'constants';
+import { CHATLIST_VIEW, MODAL_TYPE } from 'constants';
 
 interface HeaderProps {
   searchValue: string;
@@ -9,6 +9,7 @@ interface HeaderProps {
     modalType: MODAL_TYPE;
     rect: DOMRect;
   }): void;
+  handleChangeUrl(profileViewType: CHATLIST_VIEW): void;
 }
 
 export { HeaderProps };

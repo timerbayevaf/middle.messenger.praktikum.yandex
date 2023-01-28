@@ -6,7 +6,7 @@ const Menu = () => (
     <ul className='example'>
       <li>
         <a
-          href={`?view=chats&profileViewType=${CHATLIST_VIEW.CHAT_LIST}&isSelectedChat=true`}
+          href={`?view=chats&profileViewType=${CHATLIST_VIEW.CHAT_LIST}`}
           target='_blank'
         >
           Chats
@@ -33,7 +33,7 @@ const Menu = () => (
 
       <li>
         <a
-          href={`?view=chats&profileViewType=${CHATLIST_VIEW.VIEW_PROFILE}&isSelectedChat=true`}
+          href={`?view=chats&profileViewType=${CHATLIST_VIEW.VIEW_PROFILE}`}
           target='_blank'
         >
           Profile Chats
@@ -42,7 +42,7 @@ const Menu = () => (
 
       <li>
         <a
-          href={`?view=chats&profileViewType=${CHATLIST_VIEW.EDIT_PROFILE}&isSelectedChat=true`}
+          href={`?view=chats&profileViewType=${CHATLIST_VIEW.EDIT_PROFILE}`}
           target='_blank'
         >
           Edit Profile Chats

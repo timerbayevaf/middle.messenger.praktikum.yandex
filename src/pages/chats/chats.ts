@@ -47,7 +47,7 @@ export class ChatsPageBase extends Block<ChatsPageProps, ChatsState> {
     this.handleChangeFields = this.handleChangeFields.bind(this);
     this.handleSubmitFields = this.handleSubmitFields.bind(this);
     this.handleChangeVisibleModal = this.handleChangeVisibleModal.bind(this);
-
+    this.handleChangeUrl = this.handleChangeUrl.bind(this);
     document.addEventListener('click', (e: Event) => {
       if ((e.target as HTMLDivElement)?.id !== 'dialogBackdrop') {
         this.handleChangeVisibleModal({
@@ -70,10 +70,12 @@ export class ChatsPageBase extends Block<ChatsPageProps, ChatsState> {
           handleChangeFields: this.handleChangeFields,
           handleSubmitFields: this.handleSubmitFields,
           handleChangeVisibleModal: this.handleChangeVisibleModal,
+          handleChangeUrl: this.handleChangeUrl,
         }),
         ModalDialog({
           modalType: this.state.modalInfo.modalType,
           style: this.state.modalInfo.styles,
+          handleChangeUrl: this.handleChangeUrl,
         }),
       ],
     });
@@ -222,6 +224,14 @@ export class ChatsPageBase extends Block<ChatsPageProps, ChatsState> {
         styles: { top: top + 'px', left: left + 'px' },
       };
     }
+  }
+
+  handleChangeUrl(profileViewType: CHATLIST_VIEW): void {
+    const to = `?view=chats&amp;profileViewType=${profileViewType}`;
+
+    window.history.pushState({}, '', to);
+    const navigationEvent = new PopStateEvent('navigate');
+    window.dispatchEvent(navigationEvent);
   }
 }
 

@@ -1,14 +1,10 @@
 import { Button } from 'components/button';
 import { Icon, Icons } from 'components/icon';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { AIcreateElement, AIcreateFragment } from 'core';
+import { AIcreateElement } from 'core';
+import { MessageDialogProps } from './types';
 
-interface ModalDialogProps {
-  handleClick: JSX.EventHandler;
-}
-
-export const MessageDialog = ({ handleClick }: ModalDialogProps) => (
-  <>
+export const MessageDialog = ({ handleClick }: MessageDialogProps) => (
+  <span>
     <Button handleClick={handleClick} size='small' className='dialog__button'>
       <Icon size={20} type={Icons.ImageEdit} />
       Фото или Видео
@@ -21,5 +17,5 @@ export const MessageDialog = ({ handleClick }: ModalDialogProps) => (
       <Icon size={20} type={Icons.Location} />
       Локация
     </Button>
-  </>
+  </span>
 );

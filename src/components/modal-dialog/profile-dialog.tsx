@@ -1,13 +1,15 @@
 import { Button } from 'components/button';
 import { Icon, Icons } from 'components/icon';
+import { CHATLIST_VIEW } from 'constants';
 import { AIcreateElement } from 'core';
+import { ProfileDialogProps } from './types';
 
-interface ModalDialogProps {
-  handleClick: JSX.EventHandler;
-}
-
-export const ProfileDialog = ({ handleClick }: ModalDialogProps) => (
-  <Button handleClick={handleClick} size='small' className='dialog__button'>
+export const ProfileDialog = ({ handleClick }: ProfileDialogProps) => (
+  <Button
+    handleClick={() => handleClick(CHATLIST_VIEW.VIEW_PROFILE)}
+    size='small'
+    className='dialog__button'
+  >
     <Icon size={20} type={Icons.UserProfile} />
     Профиль
   </Button>

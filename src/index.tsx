@@ -21,41 +21,58 @@ function getView(obj: Record<string, string>) {
   return '';
 }
 
-const Main = () => {
+function getParams() {
   const urlSearchParams = new URLSearchParams(
     window.location.search.replace(/\&amp;/g, '&')
   );
-  const params = Object.fromEntries(urlSearchParams.entries());
+  return Object.fromEntries(urlSearchParams.entries());
+}
 
-  const view = getView(params);
+const Main = () => {
+  const getNode = () => {
+    const params = getParams();
+    const view = getView(params);
 
-  switch (view) {
-    case 'chats':
-      return new ChatsPage({
-        viewType: params.profileViewType as CHATLIST_VIEW,
-        chatMessages: chatMessages,
-      }).getContent()?.dom;
-    case 'signup':
-      return new SignupPage({}).getContent()?.dom;
-    case 'login':
-      return new LoginPage({}).getContent()?.dom;
-    case 'brokend':
-      return new BrokendPage({}).getContent()?.dom;
-    case 'not-found':
-      return new NotFoundPage({}).getContent()?.dom;
+    switch (view) {
+      case 'chats':
+        return new ChatsPage({
+          viewType: params.profileViewType as CHATLIST_VIEW,
+          chatMessages: chatMessages,
+        });
+      case 'signup':
+        return new SignupPage({});
+      case 'login':
+        return new LoginPage({});
+      case 'brokend':
+        return new BrokendPage({});
+      case 'not-found':
+        return new NotFoundPage({});
 
-    default:
-      return new Menu({}).getContent()?.dom;
-  }
+      default:
+        return new Menu({});
+    }
+  };
+  const node = getNode();
+
+  window.addEventListener('navigate', function () {
+    //code
+    const params = getParams();
+
+    node.setProps({
+      viewType: params.profileViewType as CHATLIST_VIEW,
+      chatMessages: chatMessages,
+    });
+  });
+
+  return node.getContent()?.dom;
 };
 
 const container = document.getElementById('root');
 
-function render(
-  Component: HTMLElement,
-  dom: HTMLElement | null | DocumentFragment
-) {
-  dom?.appendChild(Component);
-}
+export const render = (node: HTMLElement, target: HTMLElement | null) => {
+  if (target && node) {
+    target.appendChild(node);
+  }
+};
 
 render(Main() as HTMLElement, container);

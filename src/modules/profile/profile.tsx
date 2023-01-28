@@ -12,6 +12,7 @@ const Profile = ({
   viewType = CHATLIST_VIEW.VIEW_PROFILE,
   handleChangeFields,
   handleSubmitFields,
+  handleChangeUrl,
 }: ProfileProps) => {
   if (!isShow) {
     return null;
@@ -27,6 +28,7 @@ const Profile = ({
         avatar={user?.avatar}
         phone={user?.second_name}
         display_name={user?.display_name}
+        handleChangeUrl={handleChangeUrl}
       />
     );
   }
