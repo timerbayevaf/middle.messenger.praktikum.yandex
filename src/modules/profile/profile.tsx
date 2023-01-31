@@ -1,19 +1,18 @@
-import { AIcreateElement, AIcreateFragment } from 'core';
+import { AIcreateElement } from 'core';
 import { CHATLIST_VIEW } from 'constants';
-import { IUser } from 'types';
 import View from './view';
 import Edit from './edit';
-
-interface ProfileProps {
-  isShow: boolean;
-  viewType: CHATLIST_VIEW;
-  user: IUser;
-}
+import { ProfileProps } from './types';
 
 const Profile = ({
   isShow,
   user,
+  password,
+  error,
   viewType = CHATLIST_VIEW.VIEW_PROFILE,
+  handleChangeFields,
+  handleSubmitFields,
+  handleChangeUrl,
 }: ProfileProps) => {
   if (!isShow) {
     return null;
@@ -22,26 +21,26 @@ const Profile = ({
   if (viewType === CHATLIST_VIEW.VIEW_PROFILE) {
     return (
       <View
-        login={user.login}
-        email={user.email}
-        first_name={user.first_name}
-        second_name={user.second_name}
-        avatar={user.avatar}
-        phone={user.second_name}
-        display_name={user.display_name}
+        login={user?.login}
+        email={user?.email}
+        first_name={user?.first_name}
+        second_name={user?.second_name}
+        avatar={user?.avatar}
+        phone={user?.second_name}
+        display_name={user?.display_name}
+        handleChangeUrl={handleChangeUrl}
       />
     );
   }
 
   return (
     <Edit
+      handleChange={handleChangeFields}
+      handleSubmit={handleSubmitFields}
       viewType={viewType}
-      login={user.login}
-      email={user.email}
-      first_name={user.first_name}
-      second_name={user.second_name}
-      phone={user.second_name}
-      display_name={user.display_name}
+      user={user}
+      password={password}
+      error={error}
     />
   );
 };

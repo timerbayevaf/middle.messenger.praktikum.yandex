@@ -1,5 +1,5 @@
-import { Button } from 'components/button';
-import { Icon, Icons } from 'components/icon';
+import { Icons } from 'components/icon';
+import { CHATLIST_VIEW } from 'constants';
 import { AIcreateElement } from 'core';
 import { IUser } from 'types';
 import { BlockInfo } from './components/block-info';
@@ -7,7 +7,9 @@ import { ProfileAvatar } from './components/profile-avatar';
 
 import './view.css';
 
-interface ViewProps extends IUser {}
+interface ViewProps extends IUser {
+  handleChangeUrl(profileViewType: CHATLIST_VIEW): void;
+}
 
 const View = ({
   login,
@@ -16,6 +18,7 @@ const View = ({
   second_name,
   avatar,
   phone,
+  handleChangeUrl,
 }: ViewProps) => (
   <div className='view'>
     <ProfileAvatar
@@ -30,8 +33,16 @@ const View = ({
     </div>
 
     <div className='view__edit-buttons'>
-      <BlockInfo type={Icons.Edit} text='Изменить данные' />
-      <BlockInfo type={Icons.Password} text='Изменить пароль' />
+      <BlockInfo
+        type={Icons.Edit}
+        text='Изменить данные'
+        handleClick={() => handleChangeUrl(CHATLIST_VIEW.EDIT_PROFILE)}
+      />
+      <BlockInfo
+        type={Icons.Password}
+        text='Изменить пароль'
+        handleClick={() => handleChangeUrl(CHATLIST_VIEW.EDIT_PASSWORD)}
+      />
       <BlockInfo
         type={Icons.Signout}
         text='Выйти'

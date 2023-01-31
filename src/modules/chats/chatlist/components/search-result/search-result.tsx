@@ -2,10 +2,7 @@ import { List } from 'components/list';
 import { AIcreateElement } from 'core';
 import { searchResult } from 'mocks';
 import { SearchItem } from '../search-item';
-
-interface SearchResultProps {
-  isShow: boolean;
-}
+import { SearchResultProps } from './types';
 
 const SearchResult = ({ isShow }: SearchResultProps) => {
   if (!isShow) {

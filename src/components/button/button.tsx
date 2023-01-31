@@ -2,35 +2,22 @@ import { AIcreateElement } from 'core';
 import { cn } from 'utils/cn';
 
 import './button.css';
-
-type ButtonView = 'secondary' | 'primary' | 'none' | 'icon';
-type ButtonType = 'button' | 'submit' | 'reset';
-type ButtonSize = 'large' | 'small' | 'medium';
-
-interface Props {
-  handleClick?: (e: HTMLButtonElement) => void;
-  label?: string;
-  children?: string;
-  className?: string;
-  view?: ButtonView;
-  type?: ButtonType;
-  size?: ButtonSize;
-  disabled?: boolean;
-  name?: string;
-}
+import { ButtonProps } from './types';
 
 const Button = ({
+  id = '',
   handleClick,
-  label,
+  label = '',
   children,
-  className,
+  className = '',
   view,
   size = 'medium',
   type = 'button',
   disabled,
-  name,
-}: Props) => (
+  name = '',
+}: ButtonProps) => (
   <button
+    id={id}
     className={cn(
       'button',
       {
@@ -44,7 +31,7 @@ const Button = ({
       },
       className
     )}
-    onclick={handleClick}
+    onClick={handleClick}
     name={name}
     type={type}
   >

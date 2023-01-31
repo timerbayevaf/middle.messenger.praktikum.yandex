@@ -7,12 +7,19 @@ interface BlockInfoProps {
   text: string;
   label?: string;
   className?: string;
+  handleClick?(): void;
 }
 
 import './block-info.css';
 
-const BlockInfo = ({ type, text, label, className }: BlockInfoProps) => (
-  <div className={cn('block-info__row', className)}>
+const BlockInfo = ({
+  type,
+  text,
+  label,
+  className,
+  handleClick,
+}: BlockInfoProps) => (
+  <div className={cn('block-info__row', className)} onClick={handleClick}>
     <Icon size={30} type={type} />
     <div className='block-info__detail'>
       <div className='block-info__text'>{text}</div>

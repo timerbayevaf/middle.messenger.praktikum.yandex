@@ -1,5 +1,5 @@
 type Value = string | number | boolean | undefined | null;
-type Mapping = { [key: string]: boolean };
+type Mapping = Record<string, boolean>;
 
 type Argument = Value | Mapping;
 
@@ -10,7 +10,9 @@ function cn(...args: Argument[]) {
     }
     if (typeof current === 'object' && current !== null) {
       const keys = Object.keys(current).filter(
-        (key) => current.hasOwnProperty(key) && current[key] === true
+        (key) =>
+          Object.prototype.hasOwnProperty.call(current, key) &&
+          current[key] === true
       );
       return prev.concat(keys);
     }

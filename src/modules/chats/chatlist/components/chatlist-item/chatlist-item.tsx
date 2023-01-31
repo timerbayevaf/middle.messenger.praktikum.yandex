@@ -1,14 +1,10 @@
 import Avatar from 'components/avatar/avatar';
 import { AIcreateElement } from 'core';
-import { IChatlistItem } from 'types';
 import { cn } from 'utils/cn';
 import { formatDate } from 'utils/date';
+import { ChatListItemProps } from './types';
 
 import './chatlist-item.css';
-
-interface ChatListItemProps extends IChatlistItem {
-  isActive: boolean;
-}
 
 export const ChatListItem = ({
   id,
@@ -17,12 +13,13 @@ export const ChatListItem = ({
   unread_count,
   last_message,
   isActive,
+  handleChangeActiveChat,
 }: ChatListItemProps) => (
   <li
-    key={id}
     className={cn('list-item chatlist-item', {
       'chatlist-item_active': !!isActive,
     })}
+    onClick={() => handleChangeActiveChat(id)}
   >
     <Avatar title={title} className='list-item__avatar-block' src={avatar} />
     <div className='list-item__info-block'>
@@ -35,7 +32,7 @@ export const ChatListItem = ({
 
       <div className='chatlist-item__row'>
         <p className='chatlist-item__text'>{last_message.content}</p>
-        <div className='chatlist-item__count'>{unread_count}</div>
+        <div className='chatlist-item__count'>{unread_count || 0}</div>
       </div>
     </div>
   </li>

@@ -40,7 +40,7 @@
   color: var(--primary-bg-800);
 }
 
-/*Button with icon*/
+/* Button with icon */
 .button__icon {
   border-radius: 25px;
   display: inline-flex;
@@ -77,15 +77,11 @@
   padding: 14px 24px;
 }
 
-.button_disabled {
+.button.button_disabled,
+.button.button_disabled:hover {
   background-color: var(--base-bg-100);
   color: var(--base-bg-500);
   cursor: default;
-}
-
-.button:focus {
-  outline: none;
-  box-shadow: none;
 }
 
 .button:focus {

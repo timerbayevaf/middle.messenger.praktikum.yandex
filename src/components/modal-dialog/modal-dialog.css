@@ -1,0 +1,54 @@
+.dialog-backdrop {
+  display: none;
+  animation-duration: 0.2s;
+  animation-name: show;
+  z-index: 1000;
+}
+
+.dialog-backdrop_visible {
+  position: absolute;
+  display: flex;
+}
+
+.dialog-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 120px;
+  box-shadow: 0 0 16px var(--base-bg-400);
+  border-radius: 8px;
+  background: var(--base-bg-white);
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  flex: 1 1 auto;
+  overflow: auto;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.dialog__button {
+  justify-content: left;
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  height: 30px;
+  width: 100%;
+  min-width: 120px;
+}
+
+.dialog__button:hover,
+.dialog__button:focus {
+  background-color: var(--primary-bg-50);
+}

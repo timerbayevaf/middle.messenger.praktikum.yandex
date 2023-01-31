@@ -1,16 +1,8 @@
 import { AIcreateElement } from 'core';
 import { cn } from 'utils/cn';
+import { InputFieldProps } from './types';
 
 import './input-field.css';
-
-interface Props {
-  value: string;
-  label?: string;
-  type?: string;
-  error?: string;
-  name?: string;
-  handleChange?(e: Event): void;
-}
 
 const InputField = ({
   value,
@@ -19,7 +11,9 @@ const InputField = ({
   error = '',
   name,
   handleChange,
-}: Props) => {
+  handleFocus,
+  handleBlur,
+}: InputFieldProps) => {
   return (
     <div className='input-field'>
       <label
@@ -34,6 +28,8 @@ const InputField = ({
         <input
           name={name}
           onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           type={type}
           aria-invalid='false'
           className='input-field__input'
@@ -58,11 +54,7 @@ const InputField = ({
       </div>
 
       <label
-        className={cn(
-          'input-field__label',
-          'input-field__color_red',
-          'input-field__label_error'
-        )}
+        className={cn('input-field__label_error', 'input-field__color_red')}
       >
         {error}
       </label>

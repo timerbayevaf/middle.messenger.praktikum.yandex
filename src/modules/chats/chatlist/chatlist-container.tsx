@@ -7,20 +7,21 @@ import './chat-container.css';
 import Profile from 'modules/profile';
 import Header from './components/header/header';
 import { CHATLIST_VIEW } from 'constants';
-import { IUser } from 'types';
-
-interface ChatlistContainerProps {
-  searchValue: string;
-  user: IUser;
-  viewType: CHATLIST_VIEW;
-  isSelectedChat: boolean;
-}
+import { ChatlistContainerProps } from './types';
 
 const ChatlistContainer = ({
   searchValue = '',
   user,
   viewType,
-  isSelectedChat,
+  activeId,
+  password,
+  profileError,
+  handleChangeActiveChat,
+  handleChangeSearch,
+  handleChangeFields,
+  handleSubmitFields,
+  handleChangeVisibleModal,
+  handleChangeUrl,
 }: ChatlistContainerProps) => {
   const isShowSearch = viewType === CHATLIST_VIEW.SEARCH;
   const isShowProfile =
@@ -35,17 +36,29 @@ const ChatlistContainer = ({
     <aside className='chatlist'>
       <Header
         isShowSearch={!isShowProfile}
+        handleChangeUrl={handleChangeUrl}
         title={title}
         searchValue={searchValue}
+        handleChangeSearch={handleChangeSearch}
+        handleChangeVisibleModal={handleChangeVisibleModal}
       />
 
       <SearchResult isShow={isShowSearch} />
       <ChatList
-        isSelectedChat={isSelectedChat}
         isShow={isShowChatList}
-        activeId={123}
+        handleChangeActiveChat={handleChangeActiveChat}
+        activeId={activeId}
       />
-      <Profile user={user} viewType={viewType} isShow={isShowProfile} />
+      <Profile
+        error={profileError}
+        handleChangeFields={handleChangeFields}
+        handleSubmitFields={handleSubmitFields}
+        handleChangeUrl={handleChangeUrl}
+        user={user}
+        viewType={viewType}
+        isShow={isShowProfile}
+        password={password}
+      />
     </aside>
   );
 };

@@ -1,37 +1,54 @@
 import { AIcreateElement } from 'core';
 
-import { IChatMessage } from 'src/types/chats/messages';
 import ChatContainer from './chat/chat-container';
 import ChatlistContainer from './chatlist';
 import NoSelectedChat from './no-selected-chat';
+import { ChatsProps } from './types';
 
 import './chats.css';
-import { userInfo } from 'mocks';
-import { CHATLIST_VIEW } from 'constants';
-
-interface ChatsProps {
-  searchValue: string;
-  chatMessages: IChatMessage[];
-  isSelectedChat: boolean;
-  viewType: CHATLIST_VIEW;
-}
 
 const Chats = ({
-  isSelectedChat,
   searchValue,
   chatMessages,
   viewType,
+  activeId,
+  message,
+  profileInfo,
+  profileError,
+  handleChangeActiveChat,
+  handleChangeSearch,
+  handleChangeMessage,
+  handleSubmitMessage,
+  handleChangeFields,
+  handleSubmitFields,
+  handleChangeVisibleModal,
+  handleChangeUrl,
 }: ChatsProps) => (
   <div className='chats'>
     <ChatlistContainer
+      activeId={activeId}
       viewType={viewType}
       searchValue={searchValue}
-      user={userInfo}
-      isSelectedChat={isSelectedChat}
+      user={profileInfo}
+      handleChangeActiveChat={handleChangeActiveChat}
+      handleChangeSearch={handleChangeSearch}
+      password={profileInfo}
+      profileError={profileError}
+      handleChangeVisibleModal={handleChangeVisibleModal}
+      handleChangeFields={handleChangeFields}
+      handleSubmitFields={handleSubmitFields}
+      handleChangeUrl={handleChangeUrl}
     />
 
-    {isSelectedChat ? (
-      <ChatContainer chatMessages={chatMessages} user={userInfo} />
+    {activeId !== null ? (
+      <ChatContainer
+        message={message}
+        chatMessages={chatMessages}
+        user={profileInfo}
+        handleChange={handleChangeMessage}
+        handleChangeVisibleModal={handleChangeVisibleModal}
+        handleSubmit={handleSubmitMessage}
+      />
     ) : (
       <NoSelectedChat />
     )}

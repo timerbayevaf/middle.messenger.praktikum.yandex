@@ -7,13 +7,14 @@
   margin: 0;
   border: 0;
   vertical-align: middle;
+  flex-direction: column;
 }
 
 .input-field__label {
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.4375em;
-  letter-spacing: 0.00938em;
+  letter-spacing: 0.0094em;
   padding: 0 5px;
   display: block;
   box-sizing: border-box;
@@ -23,8 +24,8 @@
   text-overflow: ellipsis;
   max-width: calc(100% - 24px);
   position: absolute;
-  left: 0px;
-  top: 0px;
+  left: 0;
+  top: 0;
   transform: translate(9px, -8px) scale(0.75);
   pointer-events: none;
   z-index: 1;
@@ -35,14 +36,13 @@
   width: 100%;
   font-weight: 400;
   font-size: 1rem;
-  line-height: 1.4375em;
-  letter-spacing: 0.00938em;
+  line-height: 1.434em;
+  letter-spacing: 0.0094em;
   box-sizing: border-box;
   position: relative;
   cursor: text;
   display: inline-flex;
   align-items: center;
-  position: relative;
   border-radius: 4px;
 }
 
@@ -63,12 +63,13 @@
   border-radius: 4px;
 }
 
-.input-field__input:hover
-  + .input-field__fieldset:not(.input-field__fieldset_error),
-.input-field__input:active
-  + .input-field__fieldset:not(.input-field__fieldset_error),
-.input-field__input:focus-within
-  + .input-field__fieldset:not(.input-field__fieldset_error) {
+.input-field__fieldset_error {
+  border-color: var(--main-bg-alert);
+}
+
+.input-field__input:hover + .input-field__fieldset:not(.input-field__fieldset_error),
+.input-field__input:active + .input-field__fieldset:not(.input-field__fieldset_error),
+.input-field__input:focus-within + .input-field__fieldset:not(.input-field__fieldset_error) {
   border-color: var(--primary-bg-500);
 }
 
@@ -107,7 +108,6 @@
   padding: 8px 12px;
   font-size: 14px;
   font-weight: 500;
-  font-size: 14px;
   box-sizing: border-box;
   outline: none;
   border: none;
@@ -122,16 +122,20 @@
 }
 
 .input-field__label_error {
-  left: 0px;
-  bottom: 0px;
-  transform-origin: left bottom;
-  transform: translate(9px, 30px) scale(0.85);
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  font-weight: 400;
+  font-size: 0.71rem;
+  line-height: 1.4375em;
+  letter-spacing: 0.0094em;
+  padding: 0 5px;
+  box-sizing: border-box;
+  pointer-events: none;
+  overflow: auto;
+  width: 100%;
 }
 
 .input-field__color_red {
   color: var(--main-bg-alert);
-}
-
-.input-field__fieldset_error {
-  border-color: var(--main-bg-alert);
 }
