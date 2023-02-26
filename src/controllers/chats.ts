@@ -106,20 +106,37 @@ class UserLoginController {
     socketController.send(message);
   }
 
-  public async fetchChatMessages(data: ChatsRequestData) {
+  public async removeUserFromChat(login: string) {
     try {
       // Запускаем крутилку
       showLoader();
 
-      const chats = await chatApi.fetchChats(data);
+      const chat = store.getState().chat;
+      const users = chat?.users;
+      const user = users?.find((u) => u.login === login);
 
-      store.setState({ chats: chats });
+      if (user && chat) {
+        await chatApi.removeUserFromChat({
+          users: [user.id],
+          chatId: chat?.id,
+        });
+
+        const users = await chatApi.fetchChatUsers(chat.id);
+
+        const newChat = { ...chat, users };
+
+        store.setState({ chat: newChat });
+      } else {
+        store.setState({ errorMessage: 'Пользователя с таким логином нет' });
+        throw new Error('Пользователя с таким логином нет');
+      }
 
       // Останавливаем крутилку
     } catch (error) {
       // Логика обработки ошибок
       if (error instanceof Error) {
         store.setState({ errorMessage: error.message });
+        throw new Error('Пользователя с таким логином нет');
       }
     } finally {
       hideLoader();

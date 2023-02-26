@@ -8,7 +8,7 @@ import { IUserDTO } from 'types';
 import { HTTP } from 'utils/http';
 import {
   ChatsRequestData,
-  AddUserToChatRequestData,
+  UserInfoToChatRequestData,
   StatusResponse,
 } from './types';
 
@@ -41,8 +41,15 @@ class ChatAPI {
     return chatAPIInstance.get<IChatItemDTO[]>('/', { data });
   }
 
-  addUserToChat(data: AddUserToChatRequestData) {
+  addUserToChat(data: UserInfoToChatRequestData) {
     return chatAPIInstance.put<StatusResponse>('/users', {
+      data,
+      responseType: 'text',
+    });
+  }
+
+  removeUserFromChat(data: UserInfoToChatRequestData) {
+    return chatAPIInstance.delete<StatusResponse>('/users', {
       data,
       responseType: 'text',
     });

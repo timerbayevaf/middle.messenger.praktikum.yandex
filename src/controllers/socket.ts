@@ -60,6 +60,10 @@ class SocketControllers {
     socket.addEventListener('message', (event) => {
       const data = JSON.parse(event.data);
 
+      if (data.type === 'pong') {
+        return;
+      }
+
       if (Array.isArray(data)) {
         store.setState({
           chatMessages: [

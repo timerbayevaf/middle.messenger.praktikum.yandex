@@ -1,7 +1,7 @@
 import { Button } from 'components/button';
 import { Icon, Icons } from 'components/icon';
 import { AIcreateElement } from 'core';
-import { MessageDialogProps } from './types';
+import { MessageDialogProps } from '../types';
 
 export const MessageDialog = ({ handleClick }: MessageDialogProps) => (
   <span>

@@ -22,6 +22,12 @@ interface AddUserDialogProps {
   handleCancel(): void;
 }
 
+interface RemoveUserDialogProps {
+  error: string;
+  handleSubmit(e: Event): void;
+  handleCancel(): void;
+}
+
 interface MessageDialogProps {
   handleClick: JSX.EventHandler;
 }
@@ -36,4 +42,5 @@ export {
   MessageDialogProps,
   UserDialogProps,
   AddUserDialogProps,
+  RemoveUserDialogProps,
 };
