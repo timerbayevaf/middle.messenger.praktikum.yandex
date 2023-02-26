@@ -7,36 +7,32 @@ import { ChatListItemProps } from './types';
 import './chatlist-item.css';
 
 export const ChatListItem = ({
-  id,
-  avatar,
-  title,
-  unread_count,
-  last_message,
   isActive,
+  chat,
   handleChangeActiveChat,
 }: ChatListItemProps) => (
   <li
     className={cn('list-item chatlist-item', {
       'chatlist-item_active': !!isActive,
     })}
-    onClick={() => handleChangeActiveChat(id)}
+    onClick={() => handleChangeActiveChat(chat)}
   >
     <Avatar
-      title={title}
+      title={chat.title}
       className='list-item__avatar-block'
-      src={avatar || ''}
+      src={chat.avatar || ''}
     />
     <div className='list-item__info-block'>
       <div className='chatlist-item__row'>
-        <h2 className='chatlist-item__title'>{title}</h2>
+        <h2 className='chatlist-item__title'>{chat.title}</h2>
         <div className='chatlist-item__time'>
-          {last_message?.time && formatDate(last_message?.time)}
+          {chat.last_message?.time && formatDate(chat.last_message?.time)}
         </div>
       </div>
 
       <div className='chatlist-item__row'>
-        <p className='chatlist-item__text'>{last_message?.content}</p>
-        <div className='chatlist-item__count'>{unread_count || 0}</div>
+        <p className='chatlist-item__text'>{chat.last_message?.content}</p>
+        <div className='chatlist-item__count'>{chat.unread_count || 0}</div>
       </div>
     </div>
   </li>

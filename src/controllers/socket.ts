@@ -1,30 +1,33 @@
 import { store } from 'store';
-import { SocketData } from 'types';
+import { IChatItemDTO, SocketData } from 'types';
 
 class SocketControllers {
   private uri = 'wss://ya-praktikum.tech/ws/';
 
   socketsMap: Map<number, SocketData> = new Map();
 
-  initSocket(userId: number, chatId: number, chatToken: string) {
+  initSocket(userId: number, chat: IChatItemDTO, chatToken: string) {
     const socket = new WebSocket(
-      `${this.uri}/chats/${userId}/${chatId}/${chatToken}`
+      `${this.uri}/chats/${userId}/${chat.id}/${chatToken}`
     );
 
-    this.socketsMap.set(chatId, { socket, messagesArray: [] });
-    this.setHandlers(socket);
+    this.socketsMap.set(chat.id, { socket, messagesArray: [] });
+    this.setHandlers(socket, chat);
   }
 
-  private setHandlers(socket: WebSocket) {
+  private setHandlers(socket: WebSocket, chat: IChatItemDTO) {
     socket.addEventListener('open', () => {
       console.log('Соединение установлено');
+      let currentMessageNumber = 0;
+      while (currentMessageNumber <= chat.unread_count) {
+        const messageObject = {
+          content: String(currentMessageNumber),
+          type: 'get old',
+        };
 
-      socket.send(
-        JSON.stringify({
-          content: 'Моё первое сообщение миру!',
-          type: 'message',
-        })
-      );
+        socket.send(JSON.stringify(messageObject));
+        currentMessageNumber += 20;
+      }
     });
 
     socket.addEventListener('close', (event) => {
@@ -39,12 +42,18 @@ class SocketControllers {
 
     socket.addEventListener('message', (event) => {
       console.log('Получены данные', event.data);
-      store.setState({
-        chatMessages: [
-          ...store.getState().chatMessages,
-          JSON.parse(event.data),
-        ],
-      });
+
+      const data = JSON.parse(event.data);
+
+      if (Array.isArray(data)) {
+        store.setState({
+          chatMessages: [...store.getState().chatMessages, ...data],
+        });
+      } else {
+        store.setState({
+          chatMessages: [...store.getState().chatMessages, data],
+        });
+      }
     });
 
     socket.addEventListener('error', (event) => {

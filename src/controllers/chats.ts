@@ -4,7 +4,7 @@ import { UserAPI } from 'api/user-api';
 import { ROUTES, ROUTE_TYPES, CHATLIST_VIEW } from 'constants';
 import { router } from 'core';
 import { store } from 'store';
-import { CreateChatTitleRequestData } from 'types';
+import { CreateChatTitleRequestData, IChatItemDTO } from 'types';
 import { showLoader, hideLoader } from 'utils/setLoader';
 import socketController from './socket';
 
@@ -87,14 +87,14 @@ class UserLoginController {
     }
   }
 
-  public async changeChat(chatId: number) {
-    const token = await chatApi.fetchChatToken(chatId);
+  public async changeChat(chat: IChatItemDTO) {
+    const token = await chatApi.fetchChatToken(chat.id);
     const user = store.getState().user;
 
     if (user) {
-      socketController.initSocket(user?.id, chatId, token);
+      socketController.initSocket(user?.id, chat, token);
 
-      store.setState({ chatId: chatId, chatMessages: [] });
+      store.setState({ chatId: chat.id, chatMessages: [] });
       store.clearError();
     }
   }

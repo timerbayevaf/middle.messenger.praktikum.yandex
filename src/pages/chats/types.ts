@@ -64,7 +64,7 @@ interface ChatsProps {
   };
   profileError: { [key in USER_SPEC_TYPE]?: string };
   handleChangeSearch(e: Event): void;
-  handleChangeActiveChat(id: number): void;
+  handleChangeActiveChat(chat: IChatItemDTO): void;
   handleChangeMessage: JSX.EventHandler;
   handleSubmitMessage: JSX.EventHandler;
   handleChangeFields: JSX.EventHandler;

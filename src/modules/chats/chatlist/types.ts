@@ -14,7 +14,7 @@ interface ChatlistContainerProps {
   user: IUserDTO | null;
   profileInfo: IUserDTO;
   profileError: Record<string, string>;
-  handleChangeActiveChat(id: number): void;
+  handleChangeActiveChat(chat: IChatItemDTO): void;
   handleChangeSearch(e: Event): void;
   handleChangeUserInfoFields: JSX.EventHandler;
   handleSubmitUserInfoFields: JSX.EventHandler;

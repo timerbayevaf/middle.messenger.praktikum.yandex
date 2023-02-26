@@ -1,8 +1,9 @@
 import { IChatItemDTO } from 'types';
 
-interface ChatListItemProps extends IChatItemDTO {
+interface ChatListItemProps {
+  chat: IChatItemDTO;
   isActive: boolean;
-  handleChangeActiveChat(id: number): void;
+  handleChangeActiveChat(chat: IChatItemDTO): void;
 }
 
 export { ChatListItemProps };

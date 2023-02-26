@@ -21,7 +21,7 @@ interface ChatsProps {
     modalType: MODAL_TYPE;
     rect: DOMRect;
   }): void;
-  handleChangeActiveChat(id: number): void;
+  handleChangeActiveChat(chat: IChatItemDTO): void;
   handleChangeSearch(e: Event): void;
   handleChangeUserInfoFields: JSX.EventHandler;
   handleSubmitUserInfoFields: JSX.EventHandler;

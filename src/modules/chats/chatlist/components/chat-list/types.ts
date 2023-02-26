@@ -4,7 +4,7 @@ interface ChatListProps {
   chats: Array<IChatItemDTO>;
   isShow: boolean;
   chatId: number | null;
-  handleChangeActiveChat(id: number): void;
+  handleChangeActiveChat(chat: IChatItemDTO): void;
 }
 
 export { ChatListProps };
