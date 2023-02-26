@@ -1,12 +1,9 @@
 import { AIcreateElement } from 'core';
 import { EventBus } from 'utils/event-bus';
 import { reconcile } from './reconcile';
+import { BlockProps } from './types';
 
-interface BlockProps {}
-
-interface BlockState {}
-
-abstract class Block<T extends BlockProps = {}, S extends BlockState = {}> {
+class Block<P extends {}, S extends {}> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -15,7 +12,7 @@ abstract class Block<T extends BlockProps = {}, S extends BlockState = {}> {
   };
 
   public eventBus: () => EventBus;
-  protected props: T;
+  protected props: P;
   protected state: S = {} as S;
   private _element: HTMLElement | null = null;
   private rootInstance: JSX.Instance | null = null;
@@ -24,7 +21,7 @@ abstract class Block<T extends BlockProps = {}, S extends BlockState = {}> {
     return this._element;
   }
 
-  constructor(props: T) {
+  constructor(props: P) {
     const eventBus = new EventBus();
 
     this.props = this._makePropsProxy(props);
@@ -51,13 +48,13 @@ abstract class Block<T extends BlockProps = {}, S extends BlockState = {}> {
     return oldProps !== newProps;
   }
 
-  setProps = (nextProps: T) => {
+  setProps(nextProps: P) {
     if (!nextProps) {
       return;
     }
 
     Object.assign(this.props, nextProps);
-  };
+  }
 
   _createResources() {
     this._element = this._createDocumentElement();
@@ -90,20 +87,22 @@ abstract class Block<T extends BlockProps = {}, S extends BlockState = {}> {
     return this.rootInstance;
   }
 
+  componentdidUnmount() {}
+
   _createDocumentElement(type = 'div') {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     return document.createElement(type);
   }
 
-  _makePropsProxy(props: T): T {
+  private _makePropsProxy(props: P): P {
     return new Proxy(props, {
       get: (target, prop: string) => {
-        const value = target[prop as keyof T];
+        const value = target[prop as keyof P];
         return typeof value === 'function' ? value.bind(target) : value;
       },
       set: (target, prop: string, value) => {
         const oldTarget = { ...target };
-        target[prop as keyof T] = value;
+        target[prop as keyof P] = value;
         this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
         return true;
       },
@@ -113,15 +112,15 @@ abstract class Block<T extends BlockProps = {}, S extends BlockState = {}> {
     });
   }
 
-  _setState(props: S): S {
-    return new Proxy(props, {
+  setState(state: S): S {
+    return new Proxy(state, {
       get: (target, prop: string) => {
         const value = target[prop as keyof S];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set: (target, prop: string, value) => {
+      set: (target, key: string, value) => {
         const oldTarget = { ...target };
-        target[prop as keyof S] = value;
+        target[key as keyof S] = value;
         this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
         return true;
       },

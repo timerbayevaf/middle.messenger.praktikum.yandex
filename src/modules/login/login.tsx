@@ -1,15 +1,17 @@
-import { AIcreateElement } from 'core';
+import { AIcreateElement, router } from 'core';
 import { Widget } from 'components/containers';
 import { Input } from 'components/input';
 import { Button } from 'components/button';
-import { getError } from 'utils/regexp';
+import { get } from 'utils/get';
 import { LoginProps } from './types';
 
 import './login.css';
+import { ROUTES, ROUTE_TYPES } from 'constants';
 
 const Login = ({
   login = '',
   password = '',
+  errorMessage = '',
   error,
   handleChange,
   handleSubmit,
@@ -21,24 +23,31 @@ const Login = ({
         <div className='login__wrapper'>
           <Input
             value={login}
+            id='login'
             label='Логин'
             handleChange={handleChange}
             name='login'
-            error={getError(error?.login)}
+            error={get(error, 'login')}
           />
         </div>
         <Input
+          id='password'
           value={password}
           label='Пароль'
           name='password'
-          error={getError(error?.password)}
+          error={get(error, 'password')}
           type='password'
           handleChange={handleChange}
         />
       </div>
+      <p>{errorMessage}</p>
       <div className='login__group login__group_bottom'>
-        <Button type='submit' view='primary' label='Войти' />
-        <Button label='Нет аккаунта?' />
+        <Button id='input' type='submit' view='primary' label='Войти' />
+        <Button
+          id='signup'
+          label='Нет аккаунта?'
+          handleClick={() => router.go(ROUTES[ROUTE_TYPES.SIGNUP])}
+        />
       </div>
     </Widget>
   </form>

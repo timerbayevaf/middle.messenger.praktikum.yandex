@@ -5,16 +5,33 @@ import { MessageDialog } from './message-dialog';
 import { ProfileDialog } from './profile-dialog';
 import { UserDialog } from './user-dialog';
 import { ModalDialogProps } from './types';
+import chatController from 'controllers/chats';
 
 import './modal-dialog.css';
+import { AddUserDialog } from './add-user-dialog';
 
 export const ModalDialog = ({
+  error,
   modalType,
   style,
-  handleChangeUrl,
+  handleChangeViewType,
+  handleChangeVisibleModal,
 }: ModalDialogProps) => {
-  const handleClick = () => {
-    console.warn(modalType);
+  const handleClick = (modalType: MODAL_TYPE) => {
+    handleChangeVisibleModal({
+      modalType,
+    });
+  };
+
+  const handleSubmitAddUser = (e: Event) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    const login = (e.target as HTMLFormElement).login.value;
+
+    chatController.addUserToChat(login).then(() => {
+      handleClick(MODAL_TYPE.NONE);
+    });
   };
 
   return (
@@ -28,13 +45,22 @@ export const ModalDialog = ({
       <div className='dialog-container'>
         <div className='dialog-content' id='dialogContent'>
           {modalType === MODAL_TYPE.PROFILE && (
-            <ProfileDialog handleClick={handleChangeUrl} />
+            <ProfileDialog handleClick={handleChangeViewType} />
           )}
+
+          {modalType === MODAL_TYPE.ADD_USER && (
+            <AddUserDialog
+              error={error}
+              handleSubmit={handleSubmitAddUser}
+              handleCancel={() => handleClick(MODAL_TYPE.NONE)}
+            />
+          )}
+
           {modalType === MODAL_TYPE.USER && (
             <UserDialog handleClick={handleClick} />
           )}
           {modalType === MODAL_TYPE.MESSAGE && (
-            <MessageDialog handleClick={handleClick} />
+            <MessageDialog handleClick={() => null} />
           )}
         </div>
       </div>

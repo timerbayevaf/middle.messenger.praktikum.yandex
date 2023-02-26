@@ -67,12 +67,9 @@
   border-color: var(--main-bg-alert);
 }
 
-.input-field__input:hover
-  + .input-field__fieldset:not(.input-field__fieldset_error),
-.input-field__input:active
-  + .input-field__fieldset:not(.input-field__fieldset_error),
-.input-field__input:focus-within
-  + .input-field__fieldset:not(.input-field__fieldset_error) {
+.input-field__input:hover + .input-field__fieldset:not(.input-field__fieldset_error),
+.input-field__input:active + .input-field__fieldset:not(.input-field__fieldset_error),
+.input-field__input:focus-within + .input-field__fieldset:not(.input-field__fieldset_error) {
   border-color: var(--primary-bg-500);
 }
 

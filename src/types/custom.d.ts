@@ -192,6 +192,7 @@ declare namespace JSX {
     allowTransparency?: boolean | undefined;
     alt?: string | undefined;
     as?: string | undefined;
+    for?: string | undefined;
     async?: boolean | undefined;
     autoComplete?: string | undefined;
     autoFocus?: boolean | undefined;

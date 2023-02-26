@@ -8,56 +8,69 @@ import Profile from 'modules/profile';
 import Header from './components/header/header';
 import { CHATLIST_VIEW } from 'constants';
 import { ChatlistContainerProps } from './types';
+import { CreateChat } from './components/create-chat';
 
 const ChatlistContainer = ({
+  chats,
   searchValue = '',
   user,
   viewType,
-  activeId,
-  password,
+  chatId,
+  profilePassword,
+  profileInfo,
   profileError,
   handleChangeActiveChat,
   handleChangeSearch,
-  handleChangeFields,
-  handleSubmitFields,
   handleChangeVisibleModal,
-  handleChangeUrl,
+  handleChangeViewType,
+  handleChangeAvatar,
+  handleChangeUserInfoFields,
+  handleSubmitUserInfoFields,
+  handleChangeUserPasswordFields,
+  handleSubmitUserPasswordFields,
+  handleSubmitCreateChat,
 }: ChatlistContainerProps) => {
-  const isShowSearch = viewType === CHATLIST_VIEW.SEARCH;
-  const isShowProfile =
-    viewType === CHATLIST_VIEW.VIEW_PROFILE ||
-    viewType === CHATLIST_VIEW.EDIT_PROFILE ||
-    viewType === CHATLIST_VIEW.EDIT_PASSWORD;
-
   const isShowChatList = viewType === CHATLIST_VIEW.CHAT_LIST;
-  const title = 'Профиль';
 
   return (
     <aside className='chatlist'>
       <Header
-        isShowSearch={!isShowProfile}
-        handleChangeUrl={handleChangeUrl}
-        title={title}
+        viewType={viewType}
         searchValue={searchValue}
         handleChangeSearch={handleChangeSearch}
         handleChangeVisibleModal={handleChangeVisibleModal}
+        handleChangeViewType={handleChangeViewType}
       />
 
-      <SearchResult isShow={isShowSearch} />
+      <SearchResult isShow={viewType === CHATLIST_VIEW.SEARCH} />
       <ChatList
+        chats={chats}
         isShow={isShowChatList}
         handleChangeActiveChat={handleChangeActiveChat}
-        activeId={activeId}
+        chatId={chatId}
+      />
+      <CreateChat
+        isShow={viewType === CHATLIST_VIEW.ADD_CHAT}
+        handleSubmit={handleSubmitCreateChat}
       />
       <Profile
-        error={profileError}
-        handleChangeFields={handleChangeFields}
-        handleSubmitFields={handleSubmitFields}
-        handleChangeUrl={handleChangeUrl}
-        user={user}
+        handleChangeFields={
+          viewType === CHATLIST_VIEW.EDIT_PROFILE
+            ? handleChangeUserInfoFields
+            : handleChangeUserPasswordFields
+        }
+        handleSubmitFields={
+          viewType === CHATLIST_VIEW.EDIT_PROFILE
+            ? handleSubmitUserInfoFields
+            : handleSubmitUserPasswordFields
+        }
+        handleChangeViewType={handleChangeViewType}
+        handleChangeAvatar={handleChangeAvatar}
         viewType={viewType}
-        isShow={isShowProfile}
-        password={password}
+        user={user}
+        error={profileError}
+        profileInfo={profileInfo}
+        profilePassword={profilePassword}
       />
     </aside>
   );

@@ -12,6 +12,7 @@ const Edit = ({
   viewType,
   user,
   password,
+  profileInfo,
   error,
   handleChange,
   handleSubmit,
@@ -24,33 +25,24 @@ const Edit = ({
   >
     {viewType === CHATLIST_VIEW.EDIT_PROFILE && (
       <PersonalInfo
-        login={user?.login}
-        email={user?.email}
-        first_name={user?.first_name}
-        display_name={user?.display_name}
-        second_name={user?.second_name}
-        phone={user?.phone}
+        user={user}
+        profileInfo={profileInfo}
         error={error}
         handleChange={handleChange}
       />
     )}
     {viewType === CHATLIST_VIEW.EDIT_PASSWORD && (
       <EditPassword
-        old_password={password?.old_password}
-        new_password={password?.new_password}
-        second_new_password={password?.second_new_password}
+        oldPassword={password?.oldPassword}
+        newPassword={password?.newPassword}
+        password={password?.password}
         error={error}
         handleChange={handleChange}
       />
     )}
 
     <div className='edit__button-block'>
-      <Button
-        disabled={!isEmpty(error)}
-        type='submit'
-        view='secondary'
-        label='Сохранить'
-      />
+      <Button type='submit' view='secondary' label='Сохранить' />
     </div>
   </form>
 );

@@ -3,7 +3,9 @@
   "rules": {
     "color-hex-case": "lower",
     "function-name-case": "lower",
-    "selector-class-pattern": null
+    "selector-class-pattern": null,
+    "string-quotes": "single",
+    "selector-combinator-space-before": null
   },
   "ignoreFiles": ["build/*"]
 }

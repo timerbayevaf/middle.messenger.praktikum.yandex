@@ -5,17 +5,20 @@ import { InputFieldProps } from './types';
 import './input-field.css';
 
 const InputField = ({
+  defaultValue = '',
   value,
   type,
   label = '',
   error = '',
   name,
+  className,
+  accept,
   handleChange,
   handleFocus,
   handleBlur,
 }: InputFieldProps) => {
   return (
-    <div className='input-field'>
+    <div className={cn('input-field', className)}>
       <label
         className={cn('input-field__label', {
           'input-field__color_red': error !== '',
@@ -31,9 +34,10 @@ const InputField = ({
           onFocus={handleFocus}
           onBlur={handleBlur}
           type={type}
+          accept={accept}
           aria-invalid='false'
           className='input-field__input'
-          value={value}
+          value={value?.length > 0 ? value : defaultValue}
         />
         <fieldset
           aria-hidden='true'

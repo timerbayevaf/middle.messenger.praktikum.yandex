@@ -5,44 +5,44 @@ import Edit from './edit';
 import { ProfileProps } from './types';
 
 const Profile = ({
-  isShow,
   user,
-  password,
+  profileInfo,
+  profilePassword,
   error,
   viewType = CHATLIST_VIEW.VIEW_PROFILE,
   handleChangeFields,
   handleSubmitFields,
-  handleChangeUrl,
+  handleChangeViewType,
+  handleChangeAvatar,
 }: ProfileProps) => {
-  if (!isShow) {
-    return null;
-  }
-
   if (viewType === CHATLIST_VIEW.VIEW_PROFILE) {
     return (
       <View
-        login={user?.login}
-        email={user?.email}
-        first_name={user?.first_name}
-        second_name={user?.second_name}
-        avatar={user?.avatar}
-        phone={user?.second_name}
-        display_name={user?.display_name}
-        handleChangeUrl={handleChangeUrl}
+        user={user}
+        handleChangeViewType={handleChangeViewType}
+        handleChangeAvatar={handleChangeAvatar}
       />
     );
   }
 
-  return (
-    <Edit
-      handleChange={handleChangeFields}
-      handleSubmit={handleSubmitFields}
-      viewType={viewType}
-      user={user}
-      password={password}
-      error={error}
-    />
-  );
+  if (
+    viewType === CHATLIST_VIEW.EDIT_PROFILE ||
+    viewType === CHATLIST_VIEW.EDIT_PASSWORD
+  ) {
+    return (
+      <Edit
+        handleChange={handleChangeFields}
+        handleSubmit={handleSubmitFields}
+        viewType={viewType}
+        user={{ ...profileInfo, ...user }}
+        profileInfo={profileInfo}
+        password={profilePassword}
+        error={error}
+      />
+    );
+  }
+
+  return null;
 };
 
 export default Profile;
