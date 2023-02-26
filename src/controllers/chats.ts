@@ -100,17 +100,7 @@ class UserLoginController {
   }
 
   public async sendMessageToChat(message: string) {
-    const chatId = store.getState().chatId;
-
-    if (chatId) {
-      const socket = socketController.socketsMap.get(chatId)?.socket;
-      const messageObject = {
-        content: message,
-        type: 'message',
-      };
-
-      socket?.send(JSON.stringify(messageObject));
-    }
+    socketController.send(message);
   }
 
   public async fetchChatMessages(data: ChatsRequestData) {

@@ -1,23 +1,32 @@
 import { store } from 'store';
-import { IChatDTO, IChatItemDTO, SocketData } from 'types';
+import { IChatItemDTO } from 'types';
+import { sortByTime } from 'utils/sort-by-time';
 
 class SocketControllers {
   private uri = 'wss://ya-praktikum.tech/ws/';
-
-  socketsMap: Map<number, SocketData> = new Map();
+  private _socket: WebSocket | null = null;
 
   initSocket(userId: number, chat: IChatItemDTO, chatToken: string) {
     const socket = new WebSocket(
       `${this.uri}/chats/${userId}/${chat.id}/${chatToken}`
     );
 
-    this.socketsMap.set(chat.id, { socket, messagesArray: [] });
+    this._socket = socket;
+
     this.setHandlers(socket, chat);
+  }
+
+  public send(message: string) {
+    const messageObject = {
+      content: message,
+      type: 'message',
+    };
+
+    this._socket?.send(JSON.stringify(messageObject));
   }
 
   private setHandlers(socket: WebSocket, chat: IChatItemDTO) {
     socket.addEventListener('open', () => {
-      console.log('Соединение установлено');
       let currentMessageNumber = 0;
       while (currentMessageNumber <= chat.unread_count) {
         const messageObject = {
@@ -36,17 +45,20 @@ class SocketControllers {
       } else {
         console.log('Обрыв соединения');
       }
+      this._socket = null;
 
       console.log(`Код: ${event.code} | Причина: ${event.reason}`);
     });
 
     socket.addEventListener('message', (event) => {
-      console.log('Получены данные', event.data);
       const data = JSON.parse(event.data);
 
       if (Array.isArray(data)) {
         store.setState({
-          chatMessages: [...store.getState().chatMessages, ...data],
+          chatMessages: [
+            ...store.getState().chatMessages,
+            ...data.sort((a, b) => sortByTime(a.time, b.time)),
+          ],
         });
       } else {
         store.setState({

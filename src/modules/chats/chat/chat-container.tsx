@@ -21,7 +21,7 @@ const ChatContainer = ({
       name={user?.first_name}
       handleChangeVisibleModal={handleChangeVisibleModal}
     />
-    <ChatMessages chatMessages={chatMessages} />
+    <ChatMessages user={user} chatMessages={chatMessages} />
     <SendMessage
       message={message}
       handleChange={handleChange}

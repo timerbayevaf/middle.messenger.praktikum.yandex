@@ -5,7 +5,6 @@ export {
   IChatDTO,
   CreateChatTitleRequestData,
   WebSocketMessage,
-  SocketData,
 } from './chats/chats';
 export { IUserDTO, ISignUpUserModel, SignInUserModel } from './user/user';
 export { FetchOptions } from './fetch';

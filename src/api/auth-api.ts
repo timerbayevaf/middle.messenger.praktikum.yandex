@@ -10,7 +10,6 @@ class AuthAPI {
     return chatAPIInstance
       .post<SignUpResponseData>('/signup', {
         data,
-        responseType: 'text',
       })
       .then(({ id }: SignUpResponseData) => id);
   }
