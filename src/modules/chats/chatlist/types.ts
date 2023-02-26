@@ -5,7 +5,7 @@ interface ChatlistContainerProps {
   chats: Array<IChatItemDTO>;
   searchValue: string;
   viewType: CHATLIST_VIEW;
-  chatId: number | null;
+  chat: IChatItemDTO | null;
   profilePassword: {
     oldPassword: string;
     newPassword: string;

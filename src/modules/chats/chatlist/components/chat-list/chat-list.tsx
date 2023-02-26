@@ -6,7 +6,7 @@ import { ChatListProps } from './types';
 
 const ChatList = ({
   chats,
-  chatId,
+  chat,
   isShow,
   handleChangeActiveChat,
 }: ChatListProps) => {
@@ -20,7 +20,7 @@ const ChatList = ({
       renderItem={(el: IChatItemDTO) => (
         <ChatListItem
           handleChangeActiveChat={handleChangeActiveChat}
-          isActive={el.id === chatId}
+          isActive={el.id === chat?.id}
           chat={el}
         />
       )}

@@ -2,7 +2,7 @@ import { Button } from 'components/button';
 import { Icon, Icons } from 'components/icon';
 import { MODAL_TYPE } from 'constants';
 import { AIcreateElement } from 'core';
-import { UserDialogProps } from './types';
+import { UserDialogProps } from '../types';
 
 export const UserDialog = ({ handleClick }: UserDialogProps) => (
   <span>
@@ -18,7 +18,10 @@ export const UserDialog = ({ handleClick }: UserDialogProps) => (
       Добавить пользователя
     </Button>
     <Button
-      handleClick={() => handleClick(MODAL_TYPE.REMOVE_USER)}
+      handleClick={(e) => {
+        e.stopPropagation();
+        handleClick(MODAL_TYPE.REMOVE_USER);
+      }}
       size='small'
       className='dialog__button'
     >

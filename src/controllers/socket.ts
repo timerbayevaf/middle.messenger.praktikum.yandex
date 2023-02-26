@@ -5,6 +5,7 @@ import { sortByTime } from 'utils/sort-by-time';
 class SocketControllers {
   private uri = 'wss://ya-praktikum.tech/ws/';
   private _socket: WebSocket | null = null;
+  private _ping!: number;
 
   initSocket(userId: number, chat: IChatItemDTO, chatToken: string) {
     const socket = new WebSocket(
@@ -37,6 +38,10 @@ class SocketControllers {
         socket.send(JSON.stringify(messageObject));
         currentMessageNumber += 20;
       }
+
+      this._ping = setInterval(() => {
+        socket.send(JSON.stringify({ type: 'ping' }));
+      }, 10000);
     });
 
     socket.addEventListener('close', (event) => {
@@ -47,11 +52,17 @@ class SocketControllers {
       }
       this._socket = null;
 
+      clearInterval(this._ping);
+
       console.log(`Код: ${event.code} | Причина: ${event.reason}`);
     });
 
     socket.addEventListener('message', (event) => {
       const data = JSON.parse(event.data);
+
+      if (data.type === 'pong') {
+        return;
+      }
 
       if (Array.isArray(data)) {
         store.setState({

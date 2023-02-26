@@ -1,14 +1,15 @@
 import { MODAL_TYPE } from 'constants';
 import { AIcreateElement } from 'core';
 import { cn } from 'utils/cn';
-import { MessageDialog } from './message-dialog';
-import { ProfileDialog } from './profile-dialog';
-import { UserDialog } from './user-dialog';
+import { MessageDialog } from './message/message-dialog';
+import { ProfileDialog } from './profile/profile-dialog';
+import { UserDialog } from './user/user-dialog';
 import { ModalDialogProps } from './types';
 import chatController from 'controllers/chats';
 
 import './modal-dialog.css';
-import { AddUserDialog } from './add-user-dialog';
+import { AddUserDialog } from './add-user/add-user-dialog';
+import { RemoveUserDialog } from './remove-user/remove-user-dialog';
 
 export const ModalDialog = ({
   error,
@@ -34,6 +35,17 @@ export const ModalDialog = ({
     });
   };
 
+  const handleSubmitRemoveUser = (e: Event) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    const login = (e.target as HTMLFormElement).login.value;
+
+    chatController.removeUserFromChat(login).then(() => {
+      handleClick(MODAL_TYPE.NONE);
+    });
+  };
+
   return (
     <div
       id='dialogBackdrop'
@@ -52,6 +64,14 @@ export const ModalDialog = ({
             <AddUserDialog
               error={error}
               handleSubmit={handleSubmitAddUser}
+              handleCancel={() => handleClick(MODAL_TYPE.NONE)}
+            />
+          )}
+
+          {modalType === MODAL_TYPE.REMOVE_USER && (
+            <RemoveUserDialog
+              error={error}
+              handleSubmit={handleSubmitRemoveUser}
               handleCancel={() => handleClick(MODAL_TYPE.NONE)}
             />
           )}

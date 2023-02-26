@@ -33,7 +33,7 @@ interface ChatsPageProps {
   query: { viewType?: string };
   user: IUserDTO | null;
   chats: Array<IChatItemDTO>;
-  chatId: number | null;
+  chat: IChatItemDTO | null;
   errorMessage: string;
   chatMessages: Array<IChatMessage>;
 }

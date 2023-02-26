@@ -11,15 +11,17 @@ const ChatContainer = ({
   user,
   chatMessages,
   message,
+  chat,
   handleChange,
   handleSubmit,
   handleChangeVisibleModal,
 }: ChatContainerProps) => (
   <div className='chat'>
     <UserInfo
-      avatar={user?.avatar}
+      avatar={user?.avatar || ''}
       name={user?.first_name}
       handleChangeVisibleModal={handleChangeVisibleModal}
+      users={chat?.users}
     />
     <ChatMessages user={user} chatMessages={chatMessages} />
     <SendMessage

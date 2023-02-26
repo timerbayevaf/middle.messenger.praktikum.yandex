@@ -19,7 +19,7 @@ type SearchUserRequestData = {
   login: string;
 };
 
-type AddUserToChatRequestData = {
+type UserInfoToChatRequestData = {
   users: number[];
   chatId: number;
 };
@@ -30,5 +30,5 @@ export {
   SignUpResponseData,
   SearchUserRequestData,
   ChatsRequestData,
-  AddUserToChatRequestData,
+  UserInfoToChatRequestData,
 };

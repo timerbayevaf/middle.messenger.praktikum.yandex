@@ -1,29 +1,28 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { AIcreateElement } from 'core';
 import { Button } from 'components/button';
-import { AddUserDialogProps } from './types';
+import { RemoveUserDialogProps } from '../types';
 import InputField from 'components/input/input-field';
 
-import './add-user.css';
+import './remove-user.css';
 
-export const AddUserDialog = ({
+export const RemoveUserDialog = ({
   error,
   handleSubmit,
   handleCancel,
-}: AddUserDialogProps) => (
+}: RemoveUserDialogProps) => (
   <form
-    id='addUser'
+    id='removeUser'
     onSubmit={handleSubmit}
     onClick={(e: Event) => {
       e.stopPropagation();
     }}
-    className='add-user'
+    className='remove-user'
   >
-    <p>Введите логин, чтобы добавить пользователя</p>
+    <p>Введите логин, чтобы удалить пользователя</p>
     <InputField name='login' value='' type='text' error={error} />
 
     <Button type='submit' view='primary'>
-      Добавить
+      Удалить
     </Button>
     <Button type='button' handleClick={handleCancel}>
       Отмена

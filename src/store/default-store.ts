@@ -5,7 +5,7 @@ const defaultStore: AppState = {
   errorMessage: null,
   user: null,
   chats: [],
-  chatId: null,
+  chat: null,
   chatMessages: [],
 };
 

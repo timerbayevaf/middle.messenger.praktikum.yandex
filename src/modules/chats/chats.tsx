@@ -12,7 +12,7 @@ const Chats = ({
   searchValue,
   chatMessages,
   viewType,
-  chatId,
+  chat,
   message,
   user,
   profileInfo,
@@ -35,7 +35,7 @@ const Chats = ({
     <ChatlistContainer
       chats={chats}
       handleSubmitCreateChat={handleSubmitCreateChat}
-      chatId={chatId}
+      chat={chat}
       viewType={viewType}
       searchValue={searchValue}
       user={user}
@@ -53,8 +53,9 @@ const Chats = ({
       handleSubmitUserPasswordFields={handleSubmitUserPasswordFields}
     />
 
-    {chatId !== null ? (
+    {chat?.id && chat?.id !== null ? (
       <ChatContainer
+        chat={chat}
         message={message}
         chatMessages={chatMessages}
         user={profileInfo}
