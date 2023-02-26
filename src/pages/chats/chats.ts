@@ -147,7 +147,7 @@ class ChatsPageBase extends Block<ChatsPageProps, ChatsState> {
       return;
     }
 
-    console.log('message', this.state.message);
+    chatController.sendMessageToChat(this.state.message);
     this.state.message = '';
   }
 
