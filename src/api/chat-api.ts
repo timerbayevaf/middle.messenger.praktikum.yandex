@@ -4,6 +4,7 @@ import {
   IChatDTO,
   IChatTokenDTO,
 } from 'src/types/chats/chats';
+import { IUserDTO } from 'types';
 import { HTTP } from 'utils/http';
 import {
   ChatsRequestData,
@@ -31,13 +32,13 @@ class ChatAPI {
       .then(({ token }) => token);
   }
 
+  fetchChatUsers(chatId: number) {
+    return chatAPIInstance.get<Array<IUserDTO>>(`/${chatId}/users`);
+  }
+
   fetchChats(data: ChatsRequestData) {
     // получить чаты текущего пользователя
     return chatAPIInstance.get<IChatItemDTO[]>('/', { data });
-  }
-
-  fetchChatUsers(chatId: number) {
-    return chatAPIInstance.get(`/${chatId}/users`);
   }
 
   addUserToChat(data: AddUserToChatRequestData) {

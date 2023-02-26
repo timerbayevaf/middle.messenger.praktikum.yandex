@@ -66,7 +66,7 @@ class UserLoginController {
       const users = await userApi.searchUsers({ login: userLogin });
       const user = users.length > 0 ? users[0] : null;
 
-      const chatId = store.getState().chatId;
+      const chatId = store.getState().chat?.id;
 
       if (user && chatId) {
         await chatApi.addUserToChat({
@@ -93,8 +93,11 @@ class UserLoginController {
 
     if (user) {
       socketController.initSocket(user?.id, chat, token);
+      const users = await chatApi.fetchChatUsers(chat.id);
 
-      store.setState({ chatId: chat.id, chatMessages: [] });
+      const newChat = { ...chat, users };
+
+      store.setState({ chat: newChat, chatMessages: [] });
       store.clearError();
     }
   }

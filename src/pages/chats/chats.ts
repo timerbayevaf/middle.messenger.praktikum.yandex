@@ -341,7 +341,7 @@ function mapUserToProps(state: AppState) {
   return {
     user: state.user,
     chats: state.chats,
-    chatId: state.chatId,
+    chat: state.chat,
     errorMessage: state.errorMessage,
     chatMessages: state.chatMessages,
   };

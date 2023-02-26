@@ -8,7 +8,7 @@ interface ChatsProps {
   searchValue: string;
   chatMessages: IChatMessage[];
   viewType: CHATLIST_VIEW;
-  chatId: number | null;
+  chat: IChatItemDTO | null;
   profilePassword: {
     oldPassword: string;
     newPassword: string;

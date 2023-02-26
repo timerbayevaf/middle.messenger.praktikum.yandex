@@ -8,7 +8,7 @@ interface AppState {
   user: IUserDTO | null;
   chats: Array<IChatItemDTO>;
   chatMessages: Array<IChatMessage>;
-  chatId: number | null;
+  chat: IChatItemDTO | null;
 }
 
 export { AppState };

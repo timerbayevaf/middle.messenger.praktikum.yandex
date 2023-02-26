@@ -1,3 +1,5 @@
+import { IUserDTO } from '../user/user';
+
 interface IChatItemDTO {
   title: string;
   unread_count: number;
@@ -18,6 +20,7 @@ interface IChatItemDTO {
       avatar: string | null;
     };
   };
+  users?: Array<IUserDTO>;
 }
 interface IChatDTO {
   id: number;

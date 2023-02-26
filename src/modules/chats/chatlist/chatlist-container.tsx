@@ -15,7 +15,7 @@ const ChatlistContainer = ({
   searchValue = '',
   user,
   viewType,
-  chatId,
+  chat,
   profilePassword,
   profileInfo,
   profileError,
@@ -47,7 +47,7 @@ const ChatlistContainer = ({
         chats={chats}
         isShow={isShowChatList}
         handleChangeActiveChat={handleChangeActiveChat}
-        chatId={chatId}
+        chat={chat}
       />
       <CreateChat
         isShow={viewType === CHATLIST_VIEW.ADD_CHAT}
