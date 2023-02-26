@@ -1,14 +1,25 @@
 import { CHATLIST_VIEW, MODAL_TYPE } from 'constants';
 
 interface ModalDialogProps {
+  error: string;
   modalType: MODAL_TYPE;
   zIndex?: number;
   style?: JSX.CSSProperties;
-  handleChangeUrl(profileViewType: CHATLIST_VIEW): void;
+  handleChangeViewType(profileViewType: CHATLIST_VIEW): void;
+  handleChangeVisibleModal(modalInfo: {
+    modalType: MODAL_TYPE;
+    rect?: DOMRect;
+  }): void;
 }
 
 interface ProfileDialogProps {
   handleClick(profileViewType: CHATLIST_VIEW): void;
+}
+
+interface AddUserDialogProps {
+  error: string;
+  handleSubmit(e: Event): void;
+  handleCancel(): void;
 }
 
 interface MessageDialogProps {
@@ -16,7 +27,7 @@ interface MessageDialogProps {
 }
 
 interface UserDialogProps {
-  handleClick: JSX.EventHandler;
+  handleClick(type: MODAL_TYPE): void;
 }
 
 export {
@@ -24,4 +35,5 @@ export {
   ProfileDialogProps,
   MessageDialogProps,
   UserDialogProps,
+  AddUserDialogProps,
 };

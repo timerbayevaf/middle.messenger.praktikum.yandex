@@ -12,11 +12,15 @@ const Avatar = ({
   src,
 }: AvatarProps) => (
   <div title={title} onClick={handleClick} className={cn('avatar', className)}>
-    <img
-      className={cn('avatar__image', imageClassName)}
-      src={src}
-      alt={`аватар пользователя ${title}`}
-    />
+    {src ? (
+      <img
+        className={cn('avatar__image', imageClassName)}
+        src={src}
+        alt={`аватар пользователя ${title}`}
+      />
+    ) : (
+      <div className='avatar__like'>{title.slice(0, 2)}</div>
+    )}
   </div>
 );
 

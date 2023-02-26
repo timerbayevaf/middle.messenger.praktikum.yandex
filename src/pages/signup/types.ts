@@ -1,13 +1,17 @@
-type SIGNUP_SPEC_TYPE =
-  | 'login'
-  | 'email'
-  | 'first_name'
-  | 'second_name'
-  | 'phone'
-  | 'password'
-  | 'second_password';
+import { ValidateType } from 'constants';
 
-interface SignupPageProps {}
+type SIGNUP_SPEC_TYPE =
+  | ValidateType.Login
+  | ValidateType.Email
+  | ValidateType.FirstName
+  | ValidateType.SecondName
+  | ValidateType.Phone
+  | ValidateType.Password
+  | ValidateType.NewPassword;
+
+interface SignupPageProps {
+  errorMessage: string | null;
+}
 
 interface SignupPageState
   extends Pick<
@@ -18,7 +22,7 @@ interface SignupPageState
     | 'phone'
     | 'login'
     | 'password'
-    | 'second_password'
+    | 'newPassword'
     | 'error'
   > {}
 
@@ -29,19 +33,11 @@ interface SignupProps {
   phone: string;
   login: string;
   password: string;
-  second_password: string;
-  error: Pick<
-    SignupProps,
-    | 'first_name'
-    | 'second_name'
-    | 'email'
-    | 'phone'
-    | 'login'
-    | 'password'
-    | 'second_password'
-  >;
+  newPassword: string;
+  error: Record<string, string>;
+  errorMessage: string | null;
   handleChange(e: Event): void;
   handleSubmit(e: Event): void;
 }
 
-export { SignupProps, SignupPageState, SignupPageProps, SIGNUP_SPEC_TYPE };
+export { SIGNUP_SPEC_TYPE, SignupProps, SignupPageState, SignupPageProps };

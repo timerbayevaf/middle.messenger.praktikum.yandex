@@ -1,16 +1,21 @@
-type LOGIN_SPEC_TYPE = 'login' | 'password';
+import { ValidateType } from 'constants';
 
-interface LoginPageProps {}
+type LOGIN_SPEC_TYPE = ValidateType.Login | ValidateType.Password;
 
-interface LoginPageState
-  extends Pick<LoginProps, 'login' | 'password' | 'error'> {}
+type LoginPageProps = {
+  errorMessage: string | null;
+};
 
-interface LoginProps {
-  login: string;
-  password: string;
+type LoginPageState = {
   error: { login: string; password: string };
-  handleChange(e: Event): void;
-  handleSubmit(e: Event): void;
-}
+  password: string;
+  login: string;
+};
+
+type LoginProps = LoginPageProps &
+  LoginPageState & {
+    handleChange(e: Event): void;
+    handleSubmit(e: Event): void;
+  };
 
 export { LoginProps, LOGIN_SPEC_TYPE, LoginPageProps, LoginPageState };

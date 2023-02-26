@@ -1,41 +1,79 @@
-import { Block, AIcreateElement, AIcreateFragment } from 'core';
+import { Block, AIcreateFragment, connect, router } from 'core';
 import { ModalDialog } from 'components/modal-dialog/modal-dialog';
 import Chats from 'modules/chats/chats';
-import { CHATLIST_VIEW, MODAL_TYPE } from 'constants';
 import {
-  checkCorrectField,
-  isSpecName,
-  PASSWORD_SECOND_CHECK,
-} from 'utils/regexp';
-import { isEmpty } from 'utils/isEmpty';
-import { USER_SPEC_TYPE, ChatsPageProps, ChatsState } from './types';
-import { PASSWORD_SPEC, PROFILE_SPEC } from './constants';
+  CHATLIST_VIEW,
+  MODAL_TYPE,
+  ROUTES,
+  ROUTE_TYPES,
+  validateProfileInfoRules,
+  validateProfilePasswordRules,
+  ValidateType,
+} from 'constants';
+import {
+  ChatsPageProps,
+  ChatsState,
+  USER_INFO_SPEC_TYPE,
+  USER_PASSWORD_SPEC_TYPE,
+} from './types';
+import { AppState, IUserDTO } from 'types';
+import { isSpecName } from 'utils/spec';
+import { getViewType } from 'utils/get-view-type';
+import { checkCorrectField, validateFields } from 'utils/validate';
+import chatController from 'controllers/chats';
+import userController from 'controllers/user';
 
-export class ChatsPageBase extends Block<ChatsPageProps, ChatsState> {
+const isUserProfileInfoSpecName = isSpecName<USER_INFO_SPEC_TYPE>(
+  validateProfileInfoRules
+);
+const validateProfilePasswordWithRepatRules = [
+  ValidateType.Password,
+  ...validateProfilePasswordRules,
+];
+const isUserProfilePasswordSpecName = isSpecName<USER_PASSWORD_SPEC_TYPE>(
+  validateProfilePasswordWithRepatRules
+);
+
+const userProfileInfoValidator = validateFields(validateProfileInfoRules);
+const userProfilePasswordValidator = validateFields(
+  validateProfilePasswordWithRepatRules
+);
+
+const DefaultUserInfo: IUserDTO = {
+  first_name: '',
+  second_name: '',
+  display_name: '',
+  email: '',
+  login: '',
+  phone: '',
+  id: 0,
+  avatar: null,
+};
+
+class ChatsPageBase extends Block<ChatsPageProps, ChatsState> {
   constructor(props: ChatsPageProps) {
     super(props);
   }
 
   init() {
-    this.state = this._setState({
+    chatController.fetchChats({
+      offset: 0,
+      limit: 50,
+      title: '',
+    });
+
+    this.state = this.setState({
       modalInfo: {
         modalType: MODAL_TYPE.NONE,
         styles: {},
       },
       searchValue: '',
       message: '',
-      activeId: null,
-      profileInfo: {
-        avatar: '',
-        old_password: '',
-        new_password: '',
-        second_new_password: '',
-        first_name: '',
-        second_name: '',
-        display_name: '',
-        email: '',
-        login: '',
-        phone: '',
+      profileInfo: this.props.user ? { ...this.props.user } : DefaultUserInfo,
+      profilePassword: {
+        oldPassword: '',
+        newPassword: '',
+        password: '',
       },
       profileError: {},
     });
@@ -44,38 +82,47 @@ export class ChatsPageBase extends Block<ChatsPageProps, ChatsState> {
     this.handleChangeActiveChat = this.handleChangeActiveChat.bind(this);
     this.handleChangeMessage = this.handleChangeMessage.bind(this);
     this.handleSubmitMessage = this.handleSubmitMessage.bind(this);
-    this.handleChangeFields = this.handleChangeFields.bind(this);
-    this.handleSubmitFields = this.handleSubmitFields.bind(this);
+    this.handleChangeUserInfoFields =
+      this.handleChangeUserInfoFields.bind(this);
+    this.handleSubmitUserInfoFields =
+      this.handleSubmitUserInfoFields.bind(this);
+    this.handleChangeUserPasswordFields =
+      this.handleChangeUserPasswordFields.bind(this);
+    this.handleSubmitUserPasswordFields =
+      this.handleSubmitUserPasswordFields.bind(this);
     this.handleChangeVisibleModal = this.handleChangeVisibleModal.bind(this);
-    this.handleChangeUrl = this.handleChangeUrl.bind(this);
-    document.addEventListener('click', (e: Event) => {
-      if ((e.target as HTMLDivElement)?.id !== 'dialogBackdrop') {
-        this.handleChangeVisibleModal({
-          modalType: MODAL_TYPE.NONE,
-        });
-      }
-    });
+    this.handleChangeViewType = this.handleChangeViewType.bind(this);
+    this.handleChangeAvatar = this.handleChangeAvatar.bind(this);
+    this.handleSubmitCreateChat = this.handleSubmitCreateChat.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
 
   render() {
     return AIcreateFragment({
       children: [
         Chats({
+          viewType: getViewType(this.props?.query),
           ...this.props,
           ...this.state,
           handleChangeSearch: this.handleChangeSearch,
           handleChangeActiveChat: this.handleChangeActiveChat,
           handleChangeMessage: this.handleChangeMessage,
           handleSubmitMessage: this.handleSubmitMessage,
-          handleChangeFields: this.handleChangeFields,
-          handleSubmitFields: this.handleSubmitFields,
+          handleChangeUserInfoFields: this.handleChangeUserInfoFields,
+          handleSubmitUserInfoFields: this.handleSubmitUserInfoFields,
+          handleChangeUserPasswordFields: this.handleChangeUserPasswordFields,
+          handleSubmitUserPasswordFields: this.handleSubmitUserPasswordFields,
           handleChangeVisibleModal: this.handleChangeVisibleModal,
-          handleChangeUrl: this.handleChangeUrl,
+          handleChangeViewType: this.handleChangeViewType,
+          handleChangeAvatar: this.handleChangeAvatar,
+          handleSubmitCreateChat: this.handleSubmitCreateChat,
         }),
         ModalDialog({
+          error: this.props.errorMessage || '',
           modalType: this.state.modalInfo.modalType,
           style: this.state.modalInfo.styles,
-          handleChangeUrl: this.handleChangeUrl,
+          handleChangeViewType: this.handleChangeViewType,
+          handleChangeVisibleModal: this.handleChangeVisibleModal,
         }),
       ],
     });
@@ -86,7 +133,7 @@ export class ChatsPageBase extends Block<ChatsPageProps, ChatsState> {
   }
 
   handleChangeActiveChat(id: number): void {
-    this.state.activeId = id;
+    chatController.changeChat(id);
   }
 
   handleChangeMessage(e: Event): void {
@@ -104,90 +151,134 @@ export class ChatsPageBase extends Block<ChatsPageProps, ChatsState> {
     this.state.message = '';
   }
 
-  handleChangeFields(e: Event): void {
+  handleChangeUserInfoFields(e: Event): void {
     const name = (e.target as HTMLInputElement).name;
     const value = (e.target as HTMLInputElement)?.value?.trim();
 
-    if (
-      isSpecName<USER_SPEC_TYPE>(name) &&
-      !PASSWORD_SECOND_CHECK.includes(name)
-    ) {
-      const { result: isCorrect, error } = checkCorrectField(name, value);
+    if (isUserProfileInfoSpecName(name)) {
+      const validateData = checkCorrectField(name, value);
 
-      this.state.profileInfo = { ...this.state.profileInfo, [name]: value };
-
-      if (isCorrect) {
-        delete this.state.profileError[name];
-      } else {
+      if (validateData) {
         this.state.profileError = {
           ...this.state.profileError,
-          [name]: error,
+          [name]: validateData,
         };
+      } else {
+        this.state.profileError = { ...this.state.profileError, [name]: '' };
       }
-    }
-
-    if (isSpecName(name) && name === 'second_new_password') {
-      const isCorrect = this.state.profileInfo.new_password === value;
 
       this.state.profileInfo = { ...this.state.profileInfo, [name]: value };
-
-      if (isCorrect) {
-        delete this.state.profileError[name];
-      } else {
-        this.state.profileError = {
-          ...this.state.profileError,
-          [name]: `Пароли не совпадают`,
-        };
-      }
     }
   }
 
-  handleSubmitFields(e: Event): void {
+  handleSubmitUserInfoFields(e: Event): void {
     e.preventDefault();
 
-    if (!isEmpty(this.state.profileError)) {
-      return;
+    const userInfo = {
+      ...this.props.user,
+      ...this.state.profileInfo,
+    };
+
+    const validateData = userProfileInfoValidator(userInfo);
+
+    if (validateData.isCorrect) {
+      this.state.profileError = {};
+      userController.changeUserInfo(userInfo as any);
+    } else {
+      this.state.profileError = {
+        ...this.state.profileError,
+        ...validateData.errors,
+      };
     }
+  }
 
-    const viewType = (e.target as HTMLFormElement).name;
+  handleChangeUserPasswordFields(e: Event): void {
+    const name = (e.target as HTMLInputElement).name;
+    const value = (e.target as HTMLInputElement)?.value?.trim();
 
-    let isOk = true;
-    const SPEC_NAMES =
-      viewType === CHATLIST_VIEW.EDIT_PASSWORD ? PASSWORD_SPEC : PROFILE_SPEC;
+    if (isUserProfilePasswordSpecName(name)) {
+      const validateData = checkCorrectField(name, value);
 
-    SPEC_NAMES.filter(isSpecName<USER_SPEC_TYPE>).forEach((name) => {
-      const { result, error } = checkCorrectField(
-        name,
-        this.state.profileInfo[name]
-      );
-
-      if (!result) {
-        isOk = result;
+      if (validateData) {
         this.state.profileError = {
           ...this.state.profileError,
-          [name]: error,
+          [name]: validateData,
         };
+      } else {
+        this.state.profileError = { ...this.state.profileError, [name]: '' };
       }
-    });
 
-    if (!isOk) {
-      return;
+      if (name === ValidateType.NewPassword && !validateData) {
+        const isCorrect = this.state.profilePassword.password === value;
+        if (isCorrect) {
+          this.state.profileError = {
+            ...this.state.profileError,
+            [name]: '',
+          };
+        } else {
+          this.state.profileError = {
+            ...this.state.profileError,
+            [name]: `Пароли не совпадают`,
+          };
+        }
+      }
+
+      this.state.profilePassword = {
+        ...this.state.profilePassword,
+        [name]: value,
+      };
     }
+  }
 
-    if (viewType === CHATLIST_VIEW.EDIT_PASSWORD) {
-      console.log('edit_password', {
-        old_password: this.state.profileInfo.old_password,
-        new_password: this.state.profileInfo.new_password,
-        second_new_password: this.state.profileInfo.second_new_password,
+  handleSubmitUserPasswordFields(e: Event): void {
+    e.preventDefault();
+
+    const userPassword = this.state.profilePassword;
+
+    const validateData = userProfilePasswordValidator(userPassword);
+
+    if (validateData.isCorrect) {
+      this.state.profileError = {};
+      userController.changeUserPassword({
+        oldPassword: userPassword.oldPassword,
+        newPassword: userPassword.newPassword,
       });
-    } else if (viewType === CHATLIST_VIEW.EDIT_PROFILE) {
-      console.log('edit_profile', {
-        first_name: this.state.profileInfo.first_name,
-        second_name: this.state.profileInfo.second_name,
-        display_name: this.state.profileInfo.display_name,
-        email: this.state.profileInfo.email,
-        login: this.state.profileInfo.login,
-        phone: this.state.profileInfo.phone,
+    } else {
+      this.state.profileError = {
+        ...this.state.profileError,
+        ...validateData.errors,
+      };
+    }
+  }
+
+  handleSubmitCreateChat(e: Event) {
+    e.preventDefault();
+    const chatName = (e.target as HTMLFormElement).chatName.value;
+
+    chatController.createChat({ title: chatName });
+  }
+
+  handleChangeAvatar(e: Event) {
+    e.preventDefault();
+
+    const files = (e.target as HTMLInputElement).files;
+
+    const avatar = (files as FileList)[0];
+
+    const form = new FormData();
+    form.append('avatar', avatar, 'avatar.jpeg');
+
+    userController.changeUserAvatar(form);
+  }
+
+  handleChangeViewType(viewType: CHATLIST_VIEW) {
+    router.go(ROUTES[ROUTE_TYPES.CHAT_LIST] + `?viewType=${viewType}`);
+  }
+
+  private hideModal(e: Event) {
+    if ((e.target as HTMLDivElement)?.id !== 'dialogBackdrop') {
+      this.handleChangeVisibleModal({
+        modalType: MODAL_TYPE.NONE,
       });
     }
   }
@@ -196,7 +287,15 @@ export class ChatsPageBase extends Block<ChatsPageProps, ChatsState> {
     modalType: MODAL_TYPE;
     rect?: DOMRect;
   }): void {
+    if (
+      this.state.modalInfo.modalType === MODAL_TYPE.NONE &&
+      modalInfo.modalType === MODAL_TYPE.NONE
+    ) {
+      return;
+    }
+
     if (MODAL_TYPE.NONE === modalInfo.modalType) {
+      document.removeEventListener('click', this.hideModal);
       this.state.modalInfo = {
         modalType: MODAL_TYPE.NONE,
         styles: {},
@@ -223,16 +322,29 @@ export class ChatsPageBase extends Block<ChatsPageProps, ChatsState> {
         modalType: modalInfo.modalType,
         styles: { top: top + 'px', left: left + 'px' },
       };
+    } else {
+      this.state.modalInfo = {
+        modalType: modalInfo.modalType,
+        styles: {
+          top: '50%',
+          left: '50%',
+          width: '300px',
+          transform: 'translate(-50%, -50%)',
+        },
+      };
     }
-  }
-
-  handleChangeUrl(profileViewType: CHATLIST_VIEW): void {
-    const to = `?view=chats&amp;profileViewType=${profileViewType}`;
-
-    window.history.pushState({}, '', to);
-    const navigationEvent = new PopStateEvent('navigate');
-    window.dispatchEvent(navigationEvent);
+    document.addEventListener('click', this.hideModal);
   }
 }
 
-export default ChatsPageBase;
+function mapUserToProps(state: AppState) {
+  return {
+    user: state.user,
+    chats: state.chats,
+    chatId: state.chatId,
+    errorMessage: state.errorMessage,
+    chatMessages: state.chatMessages,
+  };
+}
+
+export default connect<ChatsPageProps>(ChatsPageBase, mapUserToProps);

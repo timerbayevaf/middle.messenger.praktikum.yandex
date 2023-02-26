@@ -21,17 +21,21 @@ export const ChatListItem = ({
     })}
     onClick={() => handleChangeActiveChat(id)}
   >
-    <Avatar title={title} className='list-item__avatar-block' src={avatar} />
+    <Avatar
+      title={title}
+      className='list-item__avatar-block'
+      src={avatar || ''}
+    />
     <div className='list-item__info-block'>
       <div className='chatlist-item__row'>
         <h2 className='chatlist-item__title'>{title}</h2>
         <div className='chatlist-item__time'>
-          {formatDate(last_message.time)}
+          {last_message?.time && formatDate(last_message?.time)}
         </div>
       </div>
 
       <div className='chatlist-item__row'>
-        <p className='chatlist-item__text'>{last_message.content}</p>
+        <p className='chatlist-item__text'>{last_message?.content}</p>
         <div className='chatlist-item__count'>{unread_count || 0}</div>
       </div>
     </div>

@@ -8,39 +8,52 @@ import { ChatsProps } from './types';
 import './chats.css';
 
 const Chats = ({
+  chats,
   searchValue,
   chatMessages,
   viewType,
-  activeId,
+  chatId,
   message,
+  user,
   profileInfo,
+  profilePassword,
   profileError,
   handleChangeActiveChat,
   handleChangeSearch,
   handleChangeMessage,
   handleSubmitMessage,
-  handleChangeFields,
-  handleSubmitFields,
   handleChangeVisibleModal,
-  handleChangeUrl,
+  handleChangeViewType,
+  handleChangeAvatar,
+  handleChangeUserInfoFields,
+  handleSubmitUserInfoFields,
+  handleChangeUserPasswordFields,
+  handleSubmitUserPasswordFields,
+  handleSubmitCreateChat,
 }: ChatsProps) => (
   <div className='chats'>
     <ChatlistContainer
-      activeId={activeId}
+      chats={chats}
+      handleSubmitCreateChat={handleSubmitCreateChat}
+      chatId={chatId}
       viewType={viewType}
       searchValue={searchValue}
-      user={profileInfo}
+      user={user}
+      profileInfo={profileInfo}
+      profilePassword={profilePassword}
       handleChangeActiveChat={handleChangeActiveChat}
       handleChangeSearch={handleChangeSearch}
-      password={profileInfo}
       profileError={profileError}
       handleChangeVisibleModal={handleChangeVisibleModal}
-      handleChangeFields={handleChangeFields}
-      handleSubmitFields={handleSubmitFields}
-      handleChangeUrl={handleChangeUrl}
+      handleChangeViewType={handleChangeViewType}
+      handleChangeAvatar={handleChangeAvatar}
+      handleChangeUserInfoFields={handleChangeUserInfoFields}
+      handleSubmitUserInfoFields={handleSubmitUserInfoFields}
+      handleChangeUserPasswordFields={handleChangeUserPasswordFields}
+      handleSubmitUserPasswordFields={handleSubmitUserPasswordFields}
     />
 
-    {activeId !== null ? (
+    {chatId !== null ? (
       <ChatContainer
         message={message}
         chatMessages={chatMessages}

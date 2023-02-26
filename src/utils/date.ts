@@ -47,7 +47,6 @@ function formatDate(strDate: string) {
       dd = '0' + dd;
     }
 
-    console.warn(mm, MONTH[mm]);
     return `${dd} ${MONTH[mm]}`;
   }
 

@@ -1,18 +1,37 @@
-import { IUser } from '../user/user';
-
-interface ILastMessage {
-  user: IUser;
-  time: string;
-  content: string;
-}
-
-interface IChatlistItem {
-  id: number;
+interface IChatItemDTO {
   title: string;
-  avatar: string;
   unread_count: number;
-  last_message: ILastMessage;
-  isActive?: boolean;
+  avatar: null | string;
+  created_by: number;
+  id: number;
+  last_message: {
+    content: string;
+    id: number;
+    time: string;
+    user: {
+      first_name: string;
+      second_name: string;
+      display_name: string | null;
+      login: string;
+      email: string;
+      phone: string;
+      avatar: string | null;
+    };
+  };
+}
+interface IChatDTO {
+  id: number;
 }
 
-export { type IChatlistItem, ILastMessage };
+type CreateChatTitleRequestData = {
+  title: number;
+};
+
+type IChatTokenDTO = { token: string };
+
+export {
+  type IChatItemDTO,
+  IChatDTO,
+  IChatTokenDTO,
+  CreateChatTitleRequestData,
+};

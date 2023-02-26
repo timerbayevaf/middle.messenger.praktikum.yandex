@@ -54,6 +54,18 @@ function isInstance(instance: JSX.Instance | null): instance is JSX.Instance {
   return instance !== null;
 }
 
+function isEqual(lhs: string, rhs: string): boolean {
+  return lhs === rhs;
+}
+
+function render(query: string, node: Node | undefined) {
+  const root = document.querySelector(query);
+
+  if (root && node) {
+    root.replaceChildren(node);
+  }
+}
+
 export {
   keys,
   checkTypicalNode,
@@ -63,4 +75,6 @@ export {
   PropsMapper,
   escapeHtml,
   isInstance,
+  isEqual,
+  render,
 };

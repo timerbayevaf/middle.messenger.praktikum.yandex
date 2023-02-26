@@ -1,13 +1,26 @@
-import { AIcreateElement } from 'core';
 import Signup from 'modules/signup/signup';
-import { Block } from 'core';
-import { checkCorrectField, isSpecName, SPEC_NAMES } from 'utils/regexp';
+import { Block, connect } from 'core';
 import {
   SignupPageProps,
   SignupPageState,
   SignupProps,
   SIGNUP_SPEC_TYPE,
 } from './types';
+import loginController from 'controllers/user';
+import { checkCorrectField, validateFields } from 'utils/validate';
+import { isSpecName } from 'utils/spec';
+import { validateSignUpRules, ValidateType } from 'constants';
+import { AppState } from 'types';
+
+const validateSignUpRulesWithNewPassword = [
+  ...validateSignUpRules,
+  ValidateType.NewPassword,
+];
+
+const isUserSignUpSpecName = isSpecName<SIGNUP_SPEC_TYPE>(
+  validateSignUpRulesWithNewPassword
+);
+const userSignUpValidator = validateFields(validateSignUpRulesWithNewPassword);
 
 class SignupPage extends Block<SignupPageProps, SignupPageState> {
   constructor(props: SignupPageProps) {
@@ -15,14 +28,14 @@ class SignupPage extends Block<SignupPageProps, SignupPageState> {
   }
 
   init(): void {
-    this.state = this._setState({
+    this.state = this.setState({
       first_name: '',
       second_name: '',
       email: '',
       phone: '',
       login: '',
       password: '',
-      second_password: '',
+      newPassword: '',
       error: {
         first_name: '',
         second_name: '',
@@ -30,7 +43,7 @@ class SignupPage extends Block<SignupPageProps, SignupPageState> {
         phone: '',
         login: '',
         password: '',
-        second_password: '',
+        newPassword: '',
       },
     });
   }
@@ -54,61 +67,65 @@ class SignupPage extends Block<SignupPageProps, SignupPageState> {
     const name = (e.target as HTMLInputElement).name;
     const value = (e.target as HTMLInputElement)?.value?.trim();
 
-    if (isSpecName<SIGNUP_SPEC_TYPE>(name) && name !== 'second_password') {
-      const { result: isCorrect, error } = checkCorrectField(name, value);
+    if (isUserSignUpSpecName(name)) {
+      const validateData = checkCorrectField(name, value);
+
+      if (validateData) {
+        this.state.error = { ...this.state.error, [name]: validateData };
+      } else {
+        this.state.error = { ...this.state.error, [name]: '' };
+      }
+
+      if (name === ValidateType.NewPassword && !validateData) {
+        const isCorrect = this.state.password === value;
+        if (isCorrect) {
+          this.state.error = {
+            ...this.state.error,
+            [name]: '',
+          };
+        } else {
+          this.state.error = {
+            ...this.state.error,
+            [name]: `Пароли не совпадают`,
+          };
+        }
+      }
 
       this.state[name] = value;
-
-      if (isCorrect) {
-        this.state.error = {
-          ...this.state.error,
-          [name]: '',
-        };
-      } else {
-        this.state.error = {
-          ...this.state.error,
-          [name]: error,
-        };
-      }
-    } else if (name === 'second_password') {
-      const isCorrect = this.state.password === value;
-      this.state[name] = value;
-
-      if (isCorrect) {
-        this.state.error = {
-          ...this.state.error,
-          [name]: '',
-        };
-      } else {
-        this.state.error = {
-          ...this.state.error,
-          [name]: `Пароли не совпадают`,
-        };
-      }
     }
   }
 
   handleSubmit(e: Event): void {
     e.preventDefault();
 
-    let isOk = true;
+    const userInfo = {
+      login: this.state.login,
+      password: this.state.password,
+      first_name: this.state.first_name,
+      second_name: this.state.second_name,
+      email: this.state.email,
+      phone: this.state.phone,
+      newPassword: this.state.newPassword,
+    };
 
-    SPEC_NAMES.filter(isSpecName<SIGNUP_SPEC_TYPE>).forEach((name) => {
-      const { result, error } = checkCorrectField(name, this.state[name]);
+    const validateData = userSignUpValidator(userInfo);
 
-      if (!result) {
-        isOk = result;
-        this.state.error = {
-          ...this.state.error,
-          [name]: error,
-        };
-      }
-    });
-
-    if (isOk) {
-      console.log(this.state);
+    if (validateData.isCorrect) {
+      this.state.error = {};
+      loginController.signup(userInfo);
+    } else {
+      this.state.error = {
+        ...this.state.error,
+        ...validateData.errors,
+      };
     }
   }
 }
 
-export default SignupPage;
+function mapUserToProps(state: AppState): SignupPageProps {
+  return {
+    errorMessage: state.errorMessage,
+  };
+}
+
+export default connect<SignupPageProps>(SignupPage, mapUserToProps);

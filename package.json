@@ -33,7 +33,10 @@
     "utils": "./src/utils",
     "types": "./src/types",
     "constants": "./src/constants",
-    "mocks": "./src/mocks"
+    "mocks": "./src/mocks",
+    "api": "./src/api",
+    "controllers": "./src/controllers",
+    "store": "./src/store"
   },
   "dependencies": {
     "express": "4.18.2"

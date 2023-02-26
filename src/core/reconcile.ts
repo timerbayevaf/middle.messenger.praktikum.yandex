@@ -15,7 +15,11 @@ function reconcile(
     // Удаление элемента
     parentDom.removeChild(instance.dom);
     return null;
-  } else if (instance.element.type === element.type) {
+  } else if (
+    instance.element.type === element.type &&
+    instance.element.type !== 'icon' &&
+    instance.element.props?.icon === element.props?.icon
+  ) {
     // Обновление элемента
     updateDomProperties(instance.dom, instance.element.props, element.props);
     instance.childInstances = reconcileChildren(instance, element);

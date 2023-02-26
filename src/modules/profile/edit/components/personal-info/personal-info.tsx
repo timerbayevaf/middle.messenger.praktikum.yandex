@@ -1,66 +1,68 @@
 import { AIcreateElement } from 'core';
 import { Input } from 'components/input';
-import { getError } from 'utils/regexp';
+import { get } from 'utils/get';
 import { PersonalInfoProps } from './types';
 
 import './personal-info.css';
 
 const PersonalInfo = ({
-  login,
-  email,
-  first_name,
-  display_name = '',
-  second_name,
-  phone,
+  user,
+  profileInfo,
   error,
   handleChange,
 }: PersonalInfoProps) => (
   <div className='personal-info'>
     <Input
       label='Почта'
-      value={email}
+      defaultValue={get(user, 'email')}
+      value={get(profileInfo, 'email') as string}
       type='email'
       name='email'
-      error={getError(error?.email)}
+      error={get(error, 'email')}
       handleChange={handleChange}
     />
     <Input
       label='Логин'
       type='text'
-      value={login}
+      defaultValue={get(user, 'login')}
+      value={get(profileInfo, 'login') as string}
       name='login'
-      error={getError(error?.login)}
+      error={get(error, 'login')}
       handleChange={handleChange}
     />
     <Input
       label='Имя'
       type='text'
-      value={first_name}
-      error={getError(error?.first_name)}
+      defaultValue={get(user, 'first_name')}
+      value={get(profileInfo, 'first_name') as string}
+      error={get(error, 'first_name')}
       name='first_name'
       handleChange={handleChange}
     />
     <Input
       label='Имя в чате'
       type='text'
-      value={display_name}
-      error={getError(error?.display_name)}
+      defaultValue={get(user, 'display_name')}
+      value={get(profileInfo, 'display_name') as string}
+      error={get(error, 'display_name')}
       name='display_name'
       handleChange={handleChange}
     />
     <Input
       label='Фамилия'
       type='text'
-      value={second_name}
-      error={getError(error?.second_name)}
+      defaultValue={get(user, 'second_name')}
+      value={get(profileInfo, 'second_name') as string}
+      error={get(error, 'second_name')}
       name='second_name'
       handleChange={handleChange}
     />
     <Input
       label='Телефон'
       type='text'
-      value={phone}
-      error={getError(error?.phone)}
+      defaultValue={get(user, 'phone')}
+      value={get(profileInfo, 'phone') as string}
+      error={get(error, 'phone')}
       name='phone'
       handleChange={handleChange}
     />

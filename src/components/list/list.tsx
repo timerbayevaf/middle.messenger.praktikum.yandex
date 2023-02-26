@@ -6,7 +6,7 @@ import './list.css';
 
 const List = ({ className, items, renderItem }: ListProps) => (
   <ul className={cn('list', className)}>
-    {items.map((el: Item) => renderItem(el))}
+    {items?.map((el: Item) => renderItem(el))}
   </ul>
 );
 

@@ -1,22 +1,23 @@
-import { AIcreateElement } from 'core';
+import { AIcreateElement, router } from 'core';
 
 import { Icon, Icons } from 'components/icon';
 import { Button } from 'components/button';
 import { Search } from '../search';
 import { cn } from 'utils/cn';
-import { CHATLIST_VIEW, MODAL_TYPE } from 'constants';
+import { CHATLIST_VIEW, MODAL_TYPE, ROUTES, ROUTE_TYPES } from 'constants';
 import { HeaderProps } from './types';
 
 import './header.css';
 
 const Header = ({
   searchValue = '',
-  title,
-  isShowSearch,
+  viewType,
   handleChangeSearch,
   handleChangeVisibleModal,
-  handleChangeUrl,
 }: HeaderProps) => {
+  const isShowSearch =
+    viewType === CHATLIST_VIEW.CHAT_LIST || viewType === CHATLIST_VIEW.SEARCH;
+
   const handleClick = (e: Event) => {
     e.stopPropagation();
 
@@ -28,7 +29,14 @@ const Header = ({
         rect,
       });
     } else {
-      handleChangeUrl(CHATLIST_VIEW.CHAT_LIST);
+      if (
+        viewType === CHATLIST_VIEW.EDIT_PASSWORD ||
+        viewType === CHATLIST_VIEW.EDIT_PROFILE
+      ) {
+        router.back();
+      } else {
+        router.go(ROUTES[ROUTE_TYPES.CHAT_LIST]);
+      }
     }
   };
 
@@ -37,6 +45,8 @@ const Header = ({
   ) : (
     <Icon size={20} type={Icons.ArrowBack} />
   );
+
+  const title = viewType === CHATLIST_VIEW.ADD_CHAT ? 'Создать чат' : 'Профиль';
 
   return (
     <div className={cn('header', { 'header_bg-white': !isShowSearch })}>

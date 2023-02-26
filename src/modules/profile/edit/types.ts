@@ -1,19 +1,16 @@
 import { CHATLIST_VIEW } from 'constants';
-import { IUser } from 'types';
-import { SPEC_NAME } from 'utils/regexp';
+import { IUserDTO } from 'types';
 
 interface EditProps {
   viewType: CHATLIST_VIEW;
-  user: Pick<
-    IUser,
-    'login' | 'email' | 'first_name' | 'display_name' | 'second_name' | 'phone'
-  >;
+  profileInfo: IUserDTO;
+  user: IUserDTO | null;
   password: {
-    old_password: string;
-    new_password: string;
-    second_new_password: string;
+    oldPassword: string;
+    newPassword: string;
+    password: string;
   };
-  error: { [key in SPEC_NAME]?: string };
+  error: Record<string, string>;
   handleChange: JSX.EventHandler;
   handleSubmit: JSX.EventHandler;
 }

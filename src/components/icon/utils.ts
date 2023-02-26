@@ -14,6 +14,7 @@ import UserProfile from 'bundle-text:./icons/user-profile.svg';
 import Minus from 'bundle-text:./icons/minus.svg';
 import File from 'bundle-text:./icons/file.svg';
 import Location from 'bundle-text:./icons/location.svg';
+import AddChat from 'bundle-text:./icons/add-chat.svg';
 import { Icons } from './types';
 
 const getIcon = (type: Icons) => {
@@ -50,6 +51,8 @@ const getIcon = (type: Icons) => {
       return File;
     case Icons.Location:
       return Location;
+    case Icons.AddChat:
+      return AddChat;
     default:
       return null;
   }

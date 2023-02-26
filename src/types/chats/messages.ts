@@ -5,7 +5,7 @@ interface IChatMessage {
   time: string;
   type: ContentType;
   content: string;
-  user_id: number;
+  userId: number;
 }
 
 export { type IChatMessage, ContentType };
