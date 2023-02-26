@@ -33,6 +33,7 @@ class ChatAPI {
   }
 
   fetchChatUsers(chatId: number) {
+    // список пользователей чата
     return chatAPIInstance.get<Array<IUserDTO>>(`/${chatId}/users`);
   }
 
@@ -42,6 +43,7 @@ class ChatAPI {
   }
 
   addUserToChat(data: UserInfoToChatRequestData) {
+    // добавить пользователя в чат
     return chatAPIInstance.put<StatusResponse>('/users', {
       data,
       responseType: 'text',
@@ -49,6 +51,7 @@ class ChatAPI {
   }
 
   removeUserFromChat(data: UserInfoToChatRequestData) {
+    // удалить пользователя из чата
     return chatAPIInstance.delete<StatusResponse>('/users', {
       data,
       responseType: 'text',
