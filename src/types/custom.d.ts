@@ -1,6 +1,7 @@
 type DOMElement = Element;
 type Booleanish = boolean | 'true' | 'false';
 type Key = string | number;
+type Nullable<T> = T | null;
 
 declare namespace JSX {
   type Instance = {

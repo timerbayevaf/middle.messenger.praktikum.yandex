@@ -4,8 +4,9 @@ import { UserAPI } from 'api/user-api';
 import { ROUTES, ROUTE_TYPES, CHATLIST_VIEW } from 'constants';
 import { router } from 'core';
 import { store } from 'store';
-import { CreateChatTitleRequestData } from 'types';
+import { CreateChatTitleRequestData, IChatItemDTO } from 'types';
 import { showLoader, hideLoader } from 'utils/setLoader';
+import socketController from './socket';
 
 const chatApi = new ChatAPI();
 const userApi = new UserAPI();
@@ -86,53 +87,30 @@ class UserLoginController {
     }
   }
 
-  public async changeChat(id: number) {
-    const token = await chatApi.fetchChatToken(id);
+  public async changeChat(chat: IChatItemDTO) {
+    const token = await chatApi.fetchChatToken(chat.id);
     const user = store.getState().user;
 
-    const socket = new WebSocket(
-      `wss://ya-praktikum.tech/ws/chats/${user?.id}/${id}/${token}`
-    );
+    if (user) {
+      socketController.initSocket(user?.id, chat, token);
 
-    socket.addEventListener('open', () => {
-      console.log('Соединение установлено');
+      store.setState({ chatId: chat.id, chatMessages: [] });
+      store.clearError();
+    }
+  }
 
-      socket.send(
-        JSON.stringify({
-          content: 'Моё первое сообщение миру!',
-          type: 'message',
-        })
-      );
-    });
+  public async sendMessageToChat(message: string) {
+    const chatId = store.getState().chatId;
 
-    socket.addEventListener('close', (event) => {
-      if (event.wasClean) {
-        console.log('Соединение закрыто чисто');
-      } else {
-        console.log('Обрыв соединения');
-      }
+    if (chatId) {
+      const socket = socketController.socketsMap.get(chatId)?.socket;
+      const messageObject = {
+        content: message,
+        type: 'message',
+      };
 
-      console.log(`Код: ${event.code} | Причина: ${event.reason}`);
-    });
-
-    socket.addEventListener('message', (event) => {
-      console.log('Получены данные', event.data);
-      store.setState({
-        chatMessages: [
-          ...store.getState().chatMessages,
-          JSON.parse(event.data),
-        ],
-      });
-    });
-
-    socket.addEventListener('error', (event) => {
-      if (event instanceof Error) {
-        console.log('Ошибка', event.message);
-      }
-    });
-
-    store.setState({ chatId: id });
-    store.clearError();
+      socket?.send(JSON.stringify(messageObject));
+    }
   }
 
   public async fetchChatMessages(data: ChatsRequestData) {

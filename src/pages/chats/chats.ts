@@ -16,7 +16,7 @@ import {
   USER_INFO_SPEC_TYPE,
   USER_PASSWORD_SPEC_TYPE,
 } from './types';
-import { AppState, IUserDTO } from 'types';
+import { AppState, IChatItemDTO, IUserDTO } from 'types';
 import { isSpecName } from 'utils/spec';
 import { getViewType } from 'utils/get-view-type';
 import { checkCorrectField, validateFields } from 'utils/validate';
@@ -132,8 +132,8 @@ class ChatsPageBase extends Block<ChatsPageProps, ChatsState> {
     this.state.searchValue = (e.target as HTMLInputElement)?.value;
   }
 
-  handleChangeActiveChat(id: number): void {
-    chatController.changeChat(id);
+  handleChangeActiveChat(chat: IChatItemDTO): void {
+    chatController.changeChat(chat);
   }
 
   handleChangeMessage(e: Event): void {
@@ -147,7 +147,7 @@ class ChatsPageBase extends Block<ChatsPageProps, ChatsState> {
       return;
     }
 
-    console.log('message', this.state.message);
+    chatController.sendMessageToChat(this.state.message);
     this.state.message = '';
   }
 
