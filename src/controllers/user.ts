@@ -32,11 +32,12 @@ class UserController {
   public async signup(data: ISignUpUserModel) {
     try {
       const validateData = userSiignupInfoValidator(data);
-      const id = await authApi.signup(data);
 
       if (!validateData.isCorrect) {
         throw new Error(Object.values(validateData.errors).join(' '));
       }
+
+      const id = await authApi.signup(data);
 
       if (id) {
         const user = await authApi.fetchUserInfo();
@@ -46,6 +47,7 @@ class UserController {
 
         store.setState({
           user: newUser,
+          errorMessage: '',
         });
         router.go(ROUTES[ROUTE_TYPES.CHAT_LIST]);
       }

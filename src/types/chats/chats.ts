@@ -46,16 +46,10 @@ type WebSocketMessage = {
   };
 };
 
-type SocketData = {
-  socket: Nullable<WebSocket>;
-  messagesArray: Array<WebSocketMessage>;
-};
-
 export {
   type IChatItemDTO,
   IChatDTO,
   IChatTokenDTO,
   CreateChatTitleRequestData,
   WebSocketMessage,
-  SocketData,
 };
