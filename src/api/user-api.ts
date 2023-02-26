@@ -29,7 +29,7 @@ class UserAPI {
   }
 
   async changeUserPassword(data: IChangeUserPasswordModel) {
-    // Получить информацию о пользователе
+    // Изменить парольпользователя
     return userAPIInstance.put<StatusResponse>('/password', {
       data,
       responseType: 'text',
@@ -37,14 +37,17 @@ class UserAPI {
   }
 
   async fetchUser(id: number) {
-    return userAPIInstance.get<StatusResponse>(`${id}`);
+    // Получить информацию о пользователе
+    return userAPIInstance.get<IUserDTO>(`${id}`);
   }
 
   async searchUsers(data: SearchUserRequestData) {
+    // Поиск пользователей по логину
     return userAPIInstance.post<Array<ISearchUser>>('/search', { data });
   }
 
   async fetchResource(path: string | null) {
+    // Поиск ресурса
     if (!path) {
       return null;
     }

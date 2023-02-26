@@ -14,7 +14,7 @@ class AuthAPI {
       .then(({ id }: SignUpResponseData) => id);
   }
 
-  signin(data: SignInUserModel) {
+  async signin(data: SignInUserModel) {
     // Авторизоваться
     return chatAPIInstance.post<StatusResponse>('/signin', {
       data,
@@ -28,6 +28,7 @@ class AuthAPI {
   }
 
   async signout() {
+    // Выход
     return chatAPIInstance.post<StatusResponse>('/logout', {
       responseType: 'text',
     });
