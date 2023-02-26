@@ -60,8 +60,7 @@ body,
   --base-bg-100: #ececee;
   --base-bg-50: #f7f7f8;
   --base-bg-white: #fff;
-  --avatar-bg-red-top: #ff845e;
-  --avatar-bg-red-bottom: #d45246;
+  --avatar-bg-red: #ff845e;
 }
 
 .loader-container {
@@ -90,6 +89,7 @@ body,
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
