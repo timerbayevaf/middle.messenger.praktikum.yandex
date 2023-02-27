@@ -1,10 +1,8 @@
-import { SPEC_NAME } from 'utils/regexp';
-
 interface EditPasswordProps {
-  old_password: string;
-  new_password: string;
-  second_new_password: string;
-  error: { [key in SPEC_NAME]?: string };
+  oldPassword: string;
+  newPassword: string;
+  password: string;
+  error: Record<string, string>;
   handleChange: JSX.EventHandler;
 }
 

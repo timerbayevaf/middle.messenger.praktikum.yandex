@@ -1,50 +1,64 @@
 import { Icons } from 'components/icon';
 import { CHATLIST_VIEW } from 'constants';
 import { AIcreateElement } from 'core';
-import { IUser } from 'types';
+import { IUserDTO } from 'types';
+import { get } from 'utils/get';
 import { BlockInfo } from './components/block-info';
 import { ProfileAvatar } from './components/profile-avatar';
+import userController from 'controllers/user';
 
 import './view.css';
 
-interface ViewProps extends IUser {
-  handleChangeUrl(profileViewType: CHATLIST_VIEW): void;
+interface ViewProps {
+  user: IUserDTO | null;
+  handleChangeViewType(profileViewType: CHATLIST_VIEW): void;
+  handleChangeAvatar: JSX.EventHandler;
 }
 
 const View = ({
-  login,
-  email,
-  first_name,
-  second_name,
-  avatar,
-  phone,
-  handleChangeUrl,
+  user,
+  handleChangeViewType,
+  handleChangeAvatar,
 }: ViewProps) => (
   <div className='view'>
     <ProfileAvatar
-      avatar={avatar}
-      first_name={first_name}
-      second_name={second_name}
+      avatar={get(user, 'avatar') as string}
+      first_name={get(user, 'first_name') as string}
+      second_name={get(user, 'second_name') as string}
+      handleChangeAvatar={handleChangeAvatar}
     />
     <div className='view__blocks-info'>
-      <BlockInfo type={Icons.Email} text={email} label='Почта' />
-      <BlockInfo type={Icons.Name} text={login} label='Логин' />
-      <BlockInfo type={Icons.Phone} text={phone} label='Телефон' />
+      <BlockInfo
+        type={Icons.Email}
+        text={get(user, 'email') as string}
+        label='Почта'
+      />
+      <BlockInfo
+        type={Icons.Name}
+        text={get(user, 'login') as string}
+        label='Логин'
+      />
+      <BlockInfo
+        type={Icons.Phone}
+        text={get(user, 'phone') as string}
+        label='Телефон'
+      />
     </div>
 
     <div className='view__edit-buttons'>
       <BlockInfo
         type={Icons.Edit}
         text='Изменить данные'
-        handleClick={() => handleChangeUrl(CHATLIST_VIEW.EDIT_PROFILE)}
+        handleClick={() => handleChangeViewType(CHATLIST_VIEW.EDIT_PROFILE)}
       />
       <BlockInfo
         type={Icons.Password}
         text='Изменить пароль'
-        handleClick={() => handleChangeUrl(CHATLIST_VIEW.EDIT_PASSWORD)}
+        handleClick={() => handleChangeViewType(CHATLIST_VIEW.EDIT_PASSWORD)}
       />
       <BlockInfo
         type={Icons.Signout}
+        handleClick={() => userController.logout()}
         text='Выйти'
         className='view__text_exit'
       />

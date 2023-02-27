@@ -1,31 +1,37 @@
 import { IChatMessage } from 'src/types/chats/messages';
 import { CHATLIST_VIEW, MODAL_TYPE } from 'constants';
-import { SPEC_NAME } from 'utils/regexp';
-import { IUser } from 'types';
+import { IChatItemDTO, IUserDTO } from 'types';
 
 interface ChatsProps {
+  chats: Array<IChatItemDTO>;
   message: string;
   searchValue: string;
   chatMessages: IChatMessage[];
   viewType: CHATLIST_VIEW;
-  activeId: number | null;
-  profileInfo: IUser & {
-    old_password: string;
-    new_password: string;
-    second_new_password: string;
+  chat: IChatItemDTO | null;
+  profilePassword: {
+    oldPassword: string;
+    newPassword: string;
+    password: string;
   };
-  profileError: { [key in SPEC_NAME]?: string };
+  user: IUserDTO | null;
+  profileInfo: IUserDTO;
+  profileError: Record<string, string>;
   handleChangeVisibleModal(modalInfo: {
     modalType: MODAL_TYPE;
     rect: DOMRect;
   }): void;
-  handleChangeUrl(profileViewType: CHATLIST_VIEW): void;
-  handleChangeActiveChat(id: number): void;
+  handleChangeActiveChat(chat: IChatItemDTO): void;
   handleChangeSearch(e: Event): void;
+  handleChangeUserInfoFields: JSX.EventHandler;
+  handleSubmitUserInfoFields: JSX.EventHandler;
+  handleChangeUserPasswordFields: JSX.EventHandler;
+  handleSubmitUserPasswordFields: JSX.EventHandler;
   handleChangeMessage: JSX.EventHandler;
   handleSubmitMessage: JSX.EventHandler;
-  handleChangeFields: JSX.EventHandler;
-  handleSubmitFields: JSX.EventHandler;
+  handleChangeAvatar: JSX.EventHandler;
+  handleSubmitCreateChat: JSX.EventHandler;
+  handleChangeViewType(viewType: CHATLIST_VIEW): void;
 }
 
 export { ChatsProps };

@@ -1,13 +1,10 @@
-import { IUser } from 'types';
-import { SPEC_NAME } from 'utils/regexp';
+import { IUserDTO } from 'types';
 
-interface PersonalInfoProps
-  extends Pick<
-    IUser,
-    'login' | 'email' | 'first_name' | 'display_name' | 'second_name' | 'phone'
-  > {
+interface PersonalInfoProps {
+  profileInfo: IUserDTO;
+  user: IUserDTO | null;
   handleChange: JSX.EventHandler;
-  error: { [key in SPEC_NAME]?: string };
+  error: Record<string, string>;
 }
 
 export { PersonalInfoProps };

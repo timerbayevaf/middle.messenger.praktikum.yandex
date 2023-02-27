@@ -1,7 +1,10 @@
+import { IChatItemDTO } from 'types';
+
 interface ChatListProps {
+  chats: Array<IChatItemDTO>;
   isShow: boolean;
-  activeId: number | null;
-  handleChangeActiveChat(id: number): void;
+  chat: IChatItemDTO | null;
+  handleChangeActiveChat(chat: IChatItemDTO): void;
 }
 
 export { ChatListProps };

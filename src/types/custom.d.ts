@@ -1,6 +1,7 @@
 type DOMElement = Element;
 type Booleanish = boolean | 'true' | 'false';
 type Key = string | number;
+type Nullable<T> = T | null;
 
 declare namespace JSX {
   type Instance = {
@@ -192,6 +193,7 @@ declare namespace JSX {
     allowTransparency?: boolean | undefined;
     alt?: string | undefined;
     as?: string | undefined;
+    for?: string | undefined;
     async?: boolean | undefined;
     autoComplete?: string | undefined;
     autoFocus?: boolean | undefined;

@@ -10,11 +10,15 @@ import { UserInfoProps } from './types';
 const UserInfo = ({
   name,
   avatar,
+  users,
   handleChangeVisibleModal,
 }: UserInfoProps) => (
   <div className='user-info'>
     <Avatar title={name} className='user-info__image-container' src={avatar} />
-    <div className={'user-info__name'}>{name}</div>
+    <div className='user-info__chat-detail'>
+      <div className={'user-info__name'}>{name}</div>
+      <p>{users && users?.map((u) => u.display_name || u.login).join(', ')}</p>
+    </div>
     <div className='user-info__icon-block'>
       <Button
         view='icon'

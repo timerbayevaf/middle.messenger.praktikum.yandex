@@ -31,7 +31,7 @@ export class EventBus implements Bus {
 
   emit(event: string, ...args: any[]) {
     if (!this.listeners[event]) {
-      throw new SyntaxError(`Нет слушателей для события: ${event}`);
+      return;
     }
 
     this.listeners[event].forEach((listener) => {

@@ -1,11 +1,12 @@
-import { AIcreateElement } from 'core';
+import { AIcreateElement, router } from 'core';
 import { Widget } from 'components/containers';
 import { Input } from 'components/input';
 import { Button } from 'components/button';
-import { getError } from 'utils/regexp';
+import { get } from 'utils/get';
 import { SignupProps } from './types';
 
 import './signup.css';
+import { ROUTES, ROUTE_TYPES } from 'constants';
 
 const Signup = ({
   login = '',
@@ -14,8 +15,9 @@ const Signup = ({
   second_name = '',
   phone = '',
   password = '',
-  second_password = '',
+  newPassword = '',
   error,
+  errorMessage,
   handleSubmit,
   handleChange,
 }: SignupProps) => (
@@ -28,35 +30,35 @@ const Signup = ({
           handleChange={handleChange}
           label='Почта'
           name='email'
-          error={getError(error?.email)}
+          error={get(error, 'email')}
         />
         <Input
           value={login}
           handleChange={handleChange}
           label='Логин'
           name='login'
-          error={getError(error?.login)}
+          error={get(error, 'login')}
         />
         <Input
           value={first_name}
           handleChange={handleChange}
           label='Имя'
           name='first_name'
-          error={getError(error?.first_name)}
+          error={get(error, 'first_name')}
         />
         <Input
           value={second_name}
           handleChange={handleChange}
           label='Фамилия'
           name='second_name'
-          error={getError(error?.second_name)}
+          error={get(error, 'second_name')}
         />
         <Input
           value={phone}
           handleChange={handleChange}
           label='Телефон'
           name='phone'
-          error={getError(error?.phone)}
+          error={get(error, 'phone')}
         />
         <Input
           value={password}
@@ -64,19 +66,25 @@ const Signup = ({
           type='password'
           name='password'
           label='Пароль'
-          error={getError(error?.password)}
+          error={get(error, 'password')}
         />
         <Input
-          value={second_password}
+          value={newPassword}
           handleChange={handleChange}
           type='password'
           label='Пароль (ещё раз)'
-          error={getError(error?.second_password)}
-          name='second_password'
+          error={get(error, 'newPassword')}
+          name='newPassword'
         />
       </div>
+      <p>{errorMessage}</p>
       <div className='signup__group signup__group_bottom'>
         <Button type='submit' label='Зарегистрироваться' view='primary' />
+        <Button
+          id='signup'
+          label='Войти'
+          handleClick={() => router.go(ROUTES[ROUTE_TYPES.LOGIN])}
+        />
       </div>
     </Widget>
   </form>

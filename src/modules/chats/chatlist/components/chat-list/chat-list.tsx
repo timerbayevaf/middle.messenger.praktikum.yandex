@@ -1,12 +1,12 @@
 import { AIcreateElement } from 'core';
 import { List } from 'components/list';
-import { IChatlistItem } from 'types';
-import { chatList } from 'mocks';
+import { IChatItemDTO } from 'types';
 import { ChatListItem } from '../chatlist-item';
 import { ChatListProps } from './types';
 
 const ChatList = ({
-  activeId,
+  chats,
+  chat,
   isShow,
   handleChangeActiveChat,
 }: ChatListProps) => {
@@ -16,16 +16,12 @@ const ChatList = ({
 
   return (
     <List
-      items={chatList}
-      renderItem={(el: IChatlistItem) => (
+      items={chats}
+      renderItem={(el: IChatItemDTO) => (
         <ChatListItem
           handleChangeActiveChat={handleChangeActiveChat}
-          isActive={el.id === activeId}
-          last_message={el.last_message}
-          unread_count={el.unread_count}
-          id={el.id}
-          avatar={el.avatar}
-          title={el.title}
+          isActive={el.id === chat?.id}
+          chat={el}
         />
       )}
     />

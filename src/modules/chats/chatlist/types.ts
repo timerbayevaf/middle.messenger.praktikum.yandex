@@ -1,27 +1,32 @@
 import { CHATLIST_VIEW, MODAL_TYPE } from 'constants';
-import { IUser } from 'types';
-import { SPEC_NAME } from 'utils/regexp';
+import { IChatItemDTO, IUserDTO } from 'types';
 
 interface ChatlistContainerProps {
+  chats: Array<IChatItemDTO>;
   searchValue: string;
-  user: IUser;
   viewType: CHATLIST_VIEW;
-  activeId: number | null;
-  password: {
-    old_password: string;
-    new_password: string;
-    second_new_password: string;
+  chat: IChatItemDTO | null;
+  profilePassword: {
+    oldPassword: string;
+    newPassword: string;
+    password: string;
   };
-  profileError: { [key in SPEC_NAME]?: string };
-  handleChangeActiveChat(id: number): void;
+  user: IUserDTO | null;
+  profileInfo: IUserDTO;
+  profileError: Record<string, string>;
+  handleChangeActiveChat(chat: IChatItemDTO): void;
   handleChangeSearch(e: Event): void;
-  handleChangeFields: JSX.EventHandler;
-  handleSubmitFields: JSX.EventHandler;
+  handleChangeUserInfoFields: JSX.EventHandler;
+  handleSubmitUserInfoFields: JSX.EventHandler;
+  handleChangeUserPasswordFields: JSX.EventHandler;
+  handleSubmitUserPasswordFields: JSX.EventHandler;
+  handleSubmitCreateChat: JSX.EventHandler;
+  handleChangeAvatar: JSX.EventHandler;
   handleChangeVisibleModal(modalInfo: {
     modalType: MODAL_TYPE;
     rect: DOMRect;
   }): void;
-  handleChangeUrl(profileViewType: CHATLIST_VIEW): void;
+  handleChangeViewType(viewType: CHATLIST_VIEW): void;
 }
 
 export { ChatlistContainerProps };

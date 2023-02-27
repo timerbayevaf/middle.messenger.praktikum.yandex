@@ -15,6 +15,7 @@ enum Icons {
   Minus = 'minus',
   File = 'file',
   Location = 'location',
+  AddChat = 'add-chat',
   None = 'none',
 }
 
