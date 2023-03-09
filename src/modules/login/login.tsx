@@ -1,4 +1,4 @@
-import { AIcreateElement, router } from 'core';
+import { AIcreateElement, Router } from 'core';
 import { Widget } from 'components/containers';
 import { Input } from 'components/input';
 import { Button } from 'components/button';
@@ -6,7 +6,8 @@ import { get } from 'utils/get';
 import { LoginProps } from './types';
 
 import './login.css';
-import { ROUTES, ROUTE_TYPES } from 'constants';
+import { ROUTES, ROUTE_TYPES } from 'constant';
+const router = new Router();
 
 const Login = ({
   login = '',

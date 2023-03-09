@@ -2,16 +2,24 @@ import { Block } from '../block';
 import Route from './route';
 import { RouteOptions, RouteTarget } from '../types';
 import { checkAuth } from './check-auth';
-import { ROUTES, ROUTE_TYPES } from 'constants';
+import { ROUTES, ROUTE_TYPES } from 'constant';
 
 class Router {
   private routes: Array<Route> = [];
   private history: History = window.history;
   private _currentRoute: Route | null | undefined = null;
   public static __instance: Router | undefined;
-  private _rootQuery: string | undefined;
+  private _rootQuery: string = '#root';
+  private changeUrl: (event: Event) => void = (event: Event) => {
+    const target = event.currentTarget as RouteTarget | null;
 
-  constructor(rootQuery?: string) {
+    if (!target) {
+      return;
+    }
+    this._onRoute(target.location.pathname);
+  };
+
+  constructor() {
     if (Router.__instance) {
       return Router.__instance;
     }
@@ -19,9 +27,24 @@ class Router {
     this.routes = [];
     this.history = window.history;
     this._currentRoute = null;
-    this._rootQuery = rootQuery;
 
     Router.__instance = this;
+  }
+
+  get allRoutes() {
+    return this.routes;
+  }
+
+  get currentRoute() {
+    return this._currentRoute;
+  }
+
+  get rootQuery() {
+    return this._rootQuery;
+  }
+
+  setRootQuery(rootQuery: string = '#root') {
+    this._rootQuery = rootQuery;
   }
 
   use(pathname: string, block: typeof Block, options: RouteOptions) {
@@ -38,16 +61,13 @@ class Router {
 
   start() {
     // Реагируем на изменения в адресной строке и вызываем перерисовку
-    window.addEventListener('popstate', (event) => {
-      const target = event.currentTarget as RouteTarget | null;
-
-      if (!target) {
-        return;
-      }
-      this._onRoute(target.location.pathname);
-    });
+    window.addEventListener('popstate', this.changeUrl);
 
     this._onRoute(window.location.pathname);
+  }
+
+  close() {
+    window.removeEventListener('popstate', this.changeUrl);
   }
 
   _onRoute(pathname: string = window.location.pathname) {
@@ -109,7 +129,4 @@ class Router {
   }
 }
 
-export default Router;
-
-const router = new Router('#root');
-export { router };
+export { Router };

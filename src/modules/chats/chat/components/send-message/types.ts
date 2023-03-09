@@ -1,4 +1,4 @@
-import { MODAL_TYPE } from 'constants';
+import { MODAL_TYPE } from 'constant';
 
 interface SendMessageProps {
   message: string;

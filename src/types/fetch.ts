@@ -1,4 +1,4 @@
-import { METHODS } from 'constants';
+import { METHODS } from 'constant';
 
 type Keys = keyof typeof METHODS;
 type MethodValues = typeof METHODS[Keys]; //  "GET" | "POST" | "PUT" | "DELETE"

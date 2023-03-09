@@ -2,7 +2,7 @@
 import { AIcreateElement, AIcreateFragment } from 'core';
 import { Button } from 'components/button';
 import { Icon, Icons } from 'components/icon';
-import { CHATLIST_VIEW } from 'constants';
+import { CHATLIST_VIEW } from 'constant';
 import { ProfileDialogProps } from '../types';
 
 export const ProfileDialog = ({ handleClick }: ProfileDialogProps) => (

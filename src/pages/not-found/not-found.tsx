@@ -1,8 +1,9 @@
+import { AIcreateElement, Router, withBlock } from 'core';
 import { Button } from 'components/button';
-import { ROUTES, ROUTE_TYPES } from 'constants';
-import { AIcreateElement, router, withBlock } from 'core';
+import { ROUTES, ROUTE_TYPES } from 'constant';
 
 import './not-found.css';
+const router = new Router();
 
 const NotFound = () => (
   <div className='not-found'>

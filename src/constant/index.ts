@@ -14,5 +14,5 @@ enum StoreEvents {
 export { MODAL_TYPE, StoreEvents };
 export { CHATLIST_VIEW, PROFILE_TITLE } from './chats';
 export { METHODS } from './request';
-export * from './spec';
+export * from './specs';
 export { ROUTE_TYPES, ROUTES } from './routes';

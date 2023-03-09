@@ -1,4 +1,4 @@
-import { Block, AIcreateFragment, connect, router } from 'core';
+import { Block, AIcreateFragment, connect, Router } from 'core';
 import { ModalDialog } from 'components/modal-dialog/modal-dialog';
 import Chats from 'modules/chats/chats';
 import {
@@ -9,7 +9,7 @@ import {
   validateProfileInfoRules,
   validateProfilePasswordRules,
   ValidateType,
-} from 'constants';
+} from 'constant';
 import {
   ChatsPageProps,
   ChatsState,
@@ -17,12 +17,13 @@ import {
   USER_PASSWORD_SPEC_TYPE,
 } from './types';
 import { AppState, IChatItemDTO, IUserDTO } from 'types';
-import { isSpecName } from 'utils/spec';
+import { isSpecName } from 'utils/specs';
 import { getViewType } from 'utils/get-view-type';
 import { checkCorrectField, validateFields } from 'utils/validate';
 import chatController from 'controllers/chats';
 import userController from 'controllers/user';
 
+const router = new Router();
 const isUserProfileInfoSpecName = isSpecName<USER_INFO_SPEC_TYPE>(
   validateProfileInfoRules
 );

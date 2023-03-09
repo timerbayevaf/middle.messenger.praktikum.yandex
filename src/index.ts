@@ -5,13 +5,14 @@ import BrokendPage from 'pages/broken';
 import NotFoundPage from 'pages/not-found';
 import App from './controllers/app';
 
-import { Block, router } from 'core';
-import { ROUTES, ROUTE_TYPES } from 'constants';
+import { Block, Router } from 'core';
+import { ROUTES, ROUTE_TYPES } from 'constant';
 
 // store
 // router
 // чтобы поменять урл, нужно вызывать апи роутера // go и тд
 // роутер отображает страницу
+const router = new Router();
 
 App.startApp().then(() => {
   router

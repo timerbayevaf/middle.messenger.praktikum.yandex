@@ -2,11 +2,11 @@ import { connect } from 'core';
 import Login from 'modules/login/login';
 import { Block } from 'core';
 import userController from 'controllers/user';
-import { validateLoginRules } from 'constants';
+import { validateLoginRules } from 'constant';
 import { AppState } from 'types';
 import { checkCorrectField, validateFields } from 'utils/validate';
 import { LoginPageProps, LoginPageState, LOGIN_SPEC_TYPE } from './types';
-import { isSpecName } from 'utils/spec';
+import { isSpecName } from 'utils/specs';
 
 const isUserLoginSpecName = isSpecName<LOGIN_SPEC_TYPE>(validateLoginRules);
 const userLoginValidator = validateFields(validateLoginRules);

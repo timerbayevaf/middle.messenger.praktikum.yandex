@@ -5,7 +5,7 @@ import { sortByTime } from 'utils/sort-by-time';
 class SocketControllers {
   private uri = 'wss://ya-praktikum.tech/ws/';
   private _socket: WebSocket | null = null;
-  private _ping!: number;
+  private _ping!: NodeJS.Timer;
 
   initSocket(userId: number, chat: IChatItemDTO, chatToken: string) {
     const socket = new WebSocket(

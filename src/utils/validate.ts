@@ -12,7 +12,7 @@ import {
   LATIN_SPEC,
   PHONE_SPEC,
   PASSWORD_SPEC,
-} from 'constants';
+} from 'constant';
 
 function checkCorrectField(type: SPEC_TYPE, str: string): string | null {
   switch (type) {

@@ -22,6 +22,10 @@ class Route {
     this._props = props;
   }
 
+  get dom() {
+    return this._block?.getContent()?.dom;
+  }
+
   get pathname() {
     return this._pathname;
   }

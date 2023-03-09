@@ -8,7 +8,7 @@ import {
   ROUTE_TYPES,
   validateProfilePasswordRules,
   validateSignUpRules,
-} from 'constants';
+} from 'constant';
 import { validateFields } from 'utils/validate';
 import {
   IChangeUserModel,
@@ -17,8 +17,9 @@ import {
   SignInUserModel,
 } from 'src/types/user/user';
 import { store } from 'store';
-import { router } from 'core';
+import { Router } from 'core';
 
+const router = new Router();
 const userApi = new UserAPI();
 const authApi = new AuthAPI();
 const userProfileInfoValidator = validateFields(validateProfileInfoRules);

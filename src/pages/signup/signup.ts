@@ -8,8 +8,8 @@ import {
 } from './types';
 import loginController from 'controllers/user';
 import { checkCorrectField, validateFields } from 'utils/validate';
-import { isSpecName } from 'utils/spec';
-import { validateSignUpRules, ValidateType } from 'constants';
+import { isSpecName } from 'utils/specs';
+import { validateSignUpRules, ValidateType } from 'constant';
 import { AppState } from 'types';
 
 const validateSignUpRulesWithNewPassword = [

@@ -1,5 +1,5 @@
 import { IChatMessage } from 'src/types/chats/messages';
-import { CHATLIST_VIEW, MODAL_TYPE } from 'constants';
+import { CHATLIST_VIEW, MODAL_TYPE } from 'constant';
 import { IChatItemDTO, IUserDTO } from 'types';
 
 interface ChatsProps {

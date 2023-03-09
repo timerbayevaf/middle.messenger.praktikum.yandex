@@ -6,7 +6,7 @@ import SearchResult from './components/search-result';
 import './chat-container.css';
 import Profile from 'modules/profile';
 import Header from './components/header/header';
-import { CHATLIST_VIEW } from 'constants';
+import { CHATLIST_VIEW } from 'constant';
 import { ChatlistContainerProps } from './types';
 import { CreateChat } from './components/create-chat';
 

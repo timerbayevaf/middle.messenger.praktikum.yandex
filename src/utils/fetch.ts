@@ -1,4 +1,4 @@
-import { METHODS } from 'constants';
+import { METHODS } from 'constant';
 import { TBody, TQuery } from 'src/types/fetch';
 import { FetchOptions } from 'types';
 

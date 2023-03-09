@@ -298,6 +298,8 @@ declare namespace JSX {
   interface HTMLAttributes {
     children?: Element[] | undefined;
 
+    icon?: string;
+
     // React-specific Attributes
     defaultChecked?: boolean | undefined;
     defaultValue?: string | number | ReadonlyArray<string> | undefined;
@@ -577,3 +579,5 @@ declare module '*.png';
 declare module '*.jpeg';
 
 declare module 'bundle-text:*.svg';
+
+declare module '*.svg';

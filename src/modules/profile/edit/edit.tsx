@@ -1,5 +1,5 @@
 import { Button } from 'components/button';
-import { CHATLIST_VIEW } from 'constants';
+import { CHATLIST_VIEW } from 'constant';
 import { AIcreateElement } from 'core';
 import { EditPassword } from './components/edit-password';
 import { PersonalInfo } from './components/personal-info';
