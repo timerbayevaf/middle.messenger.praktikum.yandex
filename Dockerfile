@@ -1,5 +1,10 @@
 FROM ubuntu:18.04
-RUN apt update && apt install -y nodejs && apt install -y npm
+FROM node:16.14.0
+RUN apt update && apt install -y nodejs
 WORKDIR /var/www
-COPY ./server.js server.js
-CMD echo $PWD && ls -la && cat server.js 
+COPY package.json yarn.lock ./
+RUN yarn install
+COPY . .
+RUN yarn build
+EXPOSE 3000
+CMD node server.js
