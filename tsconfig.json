@@ -1,6 +1,13 @@
 {
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "jest-setup.ts"],
   "compilerOptions": {
+    "types": [
+      "jest",
+      "node",
+      "@types/jest",
+      "@types/testing-library__jest-dom"
+    ],
+    "outDir": "./dist/",
     "typeRoots": ["./src/types/custom.d.ts"],
     "baseUrl": ".",
     "paths": {
@@ -10,16 +17,15 @@
       "pages/*": ["./src/pages/*"],
       "utils/*": ["./src/utils/*"],
       "types": ["./src/types/index.ts"],
-      "constants": ["./src/constants/index.ts"],
-      "mocks": ["./src/mocks/index.ts"],
-      "api/*": ["./src/api/*"],
+      "constant": ["./src/constant/index.ts"],
+      "api": ["./src/api"],
       "controllers/*": ["./src/controllers/*"],
       "store": ["./src/store/index.ts"]
     },
-    "target": "ES2017",
+    "target": "ES6",
     "lib": ["es2019", "dom", "dom.iterable"],
     "moduleResolution": "node",
-    "jsx": "preserve",
+    "jsx": "react",
     "jsxFactory": "AIcreateElement",
     "jsxFragmentFactory": "AIcreateFragment",
     "strict": true,

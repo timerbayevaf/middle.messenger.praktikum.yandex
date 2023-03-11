@@ -1,6 +1,6 @@
 import { Button } from 'components/button';
 import { Icon, Icons } from 'components/icon';
-import { MODAL_TYPE } from 'constants';
+import { MODAL_TYPE } from 'constant';
 import { AIcreateElement } from 'core';
 import { UserDialogProps } from '../types';
 

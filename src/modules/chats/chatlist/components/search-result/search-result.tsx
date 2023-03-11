@@ -1,6 +1,6 @@
 import { List } from 'components/list';
 import { AIcreateElement } from 'core';
-import { searchResult } from 'mocks';
+import { ISearchUser } from 'types';
 import { SearchItem } from '../search-item';
 import { SearchResultProps } from './types';
 
@@ -11,7 +11,7 @@ const SearchResult = ({ isShow }: SearchResultProps) => {
 
   return (
     <List
-      items={searchResult}
+      items={[] as ISearchUser[]}
       renderItem={(el) => (
         <SearchItem
           avatar={el.avatar}
@@ -19,6 +19,8 @@ const SearchResult = ({ isShow }: SearchResultProps) => {
           second_name={el.second_name}
           login={el.second_name}
           phone={el.second_name}
+          id={0}
+          display_name={null}
         />
       )}
     />

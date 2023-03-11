@@ -1,4 +1,4 @@
-import { Block, AIcreateFragment, connect, router } from 'core';
+import { Block, AIcreateFragment, connect, Router } from 'core';
 import { ModalDialog } from 'components/modal-dialog/modal-dialog';
 import Chats from 'modules/chats/chats';
 import {
@@ -9,7 +9,7 @@ import {
   validateProfileInfoRules,
   validateProfilePasswordRules,
   ValidateType,
-} from 'constants';
+} from 'constant';
 import {
   ChatsPageProps,
   ChatsState,
@@ -17,12 +17,13 @@ import {
   USER_PASSWORD_SPEC_TYPE,
 } from './types';
 import { AppState, IChatItemDTO, IUserDTO } from 'types';
-import { isSpecName } from 'utils/spec';
+import { isSpecName } from 'utils/specs';
 import { getViewType } from 'utils/get-view-type';
 import { checkCorrectField, validateFields } from 'utils/validate';
 import chatController from 'controllers/chats';
 import userController from 'controllers/user';
 
+const router = new Router();
 const isUserProfileInfoSpecName = isSpecName<USER_INFO_SPEC_TYPE>(
   validateProfileInfoRules
 );
@@ -62,14 +63,14 @@ class ChatsPageBase extends Block<ChatsPageProps, ChatsState> {
       title: '',
     });
 
-    this.state = this.setState({
+    this._state = this.setState({
       modalInfo: {
         modalType: MODAL_TYPE.NONE,
         styles: {},
       },
       searchValue: '',
       message: '',
-      profileInfo: this.props.user ? { ...this.props.user } : DefaultUserInfo,
+      profileInfo: this._props.user ? { ...this._props.user } : DefaultUserInfo,
       profilePassword: {
         oldPassword: '',
         newPassword: '',
@@ -101,8 +102,8 @@ class ChatsPageBase extends Block<ChatsPageProps, ChatsState> {
     return AIcreateFragment({
       children: [
         Chats({
-          viewType: getViewType(this.props?.query),
-          ...this.props,
+          viewType: getViewType(this._props?.query),
+          ...this._props,
           ...this.state,
           handleChangeSearch: this.handleChangeSearch,
           handleChangeActiveChat: this.handleChangeActiveChat,
@@ -118,7 +119,7 @@ class ChatsPageBase extends Block<ChatsPageProps, ChatsState> {
           handleSubmitCreateChat: this.handleSubmitCreateChat,
         }),
         ModalDialog({
-          error: this.props.errorMessage || '',
+          error: this._props.errorMessage || '',
           modalType: this.state.modalInfo.modalType,
           style: this.state.modalInfo.styles,
           handleChangeViewType: this.handleChangeViewType,
@@ -175,7 +176,7 @@ class ChatsPageBase extends Block<ChatsPageProps, ChatsState> {
     e.preventDefault();
 
     const userInfo = {
-      ...this.props.user,
+      ...this._props.user,
       ...this.state.profileInfo,
     };
 

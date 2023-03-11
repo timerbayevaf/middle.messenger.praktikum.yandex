@@ -1,6 +1,6 @@
 import { IChatMessage } from 'src/types/chats/messages';
 import { IChatItemDTO, IUserDTO } from 'types';
-import { MODAL_TYPE } from 'constants';
+import { MODAL_TYPE } from 'constant';
 
 interface ChatContainerProps {
   chatMessages: IChatMessage[];

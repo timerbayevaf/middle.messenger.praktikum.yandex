@@ -2,7 +2,7 @@ import { ISignUpUserModel, IUserDTO, SignInUserModel } from 'types';
 import { HTTP } from 'utils/http';
 import { StatusResponse, SignUpResponseData } from './types';
 
-const chatAPIInstance = new HTTP('api/v2/auth');
+const chatAPIInstance = new HTTP('auth');
 
 class AuthAPI {
   async signup(data: ISignUpUserModel) {

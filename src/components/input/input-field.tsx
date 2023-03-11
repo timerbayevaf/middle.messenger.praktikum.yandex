@@ -9,10 +9,11 @@ const InputField = ({
   value,
   type,
   label = '',
+  id,
   error = '',
   name,
   className,
-  accept,
+  accept = '',
   handleChange,
   handleFocus,
   handleBlur,
@@ -30,6 +31,7 @@ const InputField = ({
       <div className='input-field__wrapper'>
         <input
           name={name}
+          data-testid={id}
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}

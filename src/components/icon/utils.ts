@@ -1,20 +1,20 @@
-import Menu from 'bundle-text:./icons/menu.svg';
-import Dots from 'bundle-text:./icons/dots.svg';
-import Plus from 'bundle-text:./icons/plus.svg';
-import Send from 'bundle-text:./icons/send.svg';
-import ArrowBack from 'bundle-text:./icons/arrow-back.svg';
-import ImageEdit from 'bundle-text:./icons/image-edit.svg';
-import Email from 'bundle-text:./icons/email.svg';
-import Edit from 'bundle-text:./icons/edit.svg';
-import Name from 'bundle-text:./icons/name.svg';
-import Phone from 'bundle-text:./icons/phone.svg';
-import Signout from 'bundle-text:./icons/signout.svg';
-import Password from 'bundle-text:./icons/password.svg';
-import UserProfile from 'bundle-text:./icons/user-profile.svg';
-import Minus from 'bundle-text:./icons/minus.svg';
-import File from 'bundle-text:./icons/file.svg';
-import Location from 'bundle-text:./icons/location.svg';
-import AddChat from 'bundle-text:./icons/add-chat.svg';
+import Menu from './icons/menu.svg';
+import Dots from './icons/dots.svg';
+import Plus from './icons/plus.svg';
+import Send from './icons/send.svg';
+import ArrowBack from './icons/arrow-back.svg';
+import ImageEdit from './icons/image-edit.svg';
+import Email from './icons/email.svg';
+import Edit from './icons/edit.svg';
+import Name from './icons/name.svg';
+import Phone from './icons/phone.svg';
+import Signout from './icons/signout.svg';
+import Password from './icons/password.svg';
+import UserProfile from './icons/user-profile.svg';
+import Minus from './icons/minus.svg';
+import File from './icons/file.svg';
+import Location from './icons/location.svg';
+import AddChat from './icons/add-chat.svg';
 import { Icons } from './types';
 
 const getIcon = (type: Icons) => {

@@ -1,8 +1,6 @@
-import { ChatAPI } from 'api/chat-api';
-import { ChatsRequestData } from 'api/types';
-import { UserAPI } from 'api/user-api';
-import { ROUTES, ROUTE_TYPES, CHATLIST_VIEW } from 'constants';
-import { router } from 'core';
+import { ChatAPI, UserAPI, ChatsRequestData } from 'api';
+import { ROUTES, ROUTE_TYPES, CHATLIST_VIEW } from 'constant';
+import { Router } from 'core';
 import { store } from 'store';
 import { CreateChatTitleRequestData, IChatItemDTO } from 'types';
 import { showLoader, hideLoader } from 'utils/setLoader';
@@ -10,6 +8,7 @@ import socketController from './socket';
 
 const chatApi = new ChatAPI();
 const userApi = new UserAPI();
+const router = new Router();
 
 class UserLoginController {
   public async createChat(data: CreateChatTitleRequestData) {

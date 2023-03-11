@@ -1,4 +1,4 @@
-import { ValidateType } from 'constants';
+import { ValidateType } from 'constant';
 
 type LOGIN_SPEC_TYPE = ValidateType.Login | ValidateType.Password;
 

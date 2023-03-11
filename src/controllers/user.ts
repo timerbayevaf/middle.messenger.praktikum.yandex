@@ -1,5 +1,4 @@
-import { UserAPI } from 'api/user-api';
-import { AuthAPI } from 'api/auth-api';
+import { UserAPI, AuthAPI } from 'api';
 import {
   CHATLIST_VIEW,
   validateProfileInfoRules,
@@ -8,7 +7,7 @@ import {
   ROUTE_TYPES,
   validateProfilePasswordRules,
   validateSignUpRules,
-} from 'constants';
+} from 'constant';
 import { validateFields } from 'utils/validate';
 import {
   IChangeUserModel,
@@ -17,8 +16,9 @@ import {
   SignInUserModel,
 } from 'src/types/user/user';
 import { store } from 'store';
-import { router } from 'core';
+import { Router } from 'core';
 
+const router = new Router();
 const userApi = new UserAPI();
 const authApi = new AuthAPI();
 const userProfileInfoValidator = validateFields(validateProfileInfoRules);

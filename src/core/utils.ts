@@ -43,7 +43,7 @@ const isEvent = (
 ): name is keyof JSX.DOMAttributes => name.startsWith('on');
 
 const isAttribute = (name: keyof JSX.HTMLProps): name is keyof JSX.Attributes =>
-  !name.startsWith('on') && name !== 'children';
+  !name.startsWith('on') && name !== 'children' && name !== 'icon';
 
 function getSourceAsDOM(content: string): Document {
   const parser = new DOMParser();

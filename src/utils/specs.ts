@@ -1,4 +1,4 @@
-import { SPEC_TYPE, ValidateType } from 'constants';
+import { SPEC_TYPE, ValidateType } from 'constant';
 
 function isSpecName<T extends SPEC_TYPE>(validateRules: ValidateType[]) {
   return function (name: string): name is T {
