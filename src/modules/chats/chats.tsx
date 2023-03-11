@@ -52,7 +52,6 @@ const Chats = ({
       handleChangeUserPasswordFields={handleChangeUserPasswordFields}
       handleSubmitUserPasswordFields={handleSubmitUserPasswordFields}
     />
-
     {chat?.id && chat?.id !== null ? (
       <ChatContainer
         chat={chat}

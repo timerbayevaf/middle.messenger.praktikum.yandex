@@ -47,7 +47,11 @@ class Router {
     this._rootQuery = rootQuery;
   }
 
-  use(pathname: string, block: typeof Block, options: RouteOptions) {
+  use(
+    pathname: string,
+    block: typeof Block,
+    options: RouteOptions = { isPrivate: false }
+  ) {
     const route = new Route(pathname, block, {
       rootQuery: this._rootQuery || '',
       ...options,

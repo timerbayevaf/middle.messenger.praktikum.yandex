@@ -13,7 +13,7 @@ import {
 } from './types';
 
 // /api/v2/chats/
-const chatAPIInstance = new HTTP('api/v2/chats');
+const chatAPIInstance = new HTTP('chats');
 
 class ChatAPI {
   create(data: CreateChatTitleRequestData) {

@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const { DIST_DIR, ROOT_DIR } = require('./dir');
 const { ENVS } = require('./env');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -32,18 +32,8 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
-    alias: {
-      core: path.join(ROOT_DIR, 'src/core'),
-      constant: path.join(ROOT_DIR, 'src/constant'),
-      utils: path.join(ROOT_DIR, 'src/utils'),
-      pages: path.join(ROOT_DIR, 'src/pages'),
-      controllers: path.join(ROOT_DIR, 'src/controllers'),
-      modules: path.join(ROOT_DIR, 'src/modules'),
-      components: path.join(ROOT_DIR, 'src/components'),
-      store: path.join(ROOT_DIR, 'src/store'),
-      api: path.join(ROOT_DIR, 'src/api'),
-    },
-    // plugins: [new TsconfigPathsPlugin()],
+
+    plugins: [new TsconfigPathsPlugin()],
   },
   module: {
     rules: [

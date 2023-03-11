@@ -1,8 +1,9 @@
 FROM ubuntu:18.04
-RUN apt update && apt install -y nodejs && apt install -y npm
-WORKDIR /user/app
-COPY ./ /user/app
+FROM node:16.14.0
+RUN apt update && apt install -y nodejs
+WORKDIR /var/www
+COPY ./ /var/www
+RUN yarn install
+CMD yarn build
 EXPOSE 3000
-RUN npm install
-RUN npm run build
 CMD node server.js

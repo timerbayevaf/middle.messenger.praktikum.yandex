@@ -11,11 +11,9 @@ describe('core/router', () => {
   router.setRootQuery('#test');
 
   router
-    .use('/test', MockPage1 as typeof Block, { isPrivate: false })
-    .use('/test-two', MockPage2 as typeof Block, { isPrivate: false })
-    .use('/404', NotFoundPage as typeof Block, {
-      isPrivate: false,
-    })
+    .use('/test', MockPage1 as typeof Block)
+    .use('/test-two', MockPage2 as typeof Block)
+    .use('/404', NotFoundPage as typeof Block)
     .start();
 
   test('rootQuery === #test', () => {

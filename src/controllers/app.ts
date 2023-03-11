@@ -1,5 +1,4 @@
-import { AuthAPI } from 'api/auth-api';
-import { UserAPI } from 'api/user-api';
+import { UserAPI, AuthAPI } from 'api';
 import { store } from 'store';
 import { showLoader, hideLoader } from 'utils/setLoader';
 

@@ -1,9 +1,10 @@
+import { URI } from 'constant';
 import { store } from 'store';
 import { IChatItemDTO } from 'types';
 import { sortByTime } from 'utils/sort-by-time';
 
 class SocketControllers {
-  private uri = 'wss://ya-praktikum.tech/ws/';
+  private uri = URI.WEBSOCKET;
   private _socket: WebSocket | null = null;
   private _ping!: NodeJS.Timer;
 

@@ -5,9 +5,6 @@ import { queryStringify } from './query-stringify';
 class HTTPTransport {
   async get<T>(url: string, options: FetchOptions<TQuery> = {}) {
     return this.request<T>(url, {
-      headers: {
-        'content-type': 'application/json', // Данные отправляем в формате JSON
-      },
       ...options,
       method: METHODS.GET,
     });
@@ -15,9 +12,6 @@ class HTTPTransport {
 
   async post<T>(url: string, options: FetchOptions<TBody> = {}) {
     return this.request<T>(url, {
-      headers: {
-        'content-type': 'application/json', // Данные отправляем в формате JSON
-      },
       ...options,
       method: METHODS.POST,
     });
@@ -25,9 +19,6 @@ class HTTPTransport {
 
   async put<T>(url: string, options: FetchOptions<TBody> = {}) {
     return this.request<T>(url, {
-      headers: {
-        'content-type': 'application/json', // Данные отправляем в формате JSON
-      },
       ...options,
       method: METHODS.PUT,
     });
@@ -35,9 +26,6 @@ class HTTPTransport {
 
   async delete<T>(url: string, options: FetchOptions<TBody> = {}) {
     return this.request<T>(url, {
-      headers: {
-        'content-type': 'application/json', // Данные отправляем в формате JSON
-      },
       ...options,
       method: METHODS.DELETE,
     });
@@ -49,7 +37,9 @@ class HTTPTransport {
   ): Promise<T> {
     const {
       timeout = 5000,
-      headers = {},
+      headers = {
+        'content-type': 'application/json', // Данные отправляем в формате JSON
+      },
       method,
       responseType = 'json',
       data,

@@ -18,7 +18,7 @@
       "utils/*": ["./src/utils/*"],
       "types": ["./src/types/index.ts"],
       "constant": ["./src/constant/index.ts"],
-      "api/*": ["./src/api/*"],
+      "api": ["./src/api"],
       "controllers/*": ["./src/controllers/*"],
       "store": ["./src/store/index.ts"]
     },

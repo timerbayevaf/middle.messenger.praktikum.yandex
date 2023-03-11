@@ -7,8 +7,8 @@ import { ISearchUser, IUserDTO } from 'types';
 import { HTTP } from 'utils/http';
 import { StatusResponse, SearchUserRequestData } from './types';
 
-const userAPIInstance = new HTTP('api/v2/user');
-const resourcesAPIInstance = new HTTP('api/v2/resources');
+const userAPIInstance = new HTTP('user');
+const resourcesAPIInstance = new HTTP('resources');
 
 class UserAPI {
   async changeUserInfo(data: IChangeUserModel) {

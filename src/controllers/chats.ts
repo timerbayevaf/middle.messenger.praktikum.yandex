@@ -1,6 +1,4 @@
-import { ChatAPI } from 'api/chat-api';
-import { ChatsRequestData } from 'api/types';
-import { UserAPI } from 'api/user-api';
+import { ChatAPI, UserAPI, ChatsRequestData } from 'api';
 import { ROUTES, ROUTE_TYPES, CHATLIST_VIEW } from 'constant';
 import { Router } from 'core';
 import { store } from 'store';

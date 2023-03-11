@@ -1,5 +1,4 @@
-import { UserAPI } from 'api/user-api';
-import { AuthAPI } from 'api/auth-api';
+import { UserAPI, AuthAPI } from 'api';
 import {
   CHATLIST_VIEW,
   validateProfileInfoRules,

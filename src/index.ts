@@ -19,17 +19,9 @@ App.startApp().then(() => {
     .use(ROUTES[ROUTE_TYPES.CHAT_LIST], ChatsPage as typeof Block, {
       isPrivate: true,
     })
-    .use(ROUTES[ROUTE_TYPES.SIGNUP], SignupPage as typeof Block, {
-      isPrivate: false,
-    })
-    .use(ROUTES[ROUTE_TYPES.LOGIN], LoginPage as typeof Block, {
-      isPrivate: false,
-    })
-    .use(ROUTES[ROUTE_TYPES.BROKEND], BrokendPage as typeof Block, {
-      isPrivate: false,
-    })
-    .use(ROUTES[ROUTE_TYPES.NOT_FOUND], NotFoundPage as typeof Block, {
-      isPrivate: false,
-    })
+    .use(ROUTES[ROUTE_TYPES.SIGNUP], SignupPage as typeof Block)
+    .use(ROUTES[ROUTE_TYPES.LOGIN], LoginPage as typeof Block)
+    .use(ROUTES[ROUTE_TYPES.BROKEND], BrokendPage as typeof Block)
+    .use(ROUTES[ROUTE_TYPES.NOT_FOUND], NotFoundPage as typeof Block)
     .start();
 });

@@ -1,8 +1,9 @@
+import { URI } from 'constant';
 import { FetchOptions, TBody, TQuery } from 'src/types/fetch';
 import { HTTPTransport } from './http-transport';
 
 class HTTP extends HTTPTransport {
-  private uri = 'https://ya-praktikum.tech/';
+  private uri = URI.BASE;
   private _url = '';
 
   constructor(url: string) {
