@@ -31,7 +31,7 @@ const Chats = ({
   handleSubmitUserPasswordFields,
   handleSubmitCreateChat,
 }: ChatsProps) => (
-  <div className='chats'>
+  <div className='chats' data-testid='main'>
     <ChatlistContainer
       chats={chats}
       handleSubmitCreateChat={handleSubmitCreateChat}

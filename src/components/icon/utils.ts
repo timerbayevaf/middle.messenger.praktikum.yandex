@@ -20,7 +20,6 @@ import { Icons } from './types';
 const getIcon = (type: Icons) => {
   switch (type) {
     case Icons.Menu:
-      console.warn(Menu);
       return Menu;
     case Icons.Dots:
       return Dots;

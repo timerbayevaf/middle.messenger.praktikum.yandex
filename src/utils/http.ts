@@ -1,5 +1,5 @@
 import { FetchOptions, TBody, TQuery } from 'src/types/fetch';
-import { HTTPTransport } from './fetch';
+import { HTTPTransport } from './http-transport';
 
 class HTTP extends HTTPTransport {
   private uri = 'https://ya-praktikum.tech/';

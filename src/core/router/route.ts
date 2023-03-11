@@ -34,6 +34,10 @@ class Route {
     return this._props.isPrivate;
   }
 
+  get state() {
+    return this._block?.state;
+  }
+
   navigate(pathname: string) {
     if (this.match(pathname)) {
       this._pathname = pathname;

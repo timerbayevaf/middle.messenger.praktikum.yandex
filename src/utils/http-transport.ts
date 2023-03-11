@@ -1,20 +1,7 @@
 import { METHODS } from 'constant';
 import { TBody, TQuery } from 'src/types/fetch';
 import { FetchOptions } from 'types';
-
-// Необязательный метод
-function queryStringify(data: TQuery) {
-  if (typeof data !== 'object') {
-    throw new Error('Data must be object');
-  }
-
-  // Здесь достаточно и [object Object] для объекта
-  const keys = Object.keys(data);
-  return keys.reduce((result, key, index) => {
-    return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`;
-  }, '?');
-}
-
+import { queryStringify } from './query-stringify';
 class HTTPTransport {
   async get<T>(url: string, options: FetchOptions<TQuery> = {}) {
     return this.request<T>(url, {
@@ -80,7 +67,7 @@ class HTTPTransport {
 
       xhr.open(
         method,
-        isGet && !!data ? `${url}${queryStringify(data as TQuery)}` : url
+        isGet && !!data ? `${url}?=${queryStringify(data as TQuery)}` : url
       );
 
       xhr.timeout = timeout;

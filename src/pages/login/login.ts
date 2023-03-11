@@ -17,7 +17,7 @@ class LoginPage extends Block<LoginPageProps, LoginPageState> {
   }
 
   init(): void {
-    this.state = this.setState({
+    this._state = this.setState({
       login: '',
       password: '',
       error: { login: '', password: '' },
@@ -25,7 +25,7 @@ class LoginPage extends Block<LoginPageProps, LoginPageState> {
   }
 
   componentdidUnmount(): void {
-    this.state = {
+    this._state = {
       login: '',
       password: '',
       error: { login: '', password: '' },
@@ -34,7 +34,7 @@ class LoginPage extends Block<LoginPageProps, LoginPageState> {
   render() {
     return Login({
       ...this.state,
-      ...this.props,
+      ...this._props,
       handleChange: this.handleChange.bind(this),
       handleSubmit: this.handleSubmit.bind(this),
     });

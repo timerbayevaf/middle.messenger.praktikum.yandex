@@ -28,7 +28,7 @@ class SignupPage extends Block<SignupPageProps, SignupPageState> {
   }
 
   init(): void {
-    this.state = this.setState({
+    this._state = this.setState({
       first_name: '',
       second_name: '',
       email: '',
@@ -54,7 +54,7 @@ class SignupPage extends Block<SignupPageProps, SignupPageState> {
 
   allProps(): SignupProps {
     const props = {
-      ...this.props,
+      ...this._props,
       ...this.state,
       handleChange: this.handleChange.bind(this),
       handleSubmit: this.handleSubmit.bind(this),

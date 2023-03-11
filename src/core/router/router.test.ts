@@ -1,5 +1,4 @@
 import { Router } from './router';
-import { describe, test, expect } from '@jest/globals';
 import { Block } from '../block';
 import sleep from 'utils/test/sleep';
 import NotFoundPage from 'pages/not-found';

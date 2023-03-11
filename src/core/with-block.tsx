@@ -10,7 +10,7 @@ export function withBlock<T extends {}>(Child: JSX.FunctionComponent<T>) {
     }
 
     render(): JSX.Element {
-      return <Child {...this.props} />;
+      return <Child {...this._props} />;
     }
   };
 }
