@@ -1,4 +1,4 @@
-import { CHATLIST_VIEW } from 'constants';
+import { CHATLIST_VIEW } from 'constant';
 import { IUserDTO } from 'types';
 
 interface ProfileProps {

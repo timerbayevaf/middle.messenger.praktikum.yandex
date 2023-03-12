@@ -1,5 +1,5 @@
 import { Icons } from 'components/icon';
-import { CHATLIST_VIEW } from 'constants';
+import { CHATLIST_VIEW } from 'constant';
 import { AIcreateElement } from 'core';
 import { IUserDTO } from 'types';
 import { get } from 'utils/get';

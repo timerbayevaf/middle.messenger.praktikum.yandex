@@ -1,6 +1,6 @@
 import { AppState } from 'types';
 import { EventBus } from 'utils/event-bus';
-import { StoreEvents } from 'constants';
+import { StoreEvents } from 'constant';
 import { defaultStore } from './default-store';
 
 class Store extends EventBus {

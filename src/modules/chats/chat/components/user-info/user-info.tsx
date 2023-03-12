@@ -4,7 +4,7 @@ import { Icon, Icons } from 'components/icon';
 import './user-info.css';
 import Avatar from 'components/avatar/avatar';
 import { Button } from 'components/button';
-import { MODAL_TYPE } from 'constants';
+import { MODAL_TYPE } from 'constant';
 import { UserInfoProps } from './types';
 
 const UserInfo = ({

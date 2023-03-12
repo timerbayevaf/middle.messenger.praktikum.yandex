@@ -12,8 +12,8 @@ class Block<P extends {}, S extends {}> {
   };
 
   public eventBus: () => EventBus;
-  protected props: P;
-  protected state: S = {} as S;
+  protected _props: P;
+  protected _state: S = {} as S;
   private _element: HTMLElement | null = null;
   private rootInstance: JSX.Instance | null = null;
 
@@ -21,10 +21,18 @@ class Block<P extends {}, S extends {}> {
     return this._element;
   }
 
+  get props() {
+    return this._props;
+  }
+
+  get state() {
+    return this._state;
+  }
+
   constructor(props: P) {
     const eventBus = new EventBus();
 
-    this.props = this._makePropsProxy(props);
+    this._props = this._makePropsProxy(props);
     this.eventBus = () => eventBus;
 
     this._registerEvents(eventBus);
@@ -53,7 +61,7 @@ class Block<P extends {}, S extends {}> {
       return;
     }
 
-    Object.assign(this.props, nextProps);
+    Object.assign(this._props, nextProps);
   }
 
   _createResources() {
@@ -80,7 +88,7 @@ class Block<P extends {}, S extends {}> {
   }
 
   render(): JSX.Element {
-    return AIcreateElement('template', this.props);
+    return AIcreateElement('template', this._props);
   }
 
   getContent() {

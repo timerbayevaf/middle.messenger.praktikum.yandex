@@ -1,5 +1,5 @@
 import { Block } from './block';
-import { StoreEvents } from 'constants';
+import { StoreEvents } from 'constant';
 import store from '../store/store';
 import { AppState } from 'types';
 

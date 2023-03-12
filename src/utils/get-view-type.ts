@@ -1,4 +1,4 @@
-import { CHATLIST_VIEW } from 'constants';
+import { CHATLIST_VIEW } from 'constant';
 
 function getViewType(query: { viewType?: string }): CHATLIST_VIEW {
   let _viewType = CHATLIST_VIEW.CHAT_LIST;

@@ -18,6 +18,7 @@ const Button = ({
 }: ButtonProps) => (
   <button
     id={id}
+    data-testid={id}
     className={cn(
       'button',
       {

@@ -7,5 +7,5 @@ export {
   WebSocketMessage,
 } from './chats/chats';
 export { IUserDTO, ISignUpUserModel, SignInUserModel } from './user/user';
-export { FetchOptions } from './fetch';
+export { FetchOptions, PlainObject } from './fetch';
 export { AppState } from './app';

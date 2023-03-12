@@ -1,5 +1,5 @@
 import { AIcreateElement } from 'core';
-import { CHATLIST_VIEW } from 'constants';
+import { CHATLIST_VIEW } from 'constant';
 import View from './view';
 import Edit from './edit';
 import { ProfileProps } from './types';

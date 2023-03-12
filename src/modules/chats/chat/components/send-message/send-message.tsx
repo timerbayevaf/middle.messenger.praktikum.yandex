@@ -2,7 +2,7 @@ import { AIcreateElement } from 'core';
 import { Input } from 'components/input';
 import { Icon, Icons } from 'components/icon';
 import { Button } from 'components/button';
-import { MODAL_TYPE } from 'constants';
+import { MODAL_TYPE } from 'constant';
 import { SendMessageProps } from './types';
 
 import './send-message.css';

@@ -1,4 +1,4 @@
-import { MODAL_TYPE } from 'constants';
+import { MODAL_TYPE } from 'constant';
 import { AIcreateElement } from 'core';
 import { cn } from 'utils/cn';
 import { MessageDialog } from './message/message-dialog';

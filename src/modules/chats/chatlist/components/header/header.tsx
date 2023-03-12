@@ -1,13 +1,14 @@
-import { AIcreateElement, router } from 'core';
+import { AIcreateElement, Router } from 'core';
 
 import { Icon, Icons } from 'components/icon';
 import { Button } from 'components/button';
 import { Search } from '../search';
 import { cn } from 'utils/cn';
-import { CHATLIST_VIEW, MODAL_TYPE, ROUTES, ROUTE_TYPES } from 'constants';
+import { CHATLIST_VIEW, MODAL_TYPE, ROUTES, ROUTE_TYPES } from 'constant';
 import { HeaderProps } from './types';
 
 import './header.css';
+const router = new Router();
 
 const Header = ({
   searchValue = '',

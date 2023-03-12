@@ -22,12 +22,20 @@ class Route {
     this._props = props;
   }
 
+  get dom() {
+    return this._block?.getContent()?.dom;
+  }
+
   get pathname() {
     return this._pathname;
   }
 
   get isPrivate() {
     return this._props.isPrivate;
+  }
+
+  get state() {
+    return this._block?.state;
   }
 
   navigate(pathname: string) {

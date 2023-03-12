@@ -1,4 +1,4 @@
-import { CHATLIST_VIEW, MODAL_TYPE, ValidateType } from 'constants';
+import { CHATLIST_VIEW, MODAL_TYPE, ValidateType } from 'constant';
 import { IChatMessage, IChatItemDTO, IUserDTO } from 'types';
 
 interface ModalInfo {

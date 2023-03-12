@@ -8,8 +8,8 @@ import {
 } from './types';
 import loginController from 'controllers/user';
 import { checkCorrectField, validateFields } from 'utils/validate';
-import { isSpecName } from 'utils/spec';
-import { validateSignUpRules, ValidateType } from 'constants';
+import { isSpecName } from 'utils/specs';
+import { validateSignUpRules, ValidateType } from 'constant';
 import { AppState } from 'types';
 
 const validateSignUpRulesWithNewPassword = [
@@ -28,7 +28,7 @@ class SignupPage extends Block<SignupPageProps, SignupPageState> {
   }
 
   init(): void {
-    this.state = this.setState({
+    this._state = this.setState({
       first_name: '',
       second_name: '',
       email: '',
@@ -54,7 +54,7 @@ class SignupPage extends Block<SignupPageProps, SignupPageState> {
 
   allProps(): SignupProps {
     const props = {
-      ...this.props,
+      ...this._props,
       ...this.state,
       handleChange: this.handleChange.bind(this),
       handleSubmit: this.handleSubmit.bind(this),

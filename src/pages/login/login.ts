@@ -2,11 +2,11 @@ import { connect } from 'core';
 import Login from 'modules/login/login';
 import { Block } from 'core';
 import userController from 'controllers/user';
-import { validateLoginRules } from 'constants';
+import { validateLoginRules } from 'constant';
 import { AppState } from 'types';
 import { checkCorrectField, validateFields } from 'utils/validate';
 import { LoginPageProps, LoginPageState, LOGIN_SPEC_TYPE } from './types';
-import { isSpecName } from 'utils/spec';
+import { isSpecName } from 'utils/specs';
 
 const isUserLoginSpecName = isSpecName<LOGIN_SPEC_TYPE>(validateLoginRules);
 const userLoginValidator = validateFields(validateLoginRules);
@@ -17,7 +17,7 @@ class LoginPage extends Block<LoginPageProps, LoginPageState> {
   }
 
   init(): void {
-    this.state = this.setState({
+    this._state = this.setState({
       login: '',
       password: '',
       error: { login: '', password: '' },
@@ -25,7 +25,7 @@ class LoginPage extends Block<LoginPageProps, LoginPageState> {
   }
 
   componentdidUnmount(): void {
-    this.state = {
+    this._state = {
       login: '',
       password: '',
       error: { login: '', password: '' },
@@ -34,7 +34,7 @@ class LoginPage extends Block<LoginPageProps, LoginPageState> {
   render() {
     return Login({
       ...this.state,
-      ...this.props,
+      ...this._props,
       handleChange: this.handleChange.bind(this),
       handleSubmit: this.handleSubmit.bind(this),
     });

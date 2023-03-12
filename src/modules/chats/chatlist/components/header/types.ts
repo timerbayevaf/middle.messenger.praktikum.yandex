@@ -1,4 +1,4 @@
-import { CHATLIST_VIEW, MODAL_TYPE } from 'constants';
+import { CHATLIST_VIEW, MODAL_TYPE } from 'constant';
 
 interface HeaderProps {
   searchValue: string;

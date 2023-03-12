@@ -1,26 +1,10 @@
-import { METHODS } from 'constants';
+import { METHODS } from 'constant';
 import { TBody, TQuery } from 'src/types/fetch';
 import { FetchOptions } from 'types';
-
-// Необязательный метод
-function queryStringify(data: TQuery) {
-  if (typeof data !== 'object') {
-    throw new Error('Data must be object');
-  }
-
-  // Здесь достаточно и [object Object] для объекта
-  const keys = Object.keys(data);
-  return keys.reduce((result, key, index) => {
-    return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`;
-  }, '?');
-}
-
+import { queryStringify } from './query-stringify';
 class HTTPTransport {
   async get<T>(url: string, options: FetchOptions<TQuery> = {}) {
     return this.request<T>(url, {
-      headers: {
-        'content-type': 'application/json', // Данные отправляем в формате JSON
-      },
       ...options,
       method: METHODS.GET,
     });
@@ -28,9 +12,6 @@ class HTTPTransport {
 
   async post<T>(url: string, options: FetchOptions<TBody> = {}) {
     return this.request<T>(url, {
-      headers: {
-        'content-type': 'application/json', // Данные отправляем в формате JSON
-      },
       ...options,
       method: METHODS.POST,
     });
@@ -38,9 +19,6 @@ class HTTPTransport {
 
   async put<T>(url: string, options: FetchOptions<TBody> = {}) {
     return this.request<T>(url, {
-      headers: {
-        'content-type': 'application/json', // Данные отправляем в формате JSON
-      },
       ...options,
       method: METHODS.PUT,
     });
@@ -48,9 +26,6 @@ class HTTPTransport {
 
   async delete<T>(url: string, options: FetchOptions<TBody> = {}) {
     return this.request<T>(url, {
-      headers: {
-        'content-type': 'application/json', // Данные отправляем в формате JSON
-      },
       ...options,
       method: METHODS.DELETE,
     });
@@ -62,7 +37,9 @@ class HTTPTransport {
   ): Promise<T> {
     const {
       timeout = 5000,
-      headers = {},
+      headers = {
+        'content-type': 'application/json', // Данные отправляем в формате JSON
+      },
       method,
       responseType = 'json',
       data,
@@ -80,7 +57,7 @@ class HTTPTransport {
 
       xhr.open(
         method,
-        isGet && !!data ? `${url}${queryStringify(data as TQuery)}` : url
+        isGet && !!data ? `${url}?=${queryStringify(data as TQuery)}` : url
       );
 
       xhr.timeout = timeout;
